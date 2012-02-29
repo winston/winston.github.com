@@ -1,0 +1,18 @@
+--- 
+layout: post
+title: Gmail Account Activity
+wordpress_id: 194
+wordpress_url: http://www.winstonyw.com/?p=194
+date: 2008-09-05 23:23:15 +08:00
+---
+Today, while I was fiddling around in Gmail, I noticed something peculiar with the footer. There's an extra line which I don't ever remember seeing it, or hearing about it. Basically, it's my Gmail account activity status, and there's even a link to more details.
+
+<img class="left clear" alt="Gmail Account Activity Status" src="http://www.winstonyw.com/uploads/images/Gmail_Account_Activity-1.jpg"/>
+
+Clicking on the link brought me to an "Account Activity" page that provides information about my current open sessions and recent activities on my Gmail account. This allows me to audit for any unauthorized access to my Gmail account, and verify that all Gmail activities (by access type and IP) belong to me. Suppose I discover suspicious activity, I can also sign out of all other current open sessions.
+
+<img class="left clear" alt="Gmail Acount Activity Details Page" src="http://www.winstonyw.com/uploads/images/Gmail_Account_Activity-2.jpg"/>
+
+Initially, I thought I had stumbled upon a piece of breaking news. But after doing a search on Google for this feature, I found that <a href="http://gmailblog.blogspot.com/2008/07/remote-sign-out-and-info-to-help-you.html" target="_blank">Gmail Blog</a> and <a href="http://blogoscoped.com/archive/2008-07-09-n48.html" target="_blank">Blogoscoped</a> have already blogged about it in July 2008. <a href="http://mail.google.com/support/bin/answer.py?hl=en&answer=45938" target="_blank">Gmail's FAQ</a> also contains information about it. 
+
+Still, how many are as blind as me, and have only seen it now?
