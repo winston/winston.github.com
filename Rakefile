@@ -1,6 +1,9 @@
-desc "Compile .haml to .html for all files in/_layouts.haml"
-task :compile_layout do
-  puts "Compiling HAML layouts.."
+desc "Compile .haml to .html (index.haml and _layouts/)"
+task :compile do
+  puts "Compiling.."
+  system(
+    %{ haml index.haml index.html }
+  )
   system(
     %{
       cd _layouts/haml && 
@@ -10,8 +13,9 @@ task :compile_layout do
   puts "Compiling OK.."
 end
 
+
 desc "Launch Dev"
 task :dev do
-  Rake::Task["compile_layout"].invoke
+  Rake::Task["compile"].invoke
   system "jekyll --auto --server"
 end
