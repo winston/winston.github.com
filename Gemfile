@@ -1,0 +1,4 @@
+gem 'jekyll'
+gem 'rdiscount'
+gem 'haml'
+gem 'sass'

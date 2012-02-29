@@ -1,0 +1,3 @@
+markdown: rdiscount
+pgyments: true
+exclude: ["README", "Gemfile", "Gemfile.lock"]
