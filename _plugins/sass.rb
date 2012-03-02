@@ -1,4 +1,4 @@
-# Source: http://blog.martiandesigns.com/2010/07/19/haml-sass-converters-for-jekyll.html
+# https://gist.github.com/960150
 
 module Jekyll
   require 'sass'
@@ -7,7 +7,7 @@ module Jekyll
     priority :low
 
     def matches(ext)
-      ext =~ /sass/i
+      ext =~ /scss/i
     end
 
     def output_ext(ext)
@@ -15,9 +15,9 @@ module Jekyll
     end
 
     def convert(content)
-      engine = Sass::Engine.new(content)
+      puts "===> Converting to CSS..."
+      engine = Sass::Engine.new( content, :syntax => :scss, :load_paths => ["./assets/css/"]) #, :style => :compressed )
       engine.render
-      
     rescue StandardError => e
       puts "!!! SASS Error: " + e.message
     end
