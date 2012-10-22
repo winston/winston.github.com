@@ -1,4 +1,4 @@
-# Source: http://blog.martiandesigns.com/2010/07/19/haml-sass-converters-for-jekyll.html
+# http://mikeferrier.com/2011/04/29/blogging-with-jekyll-haml-sass-and-jammit/
 
 module Jekyll
   require 'haml'
@@ -17,7 +17,6 @@ module Jekyll
     def convert(content)
       engine = Haml::Engine.new(content)
       engine.render
-      
     rescue StandardError => e
       puts "!!! HAML Error: " + e.message
     end

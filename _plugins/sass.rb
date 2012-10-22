@@ -1,4 +1,4 @@
-# https://gist.github.com/960150
+# http://mikeferrier.com/2011/04/29/blogging-with-jekyll-haml-sass-and-jammit/
 
 module Jekyll
   require 'sass'
@@ -15,8 +15,7 @@ module Jekyll
     end
 
     def convert(content)
-      puts "===> Converting to CSS..."
-      engine = Sass::Engine.new( content, :syntax => :scss, :load_paths => ["./assets/css/"]) #, :style => :compressed )
+      engine = Sass::Engine.new(content, :syntax => :scss, :load_paths => ["./assets/css/"])
       engine.render
     rescue StandardError => e
       puts "!!! SASS Error: " + e.message
