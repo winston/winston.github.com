@@ -1,0 +1,14 @@
+---
+title: "Hi, I am Winston."
+layout: default
+---
+
+%article.index
+  {% for post in site.posts %}
+  %article.post
+    %section.title
+      %a{href: "{{ post.url }}"}
+        {{ post.title }}
+    %section.date
+      {{ post.date | date_to_string | upcase }}
+  {% endfor %}
