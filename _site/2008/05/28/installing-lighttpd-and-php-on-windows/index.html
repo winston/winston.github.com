@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Installing LightTPD and PHP on Windows</title>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="author" content="Winston Teo Yong Wei" />
+
+    <link href="/assets/css/application.css" media="screen" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <header>
+      winstonyw
+    </header>
+    <div class="content">
+      <p>This blog is in need of a makeover, and so I am trying to keep the procrastination habit at bay, practice some GTD and get started on creating a new template for it. First of all, I need a local development environment for PHP on Windows, since I am a Windows user. Previously, I would have installed <a href="http://sg.php.net/install.windows" target="_blank">IIS on Windows and used it as the server for PHP</a>, but it's always a chore trying to find my Windows CD.</p>
+
+<p>Fortunately, I learnt about <a href="http://www.lighttpd.net/" target="_blank">LightTPD</a> recently in my work at <a href="http://www.wego.com" target="_blank">Wego</a> and how I can use it to replace IIS as the server for PHP. It's easy installation and setup within minutes. Great! Let's get started!</p>
+
+<h3>1. Download and Install PHP</h3>
+
+
+<p>Download PHP from <a href="http://www.php.net/downloads.php">PHP website</a>. I chose the zip package and simply unzipped it into my directory of choice: Almighty C drive! So now, it's residing at "C:\php".</p>
+
+<h3>2. Download and Install LightTPD</h3>
+
+
+<p>Download a Win32 version of LightTPD from the <a href="http://en.wlmp-project.net/downloads.php?cat=lighty" target="_blank">WLMP Project</a>; I chose the Setup Wizard (.exe) version.</p>
+
+<p>Double-click on the downloaded executable to start the short installation process, during which you would specify the destination of the install. I installed mine at "C:\Program Files\LightTPD".</p>
+
+<h3>3. Start and Test LightTPD</h3>
+
+
+<p>To start LightTPD, go to the LightTPD directory (i.e. "C:\Program Files\LightTPD"), find the file "TestMode.bat" and double-click on it. A console window would open and indicate that the server has been started.</p>
+
+<p>To test that LightTPD is working at this moment, point your browser to http://localhost. You should see a "LightTPD Test Page".</p>
+
+<p>That was easy right? Now we just need to edit some configurations to make PHP work with LightTPD.</p>
+
+<h3>4. Editing LightTPD Configurations</h3>
+
+
+<p>Edit the file lighttpd-inc.conf (i.e. "C:\Program Files\LightTPD\conf\lighttpd-inc.conf") with the following:</p>
+
+<ul>
+    <li>Remove the comment tag for "mod-cgi" (Line 20)</li>
+    <li>Add this line (assuming that PHP was installed on C drive):
+<ul>
+    <li>cgi.assign = ( ".php" =&gt; "C:/php/php-cgi.exe" )</li>
+</ul>
+</li>
+</ul>
+
+
+<h3>5. Editing PHP Configurations</h3>
+
+
+<p>In your PHP directory, rename the file php.ini-recommended to php.ini and edit php.ini with the following:</p>
+
+<ul>
+    <li>  short_open_tag = On</li>
+    <li>  display_errors = On</li>
+    <li>  doc_root = "C:\Progra~1\LightTPD\htdocs"</li>
+</ul>
+
+
+<h3>6. Test PHP with LightTPD</h3>
+
+
+<p>To test that LightTPD now works with PHP, create a file with the following contents:
+[source="php"]
+&lt;?php phpinfo(); ?>
+[/source]</p>
+
+<p>Place the file in your htdocs directory (i.e. "C:\Program Files\LightTPD\htdocs"), open up your browser and browse to the page. Walaa! You should be able to see the standard phpinfo() messages.</p>
+
+<p>There you have it! A development environment for PHP on Windows in 6 simple steps. Now, to get started on the new template..</p>
+
+    </div>
+    <footer></footer>
+  </body>
+</html>

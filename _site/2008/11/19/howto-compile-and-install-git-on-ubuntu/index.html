@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>HOWTO Compile And Install Git On Ubuntu</title>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="author" content="Winston Teo Yong Wei" />
+
+    <link href="/assets/css/application.css" media="screen" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <header>
+      winstonyw
+    </header>
+    <div class="content">
+      <p>This is a Google Notebook dump of how to compile and install Git on Ubuntu (or Linux), as my Google Notebook is cluttered with random knowledge that I picked up in my work and is in need of some organization.</p>
+
+<h3>Step 1: Download Dependencies</h3>
+
+
+<p>
+There are dependencies that's required for the install of Git. Let's get them via apt-get.
+[code='bash']
+sudo apt-get build-dep git-core
+[/code]</p>
+
+<p><strong>Note</strong>: If apt-get fails at some point to install the dependencies, update it and retry.
+[code='bash']
+sudo apt-get update
+[/code]</p>
+
+<h3>Step 2: Download Git</h3>
+
+
+<p>Download the latest version of Git. I use <em>wget</em>, but it's really up to personal preference.
+[code='bash']
+wget http://kernel.org/pub/software/scm/git/git-1.6.0.4.tar.gz
+[/code]</p>
+
+<h3>Step 3: Make and Install Git</h3>
+
+
+<p>Simply execute the following commands to unpack, compile and install Git.
+[code='bash']
+gunzip git-1.6.0.4.tar.gz
+tar -xvf git-1.6.0.4.tar
+cd git-1.6.0.4
+./configure
+make &amp;&amp; sudo make install
+[/code]</p>
+
+<p>That's all to get started with Git on your Ubuntu (or Linux) servers. Enjoy!</p>
+
+    </div>
+    <footer></footer>
+  </body>
+</html>
