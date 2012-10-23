@@ -7,7 +7,7 @@ end
 desc "Build"
 task :build do |task, args|
   Rake::Task["htmlize"].invoke
-  system "jekyll"
+  system "jekyll --pygments --no-lsi --safe"
 end
 
 desc "Convert haml layouts to html layouts"
