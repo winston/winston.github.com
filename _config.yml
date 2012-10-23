@@ -1,6 +1,3 @@
 permalink: pretty
-destination: ./_site
-auto: true
-lsi: false
-pygments: true
 markdown: rdiscount
+pygments: true
