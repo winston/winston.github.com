@@ -1,3 +1,4 @@
 permalink: pretty
 markdown: rdiscount
 pygments: true
+exclude: ["README", "Gemfile", "Gemfile.lock"]
