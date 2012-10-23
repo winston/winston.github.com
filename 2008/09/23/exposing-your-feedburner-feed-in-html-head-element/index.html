@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Exposing Your FeedBurner Feed In HTML Head Element</title>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="author" content="Winston Teo Yong Wei" />
+
+    <link href="/assets/css/application.css" media="screen" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <header>
+      winstonyw
+    </header>
+    <div class="content">
+      <h3>Feed Era</h3>
+
+
+<p>We now live in the era of feeds, where most web applications you use can produce some kind of RSS/Atom feed. In turn, these feeds can be inputs to other web applications of varied uses, such as <a href="http://www.google.com/reader" target="_blank">Google Reader</a> or <a href="http://www.friendfeed.com" target="_blank">FriendFeed</a>.</p>
+
+<h3>Blog Feed</h3>
+
+
+<p>The first application that comes to mind when we talk about feeds would be blogs. Taking WordPress as an example, WordPress blogs produce RSS and Atom feeds. These feeds are then usually included in the HTML Head element of the blog as follows:
+[code=php]
+<head>
+  <!-- Meta Tags -->
+  <link rel="alternate" type="application/rss+xml"  title="RSS 2.0"   href="<?php bloginfo('rss2_url'); ?>" />
+  <link rel="alternate" type="text/xml"             title="RSS .92"   href="<?php bloginfo('rss_url'); ?>" />
+  <link rel="alternate" type="application/atom+xml" title="Atom 0.3"  href="<?php bloginfo('atom_url'); ?>" />
+</head>
+[/code]</p>
+
+<p>Note the definition of the Link element and its significance:</p>
+
+<blockquote>
+Link elements with a rel value of "alternate" are used to describe an alternate representation of the content of the current web page, and these defined relationships and help your site attract and retain visitors.
+</blockquote>
+
+
+
+
+<h3>Burning Your Blog Feed</h3>
+
+
+<p>However, we all know of a great service at <a href="http://www.feedburner.com" target="_blank">FeedBurner</a> that can provide you with amazing control over your vanilla feeds, and so, most of the blogs I know <strong>ADVERTISE</strong> a FeedBurner feed rather than (or alongside) the prepackaged feeds.</p>
+
+<h3>Feed Discovery</h3>
+
+
+<p>What do I mean by "ADVERTISE"? Usually, a prominent subscribe link to a FeedBurner feed can be found on blogs, but the FeedBurner feed is <strong>NOT</strong> exposed in the HTML Head element. This impedes accurate feed discovery, and readers of these blogs, if using some feed discovery application, may subscribe to one of the exposed vanilla feeds instead of the "hidden" FeedBurner feed. To the content-producer, this implies a lost of feed-viewership analytics and possibly even revenue.</p>
+
+<h3>Experiment 1</h3>
+
+
+<p>To illustrate, I use this <a href="http://blog.persistent.info/2006/05/smart-google-reader-subscribe-button.html" target="_blank">Greasemonkey script: Smart Google Reader Subscribe Button by Mihai</a> which places an unobtrusive RSS icon in the upper-right corner of the browser, allowing easy subscription to RSS feeds that are discovered on any site.</p>
+
+<p>Suppose I include my FeedBurner feed in the HTML Head element, the script would be able to discover two feeds. However, when I exclude my FeedBurner feed from the HTML Head element, the script would only be able to discover one feed.</p>
+
+<p><img class="clear" src="http://www.winstonyw.com/uploads/images/Exposing_Your_FeedBurner_Feed_In_HTML_Head_Element-1.jpg" alt="Feed Discovery via Greasemonkey Script" /></p>
+
+<h3>Experiment 2</h3>
+
+
+<p>For a more conclusive example, let's try using FireFox to subscribe to a blog feed. Again, we first test with the FeedBurner feed included, then excluded from the HTML Head element.</p>
+
+<p><img class="left clear" src="http://www.winstonyw.com/uploads/images/Exposing_Your_FeedBurner_Feed_In_HTML_Head_Element-2.jpg" alt="Feed Discovery via FireFox" /></p>
+
+<p>As you can see, in the first setting, the FeedBurner feed was discovered and marked to be subscribed (via Google). However, in the second setting, the vanilla RSS feed was discovered, and this is definitely not what content-producers would like to see happening.</p>
+
+<h3>Do Your Own Experiments</h3>
+
+
+<p>Still skeptical? Test this out in Google Reader or even the <a href="http://www.google.com/uds/solutions/wizards/dynamicfeed.html" target="blank">Google Ajax Feed API</a> to see which feed is discovered from your blog. There are also other feed discovery services out there which you can use to test my hypothesis, but the result would probably be the same, and the reasoning similar: Only feeds that are linked, or exposed in the HTML Head element can be easily discovered.</p>
+
+<h3>Conclusion</h3>
+
+
+<p>In conclusion, we should realise the importance of facilitating feed discovery and its implications to content-indexing and traffic analytics. Remember to expose your FeedBurner feed in your WordPress blog today, like so:
+[code=html]
+<head>
+  <!-- Meta Tags -->
+  <link rel="alternate"  href="http://feeds.feedburner.com/winstonyw" type="application/rss+xml" title="FeedBurner RSS Feed"/>
+</head>
+[/code]</p>
+
+    </div>
+    <footer></footer>
+  </body>
+</html>
