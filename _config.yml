@@ -1,4 +1,6 @@
 permalink: pretty
+destination: ./_site
+auto: true
+lsi: false
+pygments: true
 markdown: rdiscount
-pgyments: true
-exclude: ["README", "Gemfile", "Gemfile.lock"]
