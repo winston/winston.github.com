@@ -1,3 +1,13 @@
+@import url(http://fonts.googleapis.com/css?family=Advent+Pro|Yanone+Kaffeesatz);
+
+@mixin advent {
+  font-family: 'Advent Pro', sans-serif;
+}
+
+@mixin yanone {
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+}
+
 $lturqoise: #0AD1C3;
 $mturqoise: #90CACC;
 $dturqoise: #21AABD;
@@ -16,18 +26,34 @@ $dgrey    : #888888;
 
 $white: #FFFFFF;
 
-
 body {
   font-family: $helvetica;
   font-size: 14px;
 }
 
-header {
+h1 { font-size: #{(86/14)}em; }
+h2 { font-size: #{(36/14)}em; }
+h3 { font-size: #{(28/14)}em; }
+h4 { font-size: #{(24/14)}em; }
+h3 { font-size: #{(18/14)}em; }
 
+header {
+  @include yanone;
+  margin: 0 0 2em 0;
+  
+  h1 {
+    margin: 0;
+  }
+  
+  .intro {
+    margin: -0.4em 0 0 0;
+    font-size: 2.05em;
+    color: $mgrey;
+  }  
 }
 
 #content {
-
+  
 }
 
 footer {
@@ -35,9 +61,10 @@ footer {
 }
 
 .content_wrapper {
-  max-width: 800px;
   @include outer-container;
+  max-width: 650px;
 }
+
 
 a, a:visited {
   color: $dturqoise;
@@ -47,6 +74,7 @@ a, a:visited {
 a:hover {
   color: $dpink;
 }
+
 
 .index {
   .post {
