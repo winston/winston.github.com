@@ -3,16 +3,31 @@
   <head>
     <title>{{ page.title }}</title>
     <meta content="text/html; charset=utf-8" http-equiv="content-type" />
-    <meta name="author" content="Winston Teo Yong Wei" />
-
-    <link href="/assets/css/application.css" media="screen" rel="stylesheet" type="text/css" />
+    <meta content='Winston Teo Yong Wei' name='author' />
+    <link href='/assets/css/application.css' media='screen' rel='stylesheet' type='text/css' />
   </head>
   <body>
     <header>
-      winstonyw
+      <div id='profile-color-bar'></div>
+      <div id='profile'>
+        <h1>
+          <a href="/">WinstonYW</a>
+        </h1>
+        <h2>
+          Just Another Tech Journal
+        </h2>
+      </div>
     </header>
-    <div class="content">
-      {{ content }}
+    <div id='center'>
+      <div id='content-color-bar'></div>
+      <div id='content'>
+        <article class="post">
+          <h3>{{ page.title }}</h3>
+          <section>
+            {{ content }}
+          </section>  
+        </article>    
+      </div>
     </div>
     <footer></footer>
   </body>
