@@ -7,7 +7,7 @@ layout: default
   %h2
     Contents
   {% for post in site.posts %}
-  %article.post
+  %article.post-link
     %span.date
       {{ post.date | date: "%d %b %y" | upcase }}
     %a{href: "{{ post.url }}"}

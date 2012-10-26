@@ -22,7 +22,8 @@
       <div id='content-color-bar'></div>
       <div id='content'>
         <article class="post">
-          <h2>{{ page.title }}</h3>
+          <h2>{{ page.title }}</h2>
+          <span class="date">{{ page.date | date_to_long_string | upcase }}</span>
           <section>
             {{ content }}
           </section>
