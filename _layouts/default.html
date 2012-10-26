@@ -1,28 +1,29 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>
-      {{ page.title }}
-    </title>
+    <title>{{ page.title }}</title>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
     <meta content='Winston Teo Yong Wei' name='author' />
     <link href='/assets/css/application.css' media='screen' rel='stylesheet' type='text/css' />
   </head>
   <body>
     <header>
-      <div class='content_wrapper'>
-        <h1>WinstonYW</h1>
-        <div class='intro'>
-          Creating Value & Getting Things Done
-        </div>
+      <div id='profile-color-bar'></div>
+      <div id='profile'>
+        <h1>
+          <a href="/">WinstonYW</a>
+        </h1>
+        <h2>
+          Just Another Tech Journal
+        </h2>
       </div>
     </header>
-    <div id='content'>
-      <div class='content_wrapper'>
+    <div id='center'>
+      <div id='content-color-bar'></div>
+      <div id='content'>
         {{ content }}
       </div>
     </div>
-    <footer>
-      <div class='content_wrapper'></div>
-    </footer>
+    <footer></footer>
   </body>
 </html>
