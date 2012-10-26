@@ -1,37 +1,42 @@
-@import url(http://fonts.googleapis.com/css?family=Advent+Pro|Yanone+Kaffeesatz);
-
-@mixin advent {
-  font-family: 'Advent Pro', sans-serif;
-}
+@import url(http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz|Advent+Pro|Nova+Mono);
 
 @mixin yanone {
   font-family: 'Yanone Kaffeesatz', sans-serif;
 }
 
-$lturqoise: #0AD1C3;
-$mturqoise: #90CACC;
+@mixin advent {
+  font-family: 'Advent Pro', sans-serif;
+}
+
+@mixin mono {
+  font-family: 'Nova Mono', cursive;
+}
+
+$lturqoise: #8DF0E6;
+$mturqoise: #59B2AC;
 $dturqoise: #21AABD;
 
-$dpink    : #F94B62;
-$mpink    : #FF85A7;
 $lpink    : #FFD1DE;
+$mpink    : #FF85A7;
+$dpink    : #F94B62;
 
-$dorange  : #F79707;
-$morange  : #F5B038;
-$lorange  : #EDD455;
+$lyellow  : #F8FF66;
+$myellow  : #FFD446;
+$dyellow  : #EFAB2E;
 
-$lgrey    : #DFDED6;
-$mgrey    : #C5C6B8;
-$dgrey    : #888888;
+$lgrey    : #E1E1E1;
+$mgrey    : #C2C2C2;
+$dgrey    : #737373;
 
-$white: #FFFFFF;
+$white    : #FFFFFF;
+$black    : #333333;
 
 $font-size: 16px;
 
-h1 { font-size: 4.5em; }
-h2 { font-size: 2.0em; }
-h3 { font-size: 2.0em; font-style: italic; @include advent;}
-h4 { font-size: 1.5em; }
+h1 { font-size: 4.5em; @include yanone; }
+h2 { font-size: 2.0em; @include advent; }
+h3 { font-size: 1.5em; @include advent; }
+h4 { font-size: 1.2em; @include advent; }
 
 a, a:visited {
   color: $dturqoise;

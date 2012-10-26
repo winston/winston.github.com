@@ -4,20 +4,21 @@ body {
   max-width: 1000px;
   margin: 0 auto;
 
-  font-family: $helvetica;
-  font-size  : $font-size;
-  
+  font-family : $helvetica;
+  font-size   : $font-size;
+  color       : $black;
+
   text-rendering: optimizeLegibility;
 }
 
 header {
   @include span-columns(4);
-  @include omega();
+  @include omega;
 }
 
 #center {
   @include span-columns(8);
-  @include omega();
+  @include omega;
 }
 
 header {
@@ -27,23 +28,23 @@ header {
   }
 
   #profile {
-    @include pad();
+    @include pad;
 
-    @include yanone;
     text-align: center;
 
     h1 {
       margin : 0;
       padding: 0.5em 0 0 0 ;
-      
-      a, 
+
+      a,
       a:visited, a:hover {
-        color: #000000;
+        color: $black;
         text-decoration: none;
       }
     }
 
     h2 {
+      @include yanone;
       margin : -0.4em 0 0 0;
       color  : $mgrey;
     }
@@ -57,9 +58,10 @@ header {
   }
 
   #content {
-    @include pad();
+    @include pad;
   }
 }
 
 footer {
+
 }

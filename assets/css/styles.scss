@@ -1,5 +1,5 @@
 .index {
-  h3 {
+  h2 {
     margin: 1.2em 0 0.6em 0;
   }
 
@@ -9,15 +9,14 @@
     line-height   : 1.5em;
 
     .date {
-      font-family : $monospace;
-      font-size   : 0.8em;
+      @include mono;
       color       : $mgrey;
     }
   }
 }
 
 .post {
-  h3 {
+  h2 {
     margin: 1.2em 0 0.6em 0;
   }
-}  
+}
