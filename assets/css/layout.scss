@@ -1,99 +1,65 @@
-@import url(http://fonts.googleapis.com/css?family=Advent+Pro|Yanone+Kaffeesatz);
-
-@mixin advent {
-  font-family: 'Advent Pro', sans-serif;
-}
-
-@mixin yanone {
-  font-family: 'Yanone Kaffeesatz', sans-serif;
-}
-
-$lturqoise: #0AD1C3;
-$mturqoise: #90CACC;
-$dturqoise: #21AABD;
-
-$dpink    : #F94B62;
-$mpink    : #FF85A7;
-$lpink    : #FFD1DE;
-
-$dorange  : #F79707;
-$morange  : #F5B038;
-$lorange  : #EDD455;
-
-$lgrey    : #DFDED6;
-$mgrey    : #C5C6B8;
-$dgrey    : #888888;
-
-$white: #FFFFFF;
-
 body {
-  font-family: $helvetica;
-  font-size: 14px;
-}
+  @include outer-container;
 
-h1 { font-size: #{(86/14)}em; }
-h2 { font-size: #{(36/14)}em; }
-h3 { font-size: #{(28/14)}em; }
-h4 { font-size: #{(24/14)}em; }
-h3 { font-size: #{(18/14)}em; }
+  max-width: 1000px;
+  margin: 0 auto;
+
+  font-family: $helvetica;
+  font-size  : $font-size;
+  
+  text-rendering: optimizeLegibility;
+}
 
 header {
-  @include yanone;
-  margin: 0 0 2em 0;
-  
-  h1 {
-    margin: 0;
-  }
-  
-  .intro {
-    margin: -0.4em 0 0 0;
-    font-size: 2.05em;
-    color: $mgrey;
-  }  
+  @include span-columns(4);
+  @include omega();
 }
 
-#content {
-  
+#center {
+  @include span-columns(8);
+  @include omega();
+}
+
+header {
+  #profile-color-bar {
+    height: 1em;
+    background-color: $dpink;
+  }
+
+  #profile {
+    @include pad();
+
+    @include yanone;
+    text-align: center;
+
+    h1 {
+      margin : 0;
+      padding: 0.5em 0 0 0 ;
+      
+      a, 
+      a:visited, a:hover {
+        color: #000000;
+        text-decoration: none;
+      }
+    }
+
+    h2 {
+      margin : -0.4em 0 0 0;
+      color  : $mgrey;
+    }
+  }
+}
+
+#center {
+  #content-color-bar {
+    height: 1em;
+    background-color: $lturqoise;
+  }
+
+  #content {
+    @include pad();
+  }
 }
 
 footer {
-
-}
-
-.content_wrapper {
-  @include outer-container;
-  max-width: 650px;
-}
-
-
-a, a:visited {
-  color: $dturqoise;
-  text-decoration: none;
-}
-
-a:hover {
-  color: $dpink;
-}
-
-
-.index {
-  .post {
-    @include span-columns(12);
-
-    border-bottom: 1px dotted $lgrey;
-    padding     : 0.2em;
-    line-height : 1.5em;
-
-    .date {
-      @include span-columns(2 of 12);
-
-      text-align  : right;
-      font-family : $monospace;
-      color       : $dgrey;
-    }
-
-    .title {
-      @include span-columns(10 of 12);
-    }
-  }
 }
