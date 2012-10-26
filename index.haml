@@ -4,11 +4,12 @@ layout: default
 ---
 
 %article.index
+  %h3
+    Contents
   {% for post in site.posts %}
   %article.post
-    %section.title
-      %a{href: "{{ post.url }}"}
-        {{ post.title }}
-    %section.date
+    %span.date
       {{ post.date | date_to_string | upcase }}
+    %a{href: "{{ post.url }}"}
+      {{ post.title }}
   {% endfor %}
