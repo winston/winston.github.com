@@ -4,6 +4,20 @@ header, #center, footer {
   }
 }
 
+header {
+  .aside-color-bar, #projects, #elsewhere {
+    @include breakpoint($mobile) {
+      display: none;
+    }
+  }
+}
+
+footer {
+  @include breakpoint($mobile) {
+    display: none;
+  }
+}
+
 .index {
   @include breakpoint($mobile) {
     h2, .date {

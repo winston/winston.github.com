@@ -2,7 +2,6 @@ body {
   @include outer-container;
 
   margin      : 0 auto;
-
   font-family : $helvetica;
   font-size   : $font-size;
   color       : $black;
@@ -56,7 +55,18 @@ header {
   }
 
   #projects, #elsewhere {
-    @include pad(0 1em);
+    @include span-columns(2 of 4);
+    @include pad;
+
+    h2 {
+      margin-bottom: 0.5em;
+    }
+
+    ul {
+      li {
+        @include pad(0.2em 0);
+      }
+    }
   }
 }
 
