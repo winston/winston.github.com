@@ -33,7 +33,9 @@ $black    : #333333;
 
 $font-size: 16px;
 
-h1 { font-size: 4.5em; @include yanone; }
+$mobile   : max-width 500px 6;
+
+h1 { font-size: 4.0em; @include yanone; }
 h2 { font-size: 2.0em; @include advent; }
 h3 { font-size: 1.5em; @include advent; }
 h4 { font-size: 1.2em; @include advent; }

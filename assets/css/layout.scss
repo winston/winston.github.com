@@ -1,8 +1,8 @@
 body {
   @include outer-container;
 
-  max-width: 1000px;
-  margin: 0 auto;
+  max-width   : 1000px;
+  margin      : 0 auto;
 
   font-family : $helvetica;
   font-size   : $font-size;
@@ -45,7 +45,7 @@ header {
 
     h2 {
       @include yanone;
-      margin : -0.2em 0 0 0;
+      margin : -0.2em 0 1em 0;
       color  : $mgrey;
     }
   }

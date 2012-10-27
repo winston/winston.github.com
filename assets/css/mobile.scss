@@ -1,0 +1,13 @@
+header, #center, footer {
+  @include breakpoint($mobile) {
+    @include span-columns(6);
+  }
+}
+
+.index {
+  @include breakpoint($mobile) {
+    h2, .date {
+      display: none;
+    }
+  }
+}
