@@ -1,7 +1,6 @@
 body {
   @include outer-container;
 
-  max-width   : 1000px;
   margin      : 0 auto;
 
   font-family : $helvetica;
@@ -39,7 +38,8 @@ header {
       a,
       a:visited, a:hover {
         color: $black;
-        text-decoration: none;
+        text-decoration : none;
+        word-break      : break-all;
       }
     }
 
