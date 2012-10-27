@@ -47,3 +47,9 @@ a, a:visited {
 a:hover {
   color: $dpink;
 }
+
+ul {
+  li {
+    @include pad(0.1em);
+  }
+}
