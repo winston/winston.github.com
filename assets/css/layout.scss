@@ -21,14 +21,19 @@ header {
 }
 
 header {
-  #profile-color-bar {
+  .title-color-bar {
     height: 1em;
     background-color: $dpink;
   }
 
+  .aside-color-bar {
+    height: 1em;
+    background-color: $myellow;
+  }
+
+
   #profile {
     @include pad;
-
     text-align: center;
 
     h1 {
@@ -49,10 +54,14 @@ header {
       color  : $mgrey;
     }
   }
+
+  #projects, #elsewhere {
+    @include pad(0 1em);
+  }
 }
 
 #center {
-  #content-color-bar {
+  .color-bar {
     height: 1em;
     background-color: $lturqoise;
   }
@@ -63,5 +72,10 @@ header {
 }
 
 footer {
+  @include span-columns(12);
+  @include pad;
 
+  text-align: right;
+  font-size : 0.8em;
+  color     : $mgrey;
 }

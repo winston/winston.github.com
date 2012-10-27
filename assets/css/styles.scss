@@ -16,8 +16,12 @@
 
   .post-link {
     padding       : 0.2em;
-    border-bottom : 1px dotted $lgrey;
+    border-bottom : 1px dotted $mgrey;
     line-height   : 1.5em;
+
+    &:last-child {
+      border: none;
+    }
   }
 }
 
