@@ -1,4 +1,7 @@
-permalink: pretty
-markdown: rdiscount
-pygments: true
-exclude: ["README", "Gemfile", "Gemfile.lock", "Rakefile"]
+name        : WinstonYW
+description : This is the blog of Winston Teo Yong Wei.
+url         : http://winstonyw.com
+permalink : pretty
+markdown  : rdiscount
+pygments  : true
+exclude   : ["README", "Gemfile", "Gemfile.lock", "Rakefile"]
