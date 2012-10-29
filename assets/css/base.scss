@@ -47,3 +47,11 @@ a, a:visited {
 a:hover {
   color: $dpink;
 }
+
+blockquote {
+  margin      : 0;
+  padding     : 0.1em 1.5em;
+  border-left : 2px solid $lpink;
+  font-style  : italic;
+  color       : $mpink;
+}
