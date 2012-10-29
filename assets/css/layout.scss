@@ -77,7 +77,7 @@ header {
   }
 
   #content {
-    @include pad;
+    @include pad(1em 2em);
   }
 }
 

@@ -49,9 +49,19 @@ a:hover {
 }
 
 blockquote {
-  margin      : 0;
+  margin      : 0 0 1.5em 0;
   padding     : 0.1em 1.5em;
+
   border-left : 2px solid $lpink;
   font-style  : italic;
   color       : $mpink;
+}
+
+img {
+  border      : 1px dashed $mpink;
+}
+
+p {
+  margin      : 0 0 1.5em 0;
+  line-height : 1.5em;
 }
