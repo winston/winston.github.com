@@ -30,6 +30,8 @@
     margin-bottom : 0.2em;
   }
   section {
-    margin-top    : 2em;
+    margin        : 2em 0 4em;
+    padding-bottom: 2em;
+    border-bottom : 1px dotted $mgrey;
   }
 }
