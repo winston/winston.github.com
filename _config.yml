@@ -4,4 +4,4 @@ url         : http://winstonyw.com
 permalink : pretty
 markdown  : rdiscount
 pygments  : true
-exclude   : ["README", "Gemfile", "Gemfile.lock", "Rakefile"]
+exclude   : ["README", "Gemfile", "Gemfile.lock", "Rakefile", "wordpress_archives"]
