@@ -1,0 +1,13 @@
+---
+layout: post
+title: Reboot
+---
+
+Hi. I am Winston. 
+
+This is my new blog, written in Markdown and hosted on GitHub.
+
+Alright!
+
+Good night.
+
