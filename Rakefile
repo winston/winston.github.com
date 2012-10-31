@@ -1,5 +1,5 @@
+public_dir = "_site"
 deploy_dir = "deploy"
-public_dir = "tmp"
 
 desc "Launch Dev"
 task :dev do
@@ -15,6 +15,8 @@ end
 desc "Deploy"
 task :deploy do
   puts "## Deploying to Github Pages.."
+
+  (Dir["#{deploy_dir}/*"]).each { |f| rm_rf(f) }
 
   puts "\n## Copying #{public_dir} to #{deploy_dir}"
   cp_r "#{public_dir}/.", deploy_dir

@@ -1,7 +1,5 @@
 .DS_Store
-_site/*
 .sass-cache/*
 .idea/*
-_jekyll_*
+_site/*
 deploy
-tmp
