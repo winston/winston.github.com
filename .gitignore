@@ -2,3 +2,6 @@
 _site/*
 .sass-cache/*
 .idea/*
+_jekyll_*
+deploy
+tmp
