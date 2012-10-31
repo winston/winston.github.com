@@ -6,5 +6,20 @@
     <link>http://winstonyw.com</link>
     <atom:link href="http://winstonyw.com/feed.xml" rel="self" type="application/rss+xml" />
     
+    <item>
+      <title>Reboot</title>
+      <description>&lt;p&gt;Hi. I am Winston.&lt;/p&gt;
+
+&lt;p&gt;This is my new blog, written in Markdown and hosted on GitHub.&lt;/p&gt;
+
+&lt;p&gt;Alright!&lt;/p&gt;
+
+&lt;p&gt;Good night.&lt;/p&gt;
+</description>
+      <pubDate>Thu, 01 Nov 2012 00:00:00 +0800</pubDate>
+      <link>http://winstonyw.com/2012/11/01/reboot/</link>
+      <guid isPermaLink="true">http://winstonyw.com/2012/11/01/reboot/</guid>
+    </item>
+    
   </channel>
 </rss>
