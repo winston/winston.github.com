@@ -1,24 +1,24 @@
+@import url(http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz|Advent+Pro|Nova+Mono);
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
 
-body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px; }
+h1 {
+  font-size: 4.0em;
+  font-family: 'Yanone Kaffeesatz', sans-serif; }
 
-.content_wrapper {
-  max-width: 800px;
-  zoom: 1;
-  max-width: 68em;
-  text-align: left;
-  margin-left: auto;
-  margin-right: auto; }
-  .content_wrapper:before, .content_wrapper:after {
-    content: "";
-    display: table; }
-  .content_wrapper:after {
-    clear: both; }
+h2 {
+  font-size: 2.0em;
+  font-family: 'Advent Pro', sans-serif; }
+
+h3 {
+  font-size: 1.5em;
+  font-family: 'Advent Pro', sans-serif; }
+
+h4 {
+  font-size: 1.2em;
+  font-family: 'Advent Pro', sans-serif; }
 
 a, a:visited {
   color: #21aabd;
@@ -27,30 +27,146 @@ a, a:visited {
 a:hover {
   color: #f94b62; }
 
-.index .post {
+blockquote {
+  margin: 0 0 1.5em 0;
+  padding: 0.1em 1.5em;
+  border-left: 2px solid #ffd1de;
+  font-style: italic;
+  color: #ff85a7; }
+
+img {
+  border: 1px dashed #ff85a7; }
+
+p {
+  margin: 0 0 1.5em 0;
+  line-height: 1.5em; }
+
+body {
+  zoom: 1;
+  max-width: 68em;
+  text-align: left;
+  margin-left: auto;
+  margin-right: auto;
+  margin: 0 auto;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  color: #333333;
+  text-rendering: optimizeLegibility; }
+  body:before, body:after {
+    content: "";
+    display: table; }
+  body:after {
+    clear: both; }
+
+header {
+  display: block;
+  float: left;
+  margin-right: 2.35765%;
+  width: 31.76157%;
+  margin-right: 0; }
+  header:last-child {
+    margin-right: 0; }
+
+#center {
+  display: block;
+  float: left;
+  margin-right: 2.35765%;
+  width: 65.88078%;
+  margin-right: 0; }
+  #center:last-child {
+    margin-right: 0; }
+
+header .title-color-bar {
+  height: 1em;
+  background-color: #f94b62; }
+header .aside-color-bar {
+  height: 1em;
+  background-color: #ffd446; }
+header #profile {
+  padding: 2.35765%;
+  text-align: center; }
+  header #profile h1 {
+    margin: 0;
+    padding: 0.5em 0 0 0; }
+    header #profile h1 a,
+    header #profile h1 a:visited, header #profile h1 a:hover {
+      color: #333333;
+      text-decoration: none;
+      word-break: break-all; }
+  header #profile h2 {
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    margin: -0.2em 0 1em 0;
+    color: #c2c2c2; }
+header #projects, header #elsewhere {
+  display: block;
+  float: left;
+  margin-right: 7.42297%;
+  width: 46.28851%;
+  padding: 2.35765%; }
+  header #projects:last-child, header #elsewhere:last-child {
+    margin-right: 0; }
+  header #projects h2, header #elsewhere h2 {
+    margin-bottom: 0.5em; }
+  header #projects ul li, header #elsewhere ul li {
+    padding: 0.2em 0; }
+
+#center .color-bar {
+  height: 1em;
+  background-color: #8df0e6; }
+#center #content {
+  padding: 1em 2em; }
+
+footer {
   display: block;
   float: left;
   margin-right: 2.35765%;
   width: 100%;
-  border-bottom: 1px dotted #dfded6;
-  padding: 0.2em;
-  line-height: 1.5em; }
-  .index .post:last-child {
+  padding: 2.35765%;
+  text-align: right;
+  font-size: 0.8em;
+  color: #c2c2c2; }
+  footer:last-child {
     margin-right: 0; }
-  .index .post .date {
+
+.index h2, .post h2 {
+  margin-top: 1em; }
+.index .date, .post .date {
+  font-family: 'Nova Mono', cursive;
+  color: #c2c2c2; }
+
+.index h2 {
+  margin-bottom: 1.5em; }
+.index .post-link {
+  padding: 0.2em;
+  border-bottom: 1px dotted #c2c2c2;
+  line-height: 1.5em; }
+  .index .post-link:last-child {
+    border: none; }
+
+.post h2 {
+  margin-bottom: 0.2em; }
+.post section {
+  margin: 2em 0 4em;
+  padding-bottom: 2em;
+  border-bottom: 1px dotted #c2c2c2; }
+
+@media screen and (max-width: 500px) {
+  header, #center, footer {
     display: block;
     float: left;
-    margin-right: 2.35765%;
-    width: 14.70196%;
-    text-align: right;
-    font-family: "Bitstream Vera Sans Mono", Consolas, Courier, monospace;
-    color: #888888; }
-    .index .post .date:last-child {
-      margin-right: 0; }
-  .index .post .title {
-    display: block;
-    float: left;
-    margin-right: 2.35765%;
-    width: 82.94039%; }
-    .index .post .title:last-child {
-      margin-right: 0; }
+    margin-right: 4.82916%;
+    width: 100%; }
+    header:last-child, #center:last-child, footer:last-child {
+      margin-right: 0; } }
+
+@media screen and (max-width: 500px) {
+  header .aside-color-bar, header #projects, header #elsewhere {
+    display: none; } }
+
+@media screen and (max-width: 500px) {
+  footer {
+    display: none; } }
+
+@media screen and (max-width: 500px) {
+  .index h2, .index .date {
+    display: none; } }

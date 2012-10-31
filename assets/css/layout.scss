@@ -1,71 +1,91 @@
-$lturqoise: #0AD1C3;
-$mturqoise: #90CACC;
-$dturqoise: #21AABD;
-
-$dpink    : #F94B62;
-$mpink    : #FF85A7;
-$lpink    : #FFD1DE;
-
-$dorange  : #F79707;
-$morange  : #F5B038;
-$lorange  : #EDD455;
-
-$lgrey    : #DFDED6;
-$mgrey    : #C5C6B8;
-$dgrey    : #888888;
-
-$white: #FFFFFF;
-
-
 body {
-  font-family: $helvetica;
-  font-size: 14px;
+  @include outer-container;
+
+  margin      : 0 auto;
+  font-family : $helvetica;
+  font-size   : $font-size;
+  color       : $black;
+
+  text-rendering: optimizeLegibility;
 }
 
 header {
-
+  @include span-columns(4);
+  @include omega;
 }
 
-#content {
+#center {
+  @include span-columns(8);
+  @include omega;
+}
 
+header {
+  .title-color-bar {
+    height: 1em;
+    background-color: $dpink;
+  }
+
+  .aside-color-bar {
+    height: 1em;
+    background-color: $myellow;
+  }
+
+
+  #profile {
+    @include pad;
+    text-align: center;
+
+    h1 {
+      margin : 0;
+      padding: 0.5em 0 0 0 ;
+
+      a,
+      a:visited, a:hover {
+        color: $black;
+        text-decoration : none;
+        word-break      : break-all;
+      }
+    }
+
+    h2 {
+      @include yanone;
+      margin : -0.2em 0 1em 0;
+      color  : $mgrey;
+    }
+  }
+
+  #projects, #elsewhere {
+    @include span-columns(2 of 4);
+    @include pad;
+
+    h2 {
+      margin-bottom: 0.5em;
+    }
+
+    ul {
+      li {
+        @include pad(0.2em 0);
+      }
+    }
+  }
+}
+
+#center {
+  .color-bar {
+    height: 1em;
+    background-color: $lturqoise;
+  }
+
+  #content {
+    @include pad(1em 2em);
+  }
 }
 
 footer {
+  @include span-columns(12);
+  @include pad;
 
-}
-
-.content_wrapper {
-  max-width: 800px;
-  @include outer-container;
-}
-
-a, a:visited {
-  color: $dturqoise;
-  text-decoration: none;
-}
-
-a:hover {
-  color: $dpink;
-}
-
-.index {
-  .post {
-    @include span-columns(12);
-
-    border-bottom: 1px dotted $lgrey;
-    padding     : 0.2em;
-    line-height : 1.5em;
-
-    .date {
-      @include span-columns(2 of 12);
-
-      text-align  : right;
-      font-family : $monospace;
-      color       : $dgrey;
-    }
-
-    .title {
-      @include span-columns(10 of 12);
-    }
-  }
+  text-align: right;
+  font-size : 0.8em;
+  color     : $mgrey;
 }

@@ -1,0 +1,37 @@
+.index, .post {
+  h2 {
+    margin-top: 1em;
+  }
+
+  .date {
+    @include mono;
+    color: $mgrey;
+  }
+}
+
+.index {
+  h2 {
+    margin-bottom : 1.5em;
+  }
+
+  .post-link {
+    padding       : 0.2em;
+    border-bottom : 1px dotted $mgrey;
+    line-height   : 1.5em;
+
+    &:last-child {
+      border: none;
+    }
+  }
+}
+
+.post {
+  h2 {
+    margin-bottom : 0.2em;
+  }
+  section {
+    margin        : 2em 0 4em;
+    padding-bottom: 2em;
+    border-bottom : 1px dotted $mgrey;
+  }
+}

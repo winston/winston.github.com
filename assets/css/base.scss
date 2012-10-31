@@ -1,0 +1,67 @@
+@import url(http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz|Advent+Pro|Nova+Mono);
+
+@mixin yanone {
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+}
+
+@mixin advent {
+  font-family: 'Advent Pro', sans-serif;
+}
+
+@mixin mono {
+  font-family: 'Nova Mono', cursive;
+}
+
+$lturqoise: #8DF0E6;
+$mturqoise: #59B2AC;
+$dturqoise: #21AABD;
+
+$lpink    : #FFD1DE;
+$mpink    : #FF85A7;
+$dpink    : #F94B62;
+
+$lyellow  : #F8FF66;
+$myellow  : #FFD446;
+$dyellow  : #EFAB2E;
+
+$lgrey    : #E1E1E1;
+$mgrey    : #C2C2C2;
+$dgrey    : #737373;
+
+$white    : #FFFFFF;
+$black    : #333333;
+
+$font-size: 16px;
+
+$mobile   : max-width 500px 6;
+
+h1 { font-size: 4.0em; @include yanone; }
+h2 { font-size: 2.0em; @include advent; }
+h3 { font-size: 1.5em; @include advent; }
+h4 { font-size: 1.2em; @include advent; }
+
+a, a:visited {
+  color: $dturqoise;
+  text-decoration: none;
+}
+a:hover {
+  color: $dpink;
+}
+
+blockquote {
+  margin      : 0 0 1.5em 0;
+  padding     : 0.1em 1.5em;
+
+  border-left : 2px solid $lpink;
+  font-style  : italic;
+  color       : $mpink;
+}
+
+img {
+  border      : 1px dashed $mpink;
+}
+
+p {
+  margin      : 0 0 1.5em 0;
+  line-height : 1.5em;
+}

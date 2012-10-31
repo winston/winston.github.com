@@ -1,0 +1,27 @@
+header, #center, footer {
+  @include breakpoint($mobile) {
+    @include span-columns(6);
+  }
+}
+
+header {
+  .aside-color-bar, #projects, #elsewhere {
+    @include breakpoint($mobile) {
+      display: none;
+    }
+  }
+}
+
+footer {
+  @include breakpoint($mobile) {
+    display: none;
+  }
+}
+
+.index {
+  @include breakpoint($mobile) {
+    h2, .date {
+      display: none;
+    }
+  }
+}
