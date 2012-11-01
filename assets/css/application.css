@@ -86,10 +86,8 @@ header #profile {
   padding: 2.35765%;
   text-align: center; }
   header #profile h1 {
-    margin: 0;
-    padding: 0.5em 0 0 0; }
-    header #profile h1 a,
-    header #profile h1 a:visited, header #profile h1 a:hover {
+    margin: 0.5em 0 0 0; }
+    header #profile h1 a, header #profile h1 a:visited, header #profile h1 a:hover {
       color: #333333;
       text-decoration: none;
       word-break: break-all; }
@@ -160,13 +158,29 @@ footer {
       margin-right: 0; } }
 
 @media screen and (max-width: 500px) {
+  header .title-color-bar {
+    height: 0.4em; }
+  header #profile h1 {
+    margin: 0;
+    font-size: 2em; }
+  header #profile h2 {
+    margin: 0;
+    font-size: 1.2em; }
   header .aside-color-bar, header #projects, header #elsewhere {
     display: none; } }
+
+@media screen and (max-width: 500px) {
+  #center .color-bar {
+    height: 0.4em; }
+  #center #content {
+    padding: 2.35765%; } }
 
 @media screen and (max-width: 500px) {
   footer {
     display: none; } }
 
 @media screen and (max-width: 500px) {
-  .index h2, .index .date {
-    display: none; } }
+  .index h2 {
+    display: none; }
+  .index .date {
+    font-size: 0.8em; } }
