@@ -5,9 +5,37 @@ header, #center, footer {
 }
 
 header {
-  .aside-color-bar, #projects, #elsewhere {
-    @include breakpoint($mobile) {
+  @include breakpoint($mobile) {
+    .title-color-bar {
+      height: 0.4em;
+    }
+
+    #profile {
+      h1 {
+        margin: 0;
+        font-size: 2em;
+      }
+
+      h2 {
+        margin: 0;
+        font-size: 1.2em;
+      }
+    }
+
+    .aside-color-bar, #projects, #elsewhere {
       display: none;
+    }
+  }
+}
+
+#center {
+  @include breakpoint($mobile) {
+    .color-bar {
+      height: 0.4em;
+    }
+
+    #content {
+      @include pad;
     }
   }
 }
@@ -20,8 +48,12 @@ footer {
 
 .index {
   @include breakpoint($mobile) {
-    h2, .date {
+    h2 {
       display: none;
+    }
+
+    .date {
+      font-size: 0.8em;
     }
   }
 }
