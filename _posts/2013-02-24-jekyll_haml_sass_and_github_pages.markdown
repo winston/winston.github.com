@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Jekyll, HAML, SASS and GitHub Pages
+title: Jekyll, Haml, Sass and GitHub Pages
 ---
 
 A recap of how I got this Jekyll blog ready..
