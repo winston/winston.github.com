@@ -62,7 +62,7 @@ code {
   font-family : 'Courier New';
   color       : $dgrey;
   background  : #f8f8f8;
-  border      : 1px solid #cccccc;  
+  border      : 1px solid #cccccc;
 }
 
 p code {
@@ -74,7 +74,7 @@ p code {
 pre code {
   display     : block;
   @include span-columns(8 of 8);
-  margin      : 0 0 2em 0;  
+  margin      : 0 0 2em 0;
   padding     : 1em;
   overflow    : hidden;
   overflow-x  : scroll;
