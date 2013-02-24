@@ -57,6 +57,29 @@ blockquote {
   color       : $mpink;
 }
 
+code {
+  font-size   : 0.8em;
+  font-family : 'Courier New';
+  color       : $dgrey;
+  background  : #f8f8f8;
+  border      : 1px solid #cccccc;  
+}
+
+p code {
+  display     : inline;
+  margin      : 0 2px;
+  padding     : 0 0.5em;
+}
+
+pre code {
+  display     : block;
+  @include span-columns(8 of 8);
+  margin      : 0 0 2em 0;  
+  padding     : 1em;
+  overflow    : hidden;
+  overflow-x  : scroll;
+}
+
 img {
   border      : 1px dashed $mpink;
 }

@@ -1,3 +1,4 @@
+@import url(pygments.css);
 @import url(http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz|Advent+Pro|Nova+Mono);
 * {
   -webkit-box-sizing: border-box;
@@ -33,6 +34,31 @@ blockquote {
   border-left: 2px solid #ffd1de;
   font-style: italic;
   color: #ff85a7; }
+
+code {
+  font-size: 0.8em;
+  font-family: 'Courier New';
+  color: #737373;
+  background: #f8f8f8;
+  border: 1px solid #cccccc; }
+
+p code {
+  display: inline;
+  margin: 0 2px;
+  padding: 0 0.5em; }
+
+pre code {
+  display: block;
+  display: block;
+  float: left;
+  margin-right: 3.57866%;
+  width: 100%;
+  margin: 0 0 2em 0;
+  padding: 1em;
+  overflow: hidden;
+  overflow-x: scroll; }
+  pre code:last-child {
+    margin-right: 0; }
 
 img {
   border: 1px dashed #ff85a7; }
