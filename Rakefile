@@ -1,6 +1,28 @@
 public_dir = "_site"
 deploy_dir = "deploy"
 
+desc "Create a New Post"
+task :post do
+  posts_dir = "_posts"
+
+  def slug(text)
+    text.downcase.gsub(/\s/, "_")
+  end
+
+  date  = Date.today.to_s
+  STDOUT.print "Title: "
+  title = STDIN.gets.strip
+  slug  = slug(title)
+  post  = "#{date}-#{slug}"
+
+  file = File.new("#{posts_dir}/#{post}.markdown", "w+")
+  file.write("---\n")
+  file.write("layout: post\n")
+  file.write("title: #{title}\n")
+  file.write("---\n")
+  system "ls _posts/*#{slug}*"
+end
+
 desc "Launch Dev"
 task :dev do
   system "jekyll --auto --server"
