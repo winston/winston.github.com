@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Installing ImageMagick and RMagick - WinstonYW</title>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta content='Winston Teo Yong Wei' name='author' />
+    <link href='/assets/css/application.css' media='screen' rel='stylesheet' type='text/css' />
+    <!-- http://davidbcalhoun.com/2010/viewport-metatag -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+  </head>
+  <body>
+    <header>
+      <div class='title-color-bar'></div>
+      <section id='profile'>
+        <h1>
+          <a href="/">WinstonYW</a>
+        </h1>
+        <h2>
+          Just Another Tech Journal
+        </h2>
+      </section>
+      <div class='aside-color-bar'></div>
+      <section id="projects">
+        <h2>Projects</h2>
+        <ul>
+          <li>
+            <a href="https://github.com/winston/google_visualr">GoogleVisualr</a>
+          </li>
+          <li>
+            <a href="https://github.com/winston/cactus">Cactus</a>
+          </li>
+        </ul>
+      </section>
+      <section id="elsewhere">
+        <h2>Elsewhere</h2>
+        <ul>
+          <li>
+            <a href="https://twitter.com/winstonyw">Twitter</a>
+          </li>
+          <li>
+            <a href="https://github.com/winston">GitHub</a>
+          </li>
+          <li>
+            <a href="http://www.linkedin.com/in/winstonyw">LinkedIn</a>
+          </li>
+          <li>
+            <a href="mailto:winstonyw+blog@gmail.com">Email</a>
+          </li>
+          <li>
+            <a href="#">RSS</a>
+          </li>
+        </ul>
+      </section>
+  </header>
+    <div id='center'>
+      <div class='color-bar'></div>
+      <div id='content'>
+        <article class="post">
+          <h2>Installing ImageMagick and RMagick</h2>
+          <span class="date">21 MARCH 2013</span>
+          <section>
+            <p>Specific to Mac OS X 10.7.*, ImageMagick v6.8.0-10 and RMagick v2.*.</p>
+
+<p>The correct way to do it:</p>
+
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>brew remove imagemagick
+<span class="nv">$ </span>brew install imagemagick --disable-openmp --build-from-source
+
+<span class="nv">$ </span><span class="nb">cd</span> /usr/local/Cellar/imagemagick/6.8.0-10/lib
+<span class="nv">$ </span>ln -s libMagick++-Q16.7.dylib   libMagick++.dylib
+<span class="nv">$ </span>ln -s libMagickCore-Q16.7.dylib libMagickCore.dylib
+<span class="nv">$ </span>ln -s libMagickWand-Q16.7.dylib libMagickWand.dylib
+</code></pre>
+</div>
+
+
+<p>The errors I got when I didn't install ImageMagick with the config options:</p>
+
+<pre><code>It seems your ruby installation is missing psych (for YAML output).
+To eliminate this warning, please install libyaml and reinstall your ruby.
+Building native extensions.  This could take a while...
+ERROR:  Error installing rmagick:
+    ERROR: Failed to build gem native extension.
+
+        /Users/winston/.rvm/rubies/ruby-1.9.3-p392/bin/ruby extconf.rb
+checking for Ruby version &gt;= 1.8.5... yes
+extconf.rb:107: Use RbConfig instead of obsolete and deprecated Config.
+checking for /usr/bin/gcc-4.2... yes
+checking for Magick-config... yes
+checking for ImageMagick version &gt;= 6.3.5... yes
+checking for HDRI disabled version of ImageMagick... yes
+/usr/local/bin/Magick-config: line 41: pkg-config: command not found
+/usr/local/bin/Magick-config: line 47: pkg-config: command not found
+/usr/local/bin/Magick-config: line 50: pkg-config: command not found
+/usr/local/bin/Magick-config: line 53: pkg-config: command not found
+</code></pre>
+
+<p>The errors I got when I didn't do the symlinks:</p>
+
+<pre><code>It seems your ruby installation is missing psych (for YAML output).
+To eliminate this warning, please install libyaml and reinstall your ruby.
+Building native extensions.  This could take a while...
+ERROR:  Error installing rmagick:
+    ERROR: Failed to build gem native extension.
+
+        /Users/winston/.rvm/rubies/ruby-1.9.3-p392/bin/ruby extconf.rb
+checking for Ruby version &gt;= 1.8.5... yes
+extconf.rb:107: Use RbConfig instead of obsolete and deprecated Config.
+checking for /usr/bin/gcc-4.2... yes
+checking for Magick-config... yes
+checking for ImageMagick version &gt;= 6.3.5... yes
+checking for HDRI disabled version of ImageMagick... yes
+checking for stdint.h... yes
+checking for sys/types.h... yes
+checking for wand/MagickWand.h... yes
+checking for InitializeMagick() in -lMagickCore... no
+checking for InitializeMagick() in -lMagick... no
+Can't install RMagick 2.12.2. Can't find the ImageMagick library or one of the dependent libraries. Check the mkmf.log file for more detailed information.
+</code></pre>
+
+<p>And seriously, you might want to consider the <a href="http://rubygems.org/gems/mini_magick">MiniMagick</a> gem instead.</p>
+
+          </section>
+        </article>
+        <article class="comments">
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+            var disqus_shortname = 'winstonyw';
+            // var disqus_developer = 1;
+            (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </article>
+      </div>
+    </div>
+    <footer>
+      Just a boring footer. Nothing to see here lah. ~
+    </footer>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-297001-2']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>

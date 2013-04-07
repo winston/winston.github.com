@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Form With Multiple Buttons - WinstonYW</title>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta content='Winston Teo Yong Wei' name='author' />
+    <link href='/assets/css/application.css' media='screen' rel='stylesheet' type='text/css' />
+    <!-- http://davidbcalhoun.com/2010/viewport-metatag -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+  </head>
+  <body>
+    <header>
+      <div class='title-color-bar'></div>
+      <section id='profile'>
+        <h1>
+          <a href="/">WinstonYW</a>
+        </h1>
+        <h2>
+          Just Another Tech Journal
+        </h2>
+      </section>
+      <div class='aside-color-bar'></div>
+      <section id="projects">
+        <h2>Projects</h2>
+        <ul>
+          <li>
+            <a href="https://github.com/winston/google_visualr">GoogleVisualr</a>
+          </li>
+          <li>
+            <a href="https://github.com/winston/cactus">Cactus</a>
+          </li>
+        </ul>
+      </section>
+      <section id="elsewhere">
+        <h2>Elsewhere</h2>
+        <ul>
+          <li>
+            <a href="https://twitter.com/winstonyw">Twitter</a>
+          </li>
+          <li>
+            <a href="https://github.com/winston">GitHub</a>
+          </li>
+          <li>
+            <a href="http://www.linkedin.com/in/winstonyw">LinkedIn</a>
+          </li>
+          <li>
+            <a href="mailto:winstonyw+blog@gmail.com">Email</a>
+          </li>
+          <li>
+            <a href="#">RSS</a>
+          </li>
+        </ul>
+      </section>
+  </header>
+    <div id='center'>
+      <div class='color-bar'></div>
+      <div id='content'>
+        <article class="post">
+          <h2>Form With Multiple Buttons</h2>
+          <span class="date">08 MARCH 2013</span>
+          <section>
+            <p>Suppose you have a form and you need to have two buttons that post to different locations -
+button "Accept" posts to <code>/accept</code> and button "Reject" posts to <code>/reject</code>.</p>
+
+<p>Without HTML5, you probably have to use JavaScript..</p>
+
+<p>HTML5 makes it trivial, as it introduced the <a href="http://www.w3.org/html/wg/drafts/html/master/forms.html#attr-fae-form">concept of <em><em>form</em></em> and <em><em>form-associated element</em></em></a>.</p>
+
+<p>By default, the form owner of a submit <code>input</code> is the nearest <code>form</code> element ancestor,
+and it would perform the action and go to the location that was specified in the <code>form</code> tag.</p>
+
+<p>However, HTML5 allows you to specify <code>form</code> attribute (and more) on an <code>input</code> tag to override its default <code>form</code> association.</p>
+
+<p>In code, that means you can do the following:</p>
+
+<div class="highlight"><pre><code class="html"><span class="nt">&lt;form</span> <span class="na">id=</span><span class="s">&quot;myform&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">id=</span><span class="s">&quot;name&quot;</span> <span class="na">name=</span><span class="s">&quot;name&quot;</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/form&gt;</span>
+
+<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;submit&quot;</span> <span class="na">value=</span><span class="s">&quot;Accept&quot;</span> <span class="na">form=</span><span class="s">&quot;myform&quot;</span> <span class="na">formmethod=</span><span class="s">&quot;POST&quot;</span> <span class="na">formaction=</span><span class="s">&quot;/accept&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;submit&quot;</span> <span class="na">value=</span><span class="s">&quot;Reject&quot;</span> <span class="na">form=</span><span class="s">&quot;myform&quot;</span> <span class="na">formmethod=</span><span class="s">&quot;POST&quot;</span> <span class="na">formaction=</span><span class="s">&quot;/reject&quot;</span><span class="nt">&gt;</span>
+</code></pre>
+</div>
+
+
+<p>Side note.. To test this in Rspec + Capybara, specs have to run with a JavaScript driver.</p>
+
+<p>I really dig this.</p>
+
+          </section>
+        </article>
+        <article class="comments">
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+            var disqus_shortname = 'winstonyw';
+            // var disqus_developer = 1;
+            (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </article>
+      </div>
+    </div>
+    <footer>
+      Just a boring footer. Nothing to see here lah. ~
+    </footer>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-297001-2']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>

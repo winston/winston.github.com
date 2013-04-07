@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>WinstonYW - Just Another Tech Journal</title>
+    <title>Test After Commit - WinstonYW</title>
     <meta content="text/html; charset=utf-8" http-equiv="content-type" />
     <meta content='Winston Teo Yong Wei' name='author' />
     <link href='/assets/css/application.css' media='screen' rel='stylesheet' type='text/css' />
@@ -53,64 +53,38 @@
           </li>
         </ul>
       </section>
-    </header>
+  </header>
     <div id='center'>
       <div class='color-bar'></div>
       <div id='content'>
-        <article class='index'>
-  <h2>
-    Contents
-  </h2>
-  <article class='post-link'>
-    <span class='date'>
-      21 MAR 13
-    </span>
-    <a href='/2013/03/21/installing-imagemagick-and-rmagick/'>
-      Installing ImageMagick and RMagick
-    </a>
-  </article>
-  <article class='post-link'>
-    <span class='date'>
-      20 MAR 13
-    </span>
-    <a href='/2013/03/20/test_after_commit/'>
-      Test After Commit
-    </a>
-  </article>
-  <article class='post-link'>
-    <span class='date'>
-      08 MAR 13
-    </span>
-    <a href='/2013/03/08/form_with_multiple_buttons/'>
-      Form With Multiple Buttons
-    </a>
-  </article>
-  <article class='post-link'>
-    <span class='date'>
-      24 FEB 13
-    </span>
-    <a href='/2013/02/24/jekyll_haml_sass_and_github_pages/'>
-      Jekyll, Haml, Sass and GitHub Pages
-    </a>
-  </article>
-  <article class='post-link'>
-    <span class='date'>
-      02 DEC 12
-    </span>
-    <a href='/2012/12/02/pair_programming/'>
-      Pair Programming
-    </a>
-  </article>
-  <article class='post-link'>
-    <span class='date'>
-      01 NOV 12
-    </span>
-    <a href='/2012/11/01/reboot/'>
-      Reboot
-    </a>
-  </article>
-</article>
+        <article class="post">
+          <h2>Test After Commit</h2>
+          <span class="date">20 MARCH 2013</span>
+          <section>
+            <p>Sometimes, you will need to test the <code>after_commit</code> call back in Rails. Really.</p>
 
+<p>Such as when you are using <a href="https://github.com/plataformatec/devise">Devise</a>, and you want to send your emails asynchronously through <a href="https://github.com/plataformatec/devise/blob/master/lib/devise/models/authenticatable.rb#L130">Devise's recommendation</a>.</p>
+
+<p>Assuming that you are also using RSpec and transactional fixtures, then <a href="https://github.com/grosser/test_after_commit">test_after_commit</a> is what you will need.</p>
+
+<p>The RubyGem works as expected and <code>bundle install</code> is eaaaaasy.</p>
+
+          </section>
+        </article>
+        <article class="comments">
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+            var disqus_shortname = 'winstonyw';
+            // var disqus_developer = 1;
+            (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </article>
       </div>
     </div>
     <footer>

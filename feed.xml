@@ -7,6 +7,124 @@
     <atom:link href="http://winstonyw.com/feed.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Installing ImageMagick and RMagick</title>
+      <description>&lt;p&gt;Specific to Mac OS X 10.7.*, ImageMagick v6.8.0-10 and RMagick v2.*.&lt;/p&gt;
+
+&lt;p&gt;The correct way to do it:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;brew remove imagemagick
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;brew install imagemagick --disable-openmp --build-from-source
+
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /usr/local/Cellar/imagemagick/6.8.0-10/lib
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ln -s libMagick++-Q16.7.dylib   libMagick++.dylib
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ln -s libMagickCore-Q16.7.dylib libMagickCore.dylib
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ln -s libMagickWand-Q16.7.dylib libMagickWand.dylib
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;The errors I got when I didn't install ImageMagick with the config options:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;It seems your ruby installation is missing psych (for YAML output).
+To eliminate this warning, please install libyaml and reinstall your ruby.
+Building native extensions.  This could take a while...
+ERROR:  Error installing rmagick:
+    ERROR: Failed to build gem native extension.
+
+        /Users/winston/.rvm/rubies/ruby-1.9.3-p392/bin/ruby extconf.rb
+checking for Ruby version &amp;gt;= 1.8.5... yes
+extconf.rb:107: Use RbConfig instead of obsolete and deprecated Config.
+checking for /usr/bin/gcc-4.2... yes
+checking for Magick-config... yes
+checking for ImageMagick version &amp;gt;= 6.3.5... yes
+checking for HDRI disabled version of ImageMagick... yes
+/usr/local/bin/Magick-config: line 41: pkg-config: command not found
+/usr/local/bin/Magick-config: line 47: pkg-config: command not found
+/usr/local/bin/Magick-config: line 50: pkg-config: command not found
+/usr/local/bin/Magick-config: line 53: pkg-config: command not found
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The errors I got when I didn't do the symlinks:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;It seems your ruby installation is missing psych (for YAML output).
+To eliminate this warning, please install libyaml and reinstall your ruby.
+Building native extensions.  This could take a while...
+ERROR:  Error installing rmagick:
+    ERROR: Failed to build gem native extension.
+
+        /Users/winston/.rvm/rubies/ruby-1.9.3-p392/bin/ruby extconf.rb
+checking for Ruby version &amp;gt;= 1.8.5... yes
+extconf.rb:107: Use RbConfig instead of obsolete and deprecated Config.
+checking for /usr/bin/gcc-4.2... yes
+checking for Magick-config... yes
+checking for ImageMagick version &amp;gt;= 6.3.5... yes
+checking for HDRI disabled version of ImageMagick... yes
+checking for stdint.h... yes
+checking for sys/types.h... yes
+checking for wand/MagickWand.h... yes
+checking for InitializeMagick() in -lMagickCore... no
+checking for InitializeMagick() in -lMagick... no
+Can't install RMagick 2.12.2. Can't find the ImageMagick library or one of the dependent libraries. Check the mkmf.log file for more detailed information.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And seriously, you might want to consider the &lt;a href=&quot;http://rubygems.org/gems/mini_magick&quot;&gt;MiniMagick&lt;/a&gt; gem instead.&lt;/p&gt;
+</description>
+      <pubDate>Thu, 21 Mar 2013 00:00:00 +0800</pubDate>
+      <link>http://winstonyw.com/2013/03/21/installing-imagemagick-and-rmagick/</link>
+      <guid isPermaLink="true">http://winstonyw.com/2013/03/21/installing-imagemagick-and-rmagick/</guid>
+    </item>
+    
+    <item>
+      <title>Test After Commit</title>
+      <description>&lt;p&gt;Sometimes, you will need to test the &lt;code&gt;after_commit&lt;/code&gt; call back in Rails. Really.&lt;/p&gt;
+
+&lt;p&gt;Such as when you are using &lt;a href=&quot;https://github.com/plataformatec/devise&quot;&gt;Devise&lt;/a&gt;, and you want to send your emails asynchronously through &lt;a href=&quot;https://github.com/plataformatec/devise/blob/master/lib/devise/models/authenticatable.rb#L130&quot;&gt;Devise's recommendation&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Assuming that you are also using RSpec and transactional fixtures, then &lt;a href=&quot;https://github.com/grosser/test_after_commit&quot;&gt;test_after_commit&lt;/a&gt; is what you will need.&lt;/p&gt;
+
+&lt;p&gt;The RubyGem works as expected and &lt;code&gt;bundle install&lt;/code&gt; is eaaaaasy.&lt;/p&gt;
+</description>
+      <pubDate>Wed, 20 Mar 2013 00:00:00 +0800</pubDate>
+      <link>http://winstonyw.com/2013/03/20/test_after_commit/</link>
+      <guid isPermaLink="true">http://winstonyw.com/2013/03/20/test_after_commit/</guid>
+    </item>
+    
+    <item>
+      <title>Form With Multiple Buttons</title>
+      <description>&lt;p&gt;Suppose you have a form and you need to have two buttons that post to different locations -
+button &quot;Accept&quot; posts to &lt;code&gt;/accept&lt;/code&gt; and button &quot;Reject&quot; posts to &lt;code&gt;/reject&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Without HTML5, you probably have to use JavaScript..&lt;/p&gt;
+
+&lt;p&gt;HTML5 makes it trivial, as it introduced the &lt;a href=&quot;http://www.w3.org/html/wg/drafts/html/master/forms.html#attr-fae-form&quot;&gt;concept of &lt;em&gt;&lt;em&gt;form&lt;/em&gt;&lt;/em&gt; and &lt;em&gt;&lt;em&gt;form-associated element&lt;/em&gt;&lt;/em&gt;&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;By default, the form owner of a submit &lt;code&gt;input&lt;/code&gt; is the nearest &lt;code&gt;form&lt;/code&gt; element ancestor,
+and it would perform the action and go to the location that was specified in the &lt;code&gt;form&lt;/code&gt; tag.&lt;/p&gt;
+
+&lt;p&gt;However, HTML5 allows you to specify &lt;code&gt;form&lt;/code&gt; attribute (and more) on an &lt;code&gt;input&lt;/code&gt; tag to override its default &lt;code&gt;form&lt;/code&gt; association.&lt;/p&gt;
+
+&lt;p&gt;In code, that means you can do the following:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;form&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;myform&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;input&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;name&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;name&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;text&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/form&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;input&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;submit&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;value=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Accept&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;form=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;myform&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;formmethod=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;POST&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;formaction=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;/accept&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;input&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;submit&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;value=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Reject&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;form=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;myform&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;formmethod=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;POST&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;formaction=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;/reject&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;Side note.. To test this in Rspec + Capybara, specs have to run with a JavaScript driver.&lt;/p&gt;
+
+&lt;p&gt;I really dig this.&lt;/p&gt;
+</description>
+      <pubDate>Fri, 08 Mar 2013 00:00:00 +0800</pubDate>
+      <link>http://winstonyw.com/2013/03/08/form_with_multiple_buttons/</link>
+      <guid isPermaLink="true">http://winstonyw.com/2013/03/08/form_with_multiple_buttons/</guid>
+    </item>
+    
+    <item>
       <title>Jekyll, Haml, Sass and GitHub Pages</title>
       <description>&lt;p&gt;A recap of how I got this Jekyll blog ready..&lt;/p&gt;
 
@@ -217,7 +335,7 @@ I asked Google, and I was convinced by what I read from &lt;a href=&quot;http://
 &lt;li&gt;PP means &lt;a href=&quot;http://en.wikipedia.org/wiki/Bus_factor&quot;&gt;bus factor&lt;/a&gt; != 1.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&lt;em&gt;Good Code Quality&lt;/em&gt;&lt;/strong&gt;
+&lt;li&gt;&lt;strong&gt;&lt;em&gt;High Code Quality&lt;/em&gt;&lt;/strong&gt;
 
 &lt;ul&gt;
 &lt;li&gt;You always have someone to discuss alternative designs and solutions.&lt;/li&gt;
@@ -242,11 +360,13 @@ I asked Google, and I was convinced by what I read from &lt;a href=&quot;http://
 
 &lt;p&gt;&lt;strong&gt;The truth is, not everyone can be a pair programmer and not everyone will enjoy it.&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;There will be some engineers who prefer to be left alone:&lt;/p&gt;
+&lt;p&gt;There will be some engineers who are not suitable as a pair:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;The &quot;rock stars&quot; or &quot;researchers&quot; will feel that pairing is a shackle which slows them.&lt;/li&gt;
-&lt;li&gt;The one with an attitude will be an enjoyable person to pair with.&lt;/li&gt;
+&lt;li&gt;The &quot;Rock Star&quot;  feels you are slowing him down and he's uninterested in teaching.&lt;/li&gt;
+&lt;li&gt;The &quot;Researcher&quot; just want to code in silo and get to the bottom of everything.&lt;/li&gt;
+&lt;li&gt;The &quot;Judge&quot;      will question you on every keystroke.&lt;/li&gt;
+&lt;li&gt;The &quot;Silencer&quot;   cannot code and talk at the same time. Not so fun..&lt;/li&gt;
 &lt;/ul&gt;
 
 
