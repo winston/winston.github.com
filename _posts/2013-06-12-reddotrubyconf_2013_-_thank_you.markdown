@@ -57,7 +57,7 @@ _This list will be updated timely. Otherwise, [Cheeaun's list](https://gist.gith
 
 - [My Slides](https://speakerdeck.com/winston/reddotrubyconf-2013-day-1)
 - Aaron Patterson: [Refactoring Rails](https://speakerdeck.com/tenderlove/reddotrubyconf)
-- Ola Bini: JRuby For The Win
+- Ola Bini: [JRuby For The Win](/assets/downloads/JRubyForTheWin.pdf)
 - Pablo Astigarraga: [50 Shades of MVC](https://speakerdeck.com/pote/50-shades-of-mvc)
 - Alexey Gaziev: [Rails And Javascript: Brothers In Arms Using Gon](http://www.slideshare.net/gazay/gon-rdrc)
 - Luismi Cavallé: [Keep Your ActiveRecord Models Manageable The Rails Way](https://speakerdeck.com/cavalle/keep-your-activerecord-models-manageable-the-rails-way)
