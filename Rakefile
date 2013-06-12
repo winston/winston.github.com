@@ -1,3 +1,5 @@
+require 'date'
+
 public_dir = "_site"
 deploy_dir = "deploy"
 
@@ -25,12 +27,12 @@ end
 
 desc "Launch Dev"
 task :dev do
-  system "jekyll --auto --server"
+  system "jekyll serve --watch"
 end
 
 desc "Build"
 task :build do
-  system "jekyll #{public_dir}"
+  system "jekyll build #{public_dir}"
 end
 
 # Stolen from Octopress
