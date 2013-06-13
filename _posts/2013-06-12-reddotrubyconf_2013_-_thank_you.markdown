@@ -3,9 +3,7 @@ layout: post
 title: RedDotRubyConf 2013 - Thank You
 ---
 
-I didn't do this alone - RDRC 2013 is an event by the community, for the community.
-
-[Abhaya](https://twitter.com/abhayashenoy), [Wei](https://twitter.com/luweidewei), [Mohan](https://twitter.com/mohangk), and many more all helped to make this happen. They are my heros!
+I didn't do this alone - RDRC 2013 is an event by the community, for the community. [Abhaya](https://twitter.com/abhayashenoy), [Wei](https://twitter.com/luweidewei), [Mohan](https://twitter.com/mohangk), and many more all helped to make this happen. They are my heros!
 
 **Firstly, I would like to thank [Andy](http://twitter.com/andycroll) - founder of RDRC.**
 
@@ -57,6 +55,7 @@ _This list will be updated timely. Otherwise, [Cheeaun's list](https://gist.gith
 
 - [My Slides](https://speakerdeck.com/winston/reddotrubyconf-2013-day-1)
 - Aaron Patterson: [Refactoring Rails](https://speakerdeck.com/tenderlove/reddotrubyconf)
+- Aaron Patterson: [America's Next Top Engineer](https://speakerdeck.com/tenderlove/americas-next-top-engineer)
 - Ola Bini: [JRuby For The Win](/assets/downloads/JRubyForTheWin.pdf)
 - Pablo Astigarraga: [50 Shades of MVC](https://speakerdeck.com/pote/50-shades-of-mvc)
 - Alexey Gaziev: [Rails And Javascript: Brothers In Arms Using Gon](http://www.slideshare.net/gazay/gon-rdrc)
@@ -74,7 +73,7 @@ _This list will be updated timely. Otherwise, [Cheeaun's list](https://gist.gith
 #### Slides For Day 2
 
 - [My Slides](https://speakerdeck.com/winston/reddotrubyconf-2013-day-2)
-- José Valim: Concurrency In Ruby: Tools Of The Trade
+- José Valim: [Concurrency In Ruby: Tools Of The Trade](https://speakerdeck.com/plataformatec/concurrency-in-ruby-tools-of-the-trade)
 - Akira Matsuda: [Ruby 2.0 On Rails In Production](https://speakerdeck.com/a_matsuda/ruby-2-dot-0-on-rails-in-production)
 - Simon Robson: [Optimising Self](https://speakerdeck.com/shr/optimising-self-at-reddotrubyconf-2013)
 - Hiroshi Shibata: [From 'Legacy' To 'Edge': Continuous Upgrades For Rails Apps](https://speakerdeck.com/hsbt/from-legacy-to-edge)
