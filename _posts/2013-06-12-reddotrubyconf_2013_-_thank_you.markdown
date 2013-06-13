@@ -87,7 +87,7 @@ _This list will be updated timely. Otherwise, [Cheeaun's list](https://gist.gith
 #### Photos
 
 - @reddotrubyconf's [Twitter Photos](https://twitter.com/reddotrubyconf/media/grid)
-- [Friday Hug (Actual Size)](/assets/images/rdrc-fiday-hug.png)
+- [Friday Hug (Actual Size)](/assets/images/rdrc-friday-hug.png)
 
 ### Jobs Board
 
