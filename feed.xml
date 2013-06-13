@@ -7,6 +7,108 @@
     <atom:link href="http://winstonyw.com/feed.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>RedDotRubyConf 2013 - Thank You</title>
+      <description>&lt;p&gt;I didn't do this alone - RDRC 2013 is an event by the community, for the community. &lt;a href=&quot;https://twitter.com/abhayashenoy&quot;&gt;Abhaya&lt;/a&gt;, &lt;a href=&quot;https://twitter.com/luweidewei&quot;&gt;Wei&lt;/a&gt;, &lt;a href=&quot;https://twitter.com/mohangk&quot;&gt;Mohan&lt;/a&gt;, and many more all helped to make this happen. They are my heros!&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Firstly, I would like to thank &lt;a href=&quot;http://twitter.com/andycroll&quot;&gt;Andy&lt;/a&gt; - founder of RDRC.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/rdrc-andycroll.png&quot; alt=&quot;Andy Croll&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Without him, RedDotRubyConf would not had happened in 2011 and 2012, and he gave us a great conference structure which I mostly copied for RDRC 2013.&lt;/p&gt;
+
+&lt;p&gt;Throughout the months of preparing for RDRC 2013, he was also ever helpful in providing suggestions and encouragement to us.&lt;/p&gt;
+
+&lt;p&gt;Thank you, Andy! We missed your British humour, but we all know that Singapore has to be independent someday right? =)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Secondly, a big thank you to all the speakers who made time for RDRC 2013.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/rdrc-speakers.jpg&quot; alt=&quot;Speakers&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;24 speakers in all - 7 &quot;Key Notes&quot;, 12 CFPs, and 5 Lightning Talks.&lt;/p&gt;
+
+&lt;p&gt;You guys are awesome, and the knowledge and experience that you shared with the us during the 2 days was priceless.&lt;/p&gt;
+
+&lt;p&gt;We have all leveled up, and it's because of you guys.&lt;/p&gt;
+
+&lt;p&gt;Thank you! Hope to see you all again, somewhere, someday.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Lastly, I would like to thank everyone who attended RDRC 2013.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/rdrc-attendees.jpg&quot; alt=&quot;Attendees&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;300+ Rubyists from all over the World. Thank you for your support!&lt;/p&gt;
+
+&lt;p&gt;I am also touched and encouraged by the lovely feedback that I have received thus far, and I am really grateful for making new friends amongst you all.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;A little jealous though, because you all had more time to chat with the speakers than me!&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;--&lt;/p&gt;
+
+&lt;p&gt;I had a great time at RDRC 2013 and I hope everyone enjoyed themselves too.&lt;/p&gt;
+
+&lt;p&gt;See you all next year!&lt;/p&gt;
+
+&lt;h3&gt;Resources&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;This list will be updated timely. Otherwise, &lt;a href=&quot;https://gist.github.com/cheeaun/5729325&quot;&gt;Cheeaun's list&lt;/a&gt; is pretty good too.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h4&gt;Slides For Day 1&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/winston/reddotrubyconf-2013-day-1&quot;&gt;My Slides&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Aaron Patterson: &lt;a href=&quot;https://speakerdeck.com/tenderlove/reddotrubyconf&quot;&gt;Refactoring Rails&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Aaron Patterson: &lt;a href=&quot;https://speakerdeck.com/tenderlove/americas-next-top-engineer&quot;&gt;America's Next Top Engineer&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Ola Bini: &lt;a href=&quot;/assets/downloads/JRubyForTheWin.pdf&quot;&gt;JRuby For The Win&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Pablo Astigarraga: &lt;a href=&quot;https://speakerdeck.com/pote/50-shades-of-mvc&quot;&gt;50 Shades of MVC&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Alexey Gaziev: &lt;a href=&quot;http://www.slideshare.net/gazay/gon-rdrc&quot;&gt;Rails And Javascript: Brothers In Arms Using Gon&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Luismi Cavallé: &lt;a href=&quot;https://speakerdeck.com/cavalle/keep-your-activerecord-models-manageable-the-rails-way&quot;&gt;Keep Your ActiveRecord Models Manageable The Rails Way&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Richard Huang: &lt;a href=&quot;http://huangzhimin.com/2013/06/07/my-presentation-at-reddotrubyconf-2013/&quot;&gt;Building Asynchronous APIs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Paul Gallagher: &lt;a href=&quot;http://www.slideshare.net/tardate/ruby-the-hard-bits&quot;&gt;Ruby - The Hard Bits&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Sakchai Siripanyawuth: &lt;a href=&quot;http://www.slideshare.net/artellectual/better-ujsforrails&quot;&gt;A Better UJS for Rails&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Max Gorin: &lt;a href=&quot;https://speakerdeck.com/nomadcoder/client-server-gui-web-components-with-ext-js-and-rails&quot;&gt;Client-Server GUI Web Components With Ext JS And Rails&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Bartosz Knapik: &lt;a href=&quot;https://speakerdeck.com/bartes/meet-angularjs-and-fall-in-love&quot;&gt;Meet AngularJS And Fall In Love&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Matthew Rudy Jacobs: &lt;a href=&quot;https://speakerdeck.com/matthewrudy/make-me-a-better-rubyist&quot;&gt;Make Me A Better Rubyist&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Kentaro Kuribayashi: &lt;a href=&quot;https://speakerdeck.com/kentaro/glint&quot;&gt;Glint - Fires Arbitrary TCP Server Processs For Tests&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Robert Roach: EmberJS&lt;/li&gt;
+&lt;li&gt;Jim Weirich: &lt;a href=&quot;https://github.com/jimweirich/presentation_kata_and_analysis/blob/master/pdf/KataAndAnalysis.key.pdf&quot;&gt;Code Kata And Analysis&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h4&gt;Slides For Day 2&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/winston/reddotrubyconf-2013-day-2&quot;&gt;My Slides&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;José Valim: &lt;a href=&quot;https://speakerdeck.com/plataformatec/concurrency-in-ruby-tools-of-the-trade&quot;&gt;Concurrency In Ruby: Tools Of The Trade&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Akira Matsuda: &lt;a href=&quot;https://speakerdeck.com/a_matsuda/ruby-2-dot-0-on-rails-in-production&quot;&gt;Ruby 2.0 On Rails In Production&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Simon Robson: &lt;a href=&quot;https://speakerdeck.com/shr/optimising-self-at-reddotrubyconf-2013&quot;&gt;Optimising Self&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Hiroshi Shibata: &lt;a href=&quot;https://speakerdeck.com/hsbt/from-legacy-to-edge&quot;&gt;From 'Legacy' To 'Edge': Continuous Upgrades For Rails Apps&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Chang Sau Sheong: &lt;a href=&quot;https://speakerdeck.com/sausheong/playing-with-ruby&quot;&gt;Playing With Ruby&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Yi-Ting Cheng: &lt;a href=&quot;http://xdite.github.io/security-basic/&quot;&gt;Secure Your Rails Application: The Basics&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Christopher Rigor: Identical Environments Using Chef, AWS And Vagrant&lt;/li&gt;
+&lt;li&gt;Prem Sichanugrist: Dependencies Testing With Appraisal And Bundler&lt;/li&gt;
+&lt;li&gt;Nigel Rausch: Fast &amp;amp; Effective View Testing&lt;/li&gt;
+&lt;li&gt;Steve Klabnik: Functional Reactive Programming In Ruby&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h4&gt;Photos&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;@reddotrubyconf's &lt;a href=&quot;https://twitter.com/reddotrubyconf/media/grid&quot;&gt;Twitter Photos&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/assets/images/rdrc-fiday-hug.png&quot;&gt;Friday Hug (Actual Size)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Jobs Board&lt;/h3&gt;
+
+&lt;p&gt;Download the &lt;a href=&quot;/assets/images/rdrc-jobs-board.jpg&quot;&gt;photo of the Jobs Board&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Wed, 12 Jun 2013 00:00:00 +0800</pubDate>
+      <link>http://winstonyw.com/2013/06/12/reddotrubyconf_2013_-_thank_you/</link>
+      <guid isPermaLink="true">http://winstonyw.com/2013/06/12/reddotrubyconf_2013_-_thank_you/</guid>
+    </item>
+    
+    <item>
       <title>Installing ImageMagick and RMagick</title>
       <description>&lt;p&gt;Specific to Mac OS X 10.7.*, ImageMagick v6.8.0-10 and RMagick v2.*.&lt;/p&gt;
 
@@ -19,8 +121,7 @@
 &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ln -s libMagick++-Q16.7.dylib   libMagick++.dylib
 &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ln -s libMagickCore-Q16.7.dylib libMagickCore.dylib
 &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ln -s libMagickWand-Q16.7.dylib libMagickWand.dylib
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;The errors I got when I didn't install ImageMagick with the config options:&lt;/p&gt;
@@ -111,8 +212,7 @@ and it would perform the action and go to the location that was specified in the
 
 &lt;span class=&quot;nt&quot;&gt;&amp;lt;input&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;submit&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;value=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Accept&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;form=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;myform&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;formmethod=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;POST&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;formaction=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;/accept&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
 &lt;span class=&quot;nt&quot;&gt;&amp;lt;input&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;submit&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;value=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Reject&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;form=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;myform&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;formmethod=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;POST&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;formaction=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;/reject&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Side note.. To test this in Rspec + Capybara, specs have to run with a JavaScript driver.&lt;/p&gt;
@@ -159,15 +259,14 @@ There are work arounds to ensure that Haml &lt;code&gt;layouts&lt;/code&gt; will
     &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 
     &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;convert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;engine&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Haml&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Engine&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;engine&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;Haml&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:Engine&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
       &lt;span class=&quot;n&quot;&gt;engine&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;render&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;rescue&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;StandardError&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;
       &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;!!! HAML Error: &amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Add a Sass converter &lt;code&gt;_plugins/sass.rb&lt;/code&gt; and place &lt;code&gt;.scss&lt;/code&gt; files in &lt;code&gt;./assets/css&lt;/code&gt;.&lt;/p&gt;
@@ -187,15 +286,14 @@ There are work arounds to ensure that Haml &lt;code&gt;layouts&lt;/code&gt; will
     &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 
     &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;convert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;engine&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Sass&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Engine&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:syntax&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:scss&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:load_paths&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;./assets/css/&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;engine&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;Sass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:Engine&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:syntax&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:scss&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:load_paths&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;./assets/css/&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
       &lt;span class=&quot;n&quot;&gt;engine&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;render&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;rescue&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;StandardError&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;
       &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;!!! SASS Error: &amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Everything should work up till this point, and &lt;code&gt;_site&lt;/code&gt; would contain the generated blog.&lt;/p&gt;
@@ -262,8 +360,7 @@ This Rake task will also commit and push the site to GitHub.&lt;/p&gt;
     &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;## Deploy Complete!&amp;quot;&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Finally, the site can now be deployed to GitHub pages!&lt;/p&gt;

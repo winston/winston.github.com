@@ -94,15 +94,14 @@ There are work arounds to ensure that Haml <code>layouts</code> will get convert
     <span class="k">end</span>
 
     <span class="k">def</span> <span class="nf">convert</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
-      <span class="n">engine</span> <span class="o">=</span> <span class="no">Haml</span><span class="o">::</span><span class="no">Engine</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+      <span class="n">engine</span> <span class="o">=</span> <span class="ss">Haml</span><span class="p">:</span><span class="ss">:Engine</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
       <span class="n">engine</span><span class="o">.</span><span class="n">render</span>
     <span class="k">rescue</span> <span class="no">StandardError</span> <span class="o">=&gt;</span> <span class="n">e</span>
       <span class="nb">puts</span> <span class="s2">&quot;!!! HAML Error: &quot;</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="n">message</span>
     <span class="k">end</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p>Add a Sass converter <code>_plugins/sass.rb</code> and place <code>.scss</code> files in <code>./assets/css</code>.</p>
@@ -122,15 +121,14 @@ There are work arounds to ensure that Haml <code>layouts</code> will get convert
     <span class="k">end</span>
 
     <span class="k">def</span> <span class="nf">convert</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
-      <span class="n">engine</span> <span class="o">=</span> <span class="no">Sass</span><span class="o">::</span><span class="no">Engine</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="ss">:syntax</span> <span class="o">=&gt;</span> <span class="ss">:scss</span><span class="p">,</span> <span class="ss">:load_paths</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="s2">&quot;./assets/css/&quot;</span><span class="o">]</span><span class="p">)</span>
+      <span class="n">engine</span> <span class="o">=</span> <span class="ss">Sass</span><span class="p">:</span><span class="ss">:Engine</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="ss">:syntax</span> <span class="o">=&gt;</span> <span class="ss">:scss</span><span class="p">,</span> <span class="ss">:load_paths</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="s2">&quot;./assets/css/&quot;</span><span class="o">]</span><span class="p">)</span>
       <span class="n">engine</span><span class="o">.</span><span class="n">render</span>
     <span class="k">rescue</span> <span class="no">StandardError</span> <span class="o">=&gt;</span> <span class="n">e</span>
       <span class="nb">puts</span> <span class="s2">&quot;!!! SASS Error: &quot;</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="n">message</span>
     <span class="k">end</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p>Everything should work up till this point, and <code>_site</code> would contain the generated blog.</p>
@@ -197,8 +195,7 @@ This Rake task will also commit and push the site to GitHub.</p>
     <span class="nb">puts</span> <span class="s2">&quot;## Deploy Complete!&quot;</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div>
 
 
 <p>Finally, the site can now be deployed to GitHub pages!</p>
