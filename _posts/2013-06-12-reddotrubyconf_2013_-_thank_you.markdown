@@ -67,7 +67,7 @@ _This list will be updated timely. Otherwise, [Cheeaun's list](https://gist.gith
 - Bartosz Knapik: [Meet AngularJS And Fall In Love](https://speakerdeck.com/bartes/meet-angularjs-and-fall-in-love)
 - Matthew Rudy Jacobs: [Make Me A Better Rubyist](https://speakerdeck.com/matthewrudy/make-me-a-better-rubyist)
 - Kentaro Kuribayashi: [Glint - Fires Arbitrary TCP Server Processs For Tests](https://speakerdeck.com/kentaro/glint)
-- Robert Roach: EmberJS
+- Robert Roach: [EmberJS](http://rjayroach.files.wordpress.com/2013/06/ember_reddot_ruby_conf.pdf)
 - Jim Weirich: [Code Kata And Analysis](https://github.com/jimweirich/presentation_kata_and_analysis/blob/master/pdf/KataAndAnalysis.key.pdf)
 
 #### Slides For Day 2
