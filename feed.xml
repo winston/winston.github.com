@@ -7,6 +7,208 @@
     <atom:link href="http://winstonyw.com/feed.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>RedDotRubyConf 2013 - Wrap Up</title>
+      <description>&lt;p&gt;It's been a few weeks since RDRC 2013. Good time to do a wrap up!&lt;/p&gt;
+
+&lt;p&gt;For those who have missed it, I have also written a
+&lt;a href=&quot;http://winstonyw.com/2013/06/12/reddotrubyconf_2013_-_thank_you/&quot;&gt;Thank You&lt;/a&gt; post which contains links to speakers' slides and related resources.&lt;/p&gt;
+
+&lt;h2&gt;RDRC 2013: The Beginning&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://twitter.com/andycroll&quot;&gt;Andy Croll&lt;/a&gt; broke the news to some of us last Oct
+that he's going back to the UK in Dec and would like to handover RedDotRubyConf to someone.&lt;/p&gt;
+
+&lt;p&gt;On a personal note, I really wanted to do RDRC because I would like to contribute back
+to the Ruby community in Singapore, as I wouldn't be who I am or where I am if not for Ruby.&lt;/p&gt;
+
+&lt;p&gt;After a few days of consideration, and support from &lt;a href=&quot;https://twitter.com/carlcoryell&quot;&gt;Carl&lt;/a&gt;,
+I decided to volunteer myself and my colleagues also gladly offered to help out wherever they can.&lt;/p&gt;
+
+&lt;p&gt;With that, I roped in Abhaya, Wei, Mohan, and Carl also offered various administrative help.
+But by and large, this was a community event, ran by individuals who really love Ruby.&lt;/p&gt;
+
+&lt;h2&gt;ToDo List&lt;/h2&gt;
+
+&lt;p&gt;In December 2012, I got started.&lt;/p&gt;
+
+&lt;p&gt;These were the stuff that had to be done, arranged according to importance.&lt;/p&gt;
+
+&lt;h3&gt;Dates&lt;/h3&gt;
+
+&lt;p&gt;June 7 and 8 were picked purposefully a weekend after &lt;a href=&quot;http://rubykaigi.org/2013/&quot;&gt;RubyKaigi&lt;/a&gt;,
+based on a thought that some of the speakers and audience of RubyKaigi wouldn't mind coming down to Singapore the week after.&lt;/p&gt;
+
+&lt;p&gt;The strategy worked.&lt;/p&gt;
+
+&lt;h3&gt;Great Speakers&lt;/h3&gt;
+
+&lt;p&gt;We have heard of them and seen them in vids. How cool would it be to see them in person!
+I was audacious and sent out emails to a number of them. 7 said yes and the rest is history.
+I was actually prepared to be rejected by all of them, so I am really grateful for their replies.
+Anyway, the big names really helped to drive the early ticket sales too.&lt;/p&gt;
+
+&lt;p&gt;I think I was really lucky. Next year, I hope I'll be as lucky.&lt;/p&gt;
+
+&lt;h3&gt;Venue&lt;/h3&gt;
+
+&lt;p&gt;RDRC required a venue that's accessible and inexpensive.
+There were several choices:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Lecture Theatres in National University of Singapore&lt;/li&gt;
+&lt;li&gt;NUS Alumni House / Shaw Foundation&lt;/li&gt;
+&lt;li&gt;RedDot Museum&lt;/li&gt;
+&lt;li&gt;NTUC Auditorium&lt;/li&gt;
+&lt;li&gt;NUS UCC&lt;/li&gt;
+&lt;li&gt;Biopolis&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Biopolis was the best option out of them all, because it's:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;available on June 7 and 8,&lt;/li&gt;
+&lt;li&gt;near to the train station,&lt;/li&gt;
+&lt;li&gt;a really nice auditorium with great facilities,&lt;/li&gt;
+&lt;li&gt;inexpensive as compared to most of the other choices.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Besides, Lecture Theatres in NUS are only available to students; not even an alumni.&lt;/p&gt;
+
+&lt;h3&gt;Sponsors&lt;/h3&gt;
+
+&lt;p&gt;Sponsors were also crucial to the plan.&lt;/p&gt;
+
+&lt;p&gt;We reached out to companies who are proponents of the Ruby language,
+and we are really grateful to the companies who were able to help make this event possible.&lt;/p&gt;
+
+&lt;p&gt;Besides the usual cash sponsorships, we also wanted to get sponsorships that we can give directly as swag to all participants,
+and we did it with freebies like Ruby course and ebook.&lt;/p&gt;
+
+&lt;h3&gt;Conference Format&lt;/h3&gt;
+
+&lt;p&gt;The format of RDRC 2013 was kept similar to the previous years, with the addition of Lightning Talks.&lt;/p&gt;
+
+&lt;p&gt;Although we only had enough Lightning Talks to fit Day , it was a good expeirment, IMO.
+And feedback has been pretty positive so far, so hopefully next year more local speakers
+will sign up for the Lightning Talk slots.&lt;/p&gt;
+
+&lt;h3&gt;Other Logistics&lt;/h3&gt;
+
+&lt;p&gt;The 5 todos above were the major stuff that had to happen before the rest could.&lt;/p&gt;
+
+&lt;p&gt;The other conference logistics consisted of:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Logo Design&lt;/li&gt;
+&lt;li&gt;Website Design and Coding&lt;/li&gt;
+&lt;li&gt;Ticketing&lt;/li&gt;
+&lt;li&gt;Marketing (Regional Ruby Groups, Emails from previous RDRCs)&lt;/li&gt;
+&lt;li&gt;Call For Proposals&lt;/li&gt;
+&lt;li&gt;Program Scheduling&lt;/li&gt;
+&lt;li&gt;T-shirts and Swag (Stickers, FieldNotes, Lanyards)&lt;/li&gt;
+&lt;li&gt;Design + Printing of Posters, Banners, Programs&lt;/li&gt;
+&lt;li&gt;Food and Drinks&lt;/li&gt;
+&lt;li&gt;After Party&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;To get all these done, a ton of emails were sent..&lt;/p&gt;
+
+&lt;p&gt;Not easy for someone who's much more used to writing in Ruby prose!&lt;/p&gt;
+
+&lt;h2&gt;Attendees&lt;/h2&gt;
+
+&lt;h3&gt;Registrants by Country&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/rdrc-registrants_by_country.png&quot; alt=&quot;Registrants by Country&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;27 countries in total - with almost 50% of the audience coming from abroad.&lt;/p&gt;
+
+&lt;h3&gt;Registrations by Month&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/rdrc-registrations_by_month.png&quot; alt=&quot;Registrations by Month&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I believe in karma. The next time I attend a conference, I'll get the tickets early!&lt;/p&gt;
+
+&lt;p&gt;You should too! As that helps to reduce logistical challenges and let me sleep better.&lt;/p&gt;
+
+&lt;p&gt;Interestingly, one of the things I did to encourage sales was to email folks
+who dropped off after they filled in their details but didn't complete the payment step.&lt;/p&gt;
+
+&lt;p&gt;Some replied, telling me that their plans changed and so they were not able to make it,
+while a lot actually re-registered (and paid) after the gentle reminder.&lt;/p&gt;
+
+&lt;h2&gt;Vendors&lt;/h2&gt;
+
+&lt;p&gt;Listing the vendors who deserve a mention!&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.jtc.gov.sg/Pages/Facilities-Biopolis-Phase1.aspx&quot;&gt;Matrix&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.rasel.com.sg/&quot;&gt;Rasel Catering&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.facebook.com/pages/Porcupine-Design/101255343267281&quot;&gt;Porcupine Design&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://iceman.com.sg/&quot;&gt;Uni Tat Ice&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://fieldnotesbrand.com/&quot;&gt;Field Notes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;After Party at &lt;a href=&quot;http://www.senortaco.sg/&quot;&gt;Señor Taco&lt;/a&gt; (Contact &lt;a href=&quot;rotceh@senortaco.sg&quot;&gt;Rox&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Drinks&lt;/h3&gt;
+
+&lt;p&gt;I ordered a total of 800+ bottles of mineral water and 1200+ cans of soda.
+That was based on my assumption that 300 pax drinks an average of 3 bottles/cans per day (* 2 days).&lt;/p&gt;
+
+&lt;p&gt;However, at the end of Day 2, there were still about 12-16 cartons of water and soda left.
+You guys are not drinking enough water!&lt;/p&gt;
+
+&lt;h2&gt;Improvements&lt;/h2&gt;
+
+&lt;p&gt;Still &lt;a href=&quot;http://bit.ly/rdrc-feedback&quot;&gt;collecting feedback&lt;/a&gt; but I already have some ideas on what can be improved next year.&lt;/p&gt;
+
+&lt;h3&gt;Breakfast&lt;/h3&gt;
+
+&lt;p&gt;I was hungry in the morning, and so were all of you. Sorry!&lt;/p&gt;
+
+&lt;h3&gt;Coffee&lt;/h3&gt;
+
+&lt;p&gt;I received feedback that the coffee is not fantastic and I would really like to solve that.
+Please give me suggestions on how to make it not suck (less getting a barista).&lt;/p&gt;
+
+&lt;h3&gt;T-shirts&lt;/h3&gt;
+
+&lt;p&gt;I'll make sure to get the correct sizes and measurements up on the registration site, so that you can pick one that fits.
+And, female sizes too.&lt;/p&gt;
+
+&lt;h3&gt;Swag&lt;/h3&gt;
+
+&lt;p&gt;Thinking of doing away with the lanyard (because you have probably already discarded it).&lt;/p&gt;
+
+&lt;h3&gt;WiFi&lt;/h3&gt;
+
+&lt;p&gt;Some say yes. Some say no. I'll see what I can do next year.&lt;/p&gt;
+
+&lt;h3&gt;Video&lt;/h3&gt;
+
+&lt;p&gt;I am still a little undecided on this because I am worried that with videos,
+people will have less incentive for attending RDRC, knowing that videos will be available later. True?&lt;/p&gt;
+
+&lt;h3&gt;Local Speakers&lt;/h3&gt;
+
+&lt;p&gt;I really would like to see more local speakers. Seriously, where are you guys!&lt;/p&gt;
+
+&lt;p&gt;--&lt;/p&gt;
+
+&lt;p&gt;That's it. See you all next year!&lt;/p&gt;
+
+&lt;p&gt;Drop me an email - suggestions, compliments or criticisms. Thank you!&lt;/p&gt;
+</description>
+      <pubDate>Mon, 17 Jun 2013 00:00:00 +0800</pubDate>
+      <link>http://winstonyw.com/2013/06/17/reddotrubyconf_2013_-_wrap_up/</link>
+      <guid isPermaLink="true">http://winstonyw.com/2013/06/17/reddotrubyconf_2013_-_wrap_up/</guid>
+    </item>
+    
+    <item>
       <title>RedDotRubyConf 2013 - Thank You</title>
       <description>&lt;p&gt;I didn't do this alone - RDRC 2013 is an event by the community, for the community. &lt;a href=&quot;https://twitter.com/abhayashenoy&quot;&gt;Abhaya&lt;/a&gt;, &lt;a href=&quot;https://twitter.com/luweidewei&quot;&gt;Wei&lt;/a&gt;, &lt;a href=&quot;https://twitter.com/mohangk&quot;&gt;Mohan&lt;/a&gt;, and many more all helped to make this happen. They are my heros!&lt;/p&gt;
 
