@@ -74,7 +74,7 @@ and we did it with freebies like Ruby course and ebook.
 ### Conference Format
 The format of RDRC 2013 was kept similar to the previous years, with the addition of Lightning Talks.
 
-Although we only had enough Lightning Talks to fit Day , it was a good expeirment, IMO.
+Although we only had enough Lightning Talks to fit Day 1, it was a good experiment, IMO.
 And feedback has been pretty positive so far, so hopefully next year more local speakers
 will sign up for the Lightning Talk slots.
 
