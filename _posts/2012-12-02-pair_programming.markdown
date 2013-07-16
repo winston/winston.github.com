@@ -77,8 +77,6 @@ the team can ensure that they have code review processes and tools in place:
 
 The boundaries are limitless and these are just some suggestions that I can think of.
 
-because PP is a skill that has to be learned and honed and hiring of engineers should be deliberate to make sure that they fit the PP culture.
-
 ### Do The Good Stuff
 Pair Programming is not a silver bullet but it definitely increases engineering productivity.
 On occasions when you can't do PP, you should still attempt to imitate the benefits of PP.
