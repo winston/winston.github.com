@@ -80,7 +80,7 @@ _This list will be updated timely. Otherwise, [Cheeaun's list](https://gist.gith
 - Chang Sau Sheong: [Playing With Ruby](https://speakerdeck.com/sausheong/playing-with-ruby)
 - Yi-Ting Cheng: [Secure Your Rails Application: The Basics](http://xdite.github.io/security-basic/)
 - Christopher Rigor: Identical Environments Using Chef, AWS And Vagrant
-- Prem Sichanugrist: Dependencies Testing With Appraisal And Bundler
+- Prem Sichanugrist: [Dependencies Testing With Appraisal And Bundler](https://speakerdeck.com/sikachu/dependencies-testing-with-appraisal-and-bundler)
 - Nigel Rausch: Fast & Effective View Testing
 - Steve Klabnik: Functional Reactive Programming In Ruby
 
