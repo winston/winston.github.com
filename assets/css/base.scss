@@ -90,11 +90,14 @@ p {
 }
 
 ul {
-  li {
-    margin    : 0 0 0.5em 0;
-  }
+  margin      : 0 0 1.5em 0;
+}
+
+ul li {
+  margin      : 0 0 0.5em 0;
+  line-height : 1.5em;
 }
 
 ul li > ul {
-     margin  : 0.5em 0 1em 0;
+  margin      : 0.5em 0 1em 0;
 }
