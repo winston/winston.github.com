@@ -67,8 +67,12 @@ p {
   margin: 0 0 1.5em 0;
   line-height: 1.5em; }
 
+ul {
+  margin: 0 0 1.5em 0; }
+
 ul li {
-  margin: 0 0 0.5em 0; }
+  margin: 0 0 0.5em 0;
+  line-height: 1.5em; }
 
 ul li > ul {
   margin: 0.5em 0 1em 0; }
@@ -157,6 +161,9 @@ footer {
   color: #c2c2c2; }
   footer:last-child {
     margin-right: 0; }
+
+#projects ul li, #elsewhere ul li {
+  line-height: 1em; }
 
 .index h2, .post h2 {
   margin-top: 1em; }

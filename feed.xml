@@ -7,6 +7,131 @@
     <atom:link href="http://winstonyw.com/feed.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>GoogleVisualr</title>
+      <description>&lt;p&gt;In 2008, I worked at &lt;a href=&quot;http://wego.com&quot;&gt;Wego.com&lt;/a&gt; and I had to build a Google Analytics clone from scratch.
+The main reason for that was because Google Analytics didn't have an open API back then.
+The collected data was important to the P&amp;amp;L as it was used to bill our partners (CPM/CPC)
+and so it's crucial that we maintain absolute control over it.&lt;/p&gt;
+
+&lt;p&gt;The tool, aptly named Wegonomics, eventually also had the billing functionalities built in.&lt;/p&gt;
+
+&lt;p&gt;Anyway, it had a few interesting components:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;A JavaScript tracking script that tracked all of your searching and clicking activities (partly reverse-engineered from the famous ga.js) to log files.&lt;/li&gt;
+&lt;li&gt;A Ruby parser that parsed the log files and dumped meaningful data into a database.
+I also built some fuzzy algorithms to de-dup and de-fraud the searches and clicks because the accuracy of the data affects the P&amp;amp;L of the business.&lt;/li&gt;
+&lt;li&gt;A Rails application that sliced and diced the data for analysis by the management.
+The app started with only tables but I gradually added charts to the app so as to create a good analytics dashabord that provided insights to the numbers.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Each component was interesting on its own, and I was pretty proud of my work back then.
+Looking back.. Not so, because I left my successor without any tests. &lt;em&gt;Terribly guilty!&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Anyway, as part of the Rails app,
+I wrote a RubyGem to help with the generation of charts,
+and this post is really about that - &lt;a href=&quot;https://github.com/winston/google_visualr&quot;&gt;GoogleVisualr&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;To draw the charts, I picked &lt;a href=&quot;https://developers.google.com/chart/&quot;&gt;Google Charts&lt;/a&gt;
+because it's free and easy to get started with.
+It's basically a JavaScript library and you'll write JavaScript to draw the charts.&lt;/p&gt;
+
+&lt;p&gt;The generation of the charts is pretty easy and straight forward:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Pick the chart type, e.g. Bar chart, Line chart etc.&lt;/li&gt;
+&lt;li&gt;Pass data into the chart&lt;/li&gt;
+&lt;li&gt;Draw the chart&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;That's assuming you already have the data. But where do you usually get the data from?&lt;/p&gt;
+
+&lt;p&gt;In any SQL-backed apps, you'll have to retrieve the data from the DB with Ruby/Python etc,
+convert the data into JavaScript objects somehow (simplest is to embed it in the views),
+and write JavaScript to use the data and generate the chart with it.&lt;/p&gt;
+
+&lt;p&gt;Context switching between Ruby and JavaScript is troublesome..&lt;/p&gt;
+
+&lt;p&gt;And so, that's how GoogleVisualr came about - a Ruby wrapper around the Google Charts.
+Now I can manipulate the numbers and construct the charts in Ruby,
+and the RubyGem provides a method to auto-generate the JavaScript required for the charts in the view!&lt;/p&gt;
+
+&lt;p&gt;This simplicity works for most use cases, unless you require interactivity with the charts.
+Then you'll still need to write JavaScript for that.&lt;/p&gt;
+
+&lt;p&gt;A really basic example:&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;In your layout, load Google Ajax API in the head tag, at the very top.&lt;/em&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;script src='https://www.google.com/jsapi'&amp;gt;&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;In a controller, e.g. &lt;code&gt;app/controllers/charts_controller.rb&lt;/code&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;def area_chart
+  data_table = GoogleVisualr::DataTable.new
+  # Add Column Headers
+  data_table.new_column('string', 'Year' )
+  data_table.new_column('number', 'Sales')
+  data_table.new_column('number', 'Expenses')
+
+  # Add Rows and Values
+  data_table.add_rows([
+      ['2004', 1000, 400],
+      ['2005', 1170, 460],
+      ['2006', 660, 1120],
+      ['2007', 1030, 540]
+  ])
+
+  option = { width: 400, height: 240, title: 'Company Performance' }
+  @chart = GoogleVisualr::Interactive::AreaChart.new(data_table, option)
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;In the corresponding view, e.g. &lt;code&gt;app/views/charts/area_chart.html.erb&lt;/code&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;div id='chart'&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;%= render_chart(@chart, 'chart') %&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Go ahead! Check out &lt;a href=&quot;https://github.com/winston/google_visualr&quot;&gt;GoogleVisualr on GitHub&lt;/a&gt; or the &lt;a href=&quot;http://googlevisualr.herokuapp.com/&quot;&gt;Docs&lt;/a&gt; now.&lt;/p&gt;
+
+&lt;p&gt;These are the slides which I presented at the Singapore Ruby Meetup on 14 Apr 2010.
+Definitely outdated, but it still explains the intention and basics of the RubyGem well.&lt;/p&gt;
+
+&lt;iframe src=&quot;http://www.slideshare.net/slideshow/embed_code/3737737&quot; width=&quot;427&quot; height=&quot;356&quot; frameborder=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; scrolling=&quot;no&quot; style=&quot;border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px&quot; allowfullscreen&gt; &lt;/iframe&gt;
+
+</description>
+      <pubDate>Thu, 19 Sep 2013 00:00:00 +0800</pubDate>
+      <link>http://winstonyw.com/2013/09/19/googlevisualr/</link>
+      <guid isPermaLink="true">http://winstonyw.com/2013/09/19/googlevisualr/</guid>
+    </item>
+    
+    <item>
+      <title>Pairing And Email Sign Off</title>
+      <description>&lt;p&gt;There's something that stuck with me since I started doing pair programming -
+signing off emails as a pair &lt;em&gt;&quot;Winston and [My Pair]&quot;&lt;/em&gt;
+whenever we have to reply to emails while pairing.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;&quot;Why?&quot;&lt;/em&gt; - I was asked once. I can't relate the exact story anymore, but the incident
+which made me conscious of doing that happened on the first few days of working at Pivotal Labs.&lt;/p&gt;
+
+&lt;p&gt;I was pairing with Nate Clark then, and he had to shoot an email out to our clients perhaps. After he finished writing the email, he signed off as &quot;Nate &amp;amp; Winston&quot;.&lt;/p&gt;
+
+&lt;p&gt;Somehow, that simple gesture made me feel &lt;strong&gt;welcomed, trusted, and respected as a pair&lt;/strong&gt; - that I was not just a pair of eyes looking over his shoulder.&lt;/p&gt;
+
+&lt;p&gt;Soon, I also realized that it's not just Nate who was doing that but all of the other Pivots whom I had a chance to work with.&lt;/p&gt;
+
+&lt;p&gt;Being &lt;strong&gt;mindful&lt;/strong&gt; of your pair makes your pair happy, and you'll be happy too!&lt;/p&gt;
+</description>
+      <pubDate>Tue, 27 Aug 2013 00:00:00 +0800</pubDate>
+      <link>http://winstonyw.com/2013/08/27/pairing_and_email_sign_off/</link>
+      <guid isPermaLink="true">http://winstonyw.com/2013/08/27/pairing_and_email_sign_off/</guid>
+    </item>
+    
+    <item>
       <title>RedDotRubyConf 2013 - Wrap Up</title>
       <description>&lt;p&gt;It's been a few weeks since RDRC 2013. Good time to do a wrap up!&lt;/p&gt;
 
@@ -287,7 +412,7 @@ people will have less incentive for attending RDRC, knowing that videos will be 
 &lt;li&gt;Chang Sau Sheong: &lt;a href=&quot;https://speakerdeck.com/sausheong/playing-with-ruby&quot;&gt;Playing With Ruby&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Yi-Ting Cheng: &lt;a href=&quot;http://xdite.github.io/security-basic/&quot;&gt;Secure Your Rails Application: The Basics&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Christopher Rigor: Identical Environments Using Chef, AWS And Vagrant&lt;/li&gt;
-&lt;li&gt;Prem Sichanugrist: Dependencies Testing With Appraisal And Bundler&lt;/li&gt;
+&lt;li&gt;Prem Sichanugrist: &lt;a href=&quot;https://speakerdeck.com/sikachu/dependencies-testing-with-appraisal-and-bundler&quot;&gt;Dependencies Testing With Appraisal And Bundler&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Nigel Rausch: Fast &amp;amp; Effective View Testing&lt;/li&gt;
 &lt;li&gt;Steve Klabnik: Functional Reactive Programming In Ruby&lt;/li&gt;
 &lt;/ul&gt;
@@ -688,8 +813,6 @@ the team can ensure that they have code review processes and tools in place:&lt;
 
 
 &lt;p&gt;The boundaries are limitless and these are just some suggestions that I can think of.&lt;/p&gt;
-
-&lt;p&gt;because PP is a skill that has to be learned and honed and hiring of engineers should be deliberate to make sure that they fit the PP culture.&lt;/p&gt;
 
 &lt;h3&gt;Do The Good Stuff&lt;/h3&gt;
 

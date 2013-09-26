@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>GoogleVisualr - WinstonYW</title>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta content='Winston Teo Yong Wei' name='author' />
+    <link href='/assets/css/application.css' media='screen' rel='stylesheet' type='text/css' />
+    <!-- http://davidbcalhoun.com/2010/viewport-metatag -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+  </head>
+  <body>
+    <header>
+      <div class='title-color-bar'></div>
+      <section id='profile'>
+        <h1>
+          <a href="/">WinstonYW</a>
+        </h1>
+        <h2>
+          Just Another Tech Journal
+        </h2>
+      </section>
+      <div class='aside-color-bar'></div>
+      <section id="projects">
+        <h2>Projects</h2>
+        <ul>
+          <li>
+            <a href="https://github.com/winston/google_visualr">GoogleVisualr</a>
+          </li>
+          <li>
+            <a href="https://github.com/winston/cactus">Cactus</a>
+          </li>
+        </ul>
+      </section>
+      <section id="elsewhere">
+        <h2>Elsewhere</h2>
+        <ul>
+          <li>
+            <a href="https://twitter.com/winstonyw">Twitter</a>
+          </li>
+          <li>
+            <a href="https://github.com/winston">GitHub</a>
+          </li>
+          <li>
+            <a href="http://www.linkedin.com/in/winstonyw">LinkedIn</a>
+          </li>
+          <li>
+            <a href="mailto:winstonyw+blog@gmail.com">Email</a>
+          </li>
+          <li>
+            <a href="#">RSS</a>
+          </li>
+        </ul>
+      </section>
+  </header>
+    <div id='center'>
+      <div class='color-bar'></div>
+      <div id='content'>
+        <article class="post">
+          <h2>GoogleVisualr</h2>
+          <span class="date">19 SEPTEMBER 2013</span>
+          <section>
+            <p>In 2008, I worked at <a href="http://wego.com">Wego.com</a> and I had to build a Google Analytics clone from scratch.
+The main reason for that was because Google Analytics didn't have an open API back then.
+The collected data was important to the P&amp;L as it was used to bill our partners (CPM/CPC)
+and so it's crucial that we maintain absolute control over it.</p>
+
+<p>The tool, aptly named Wegonomics, eventually also had the billing functionalities built in.</p>
+
+<p>Anyway, it had a few interesting components:</p>
+
+<ul>
+<li>A JavaScript tracking script that tracked all of your searching and clicking activities (partly reverse-engineered from the famous ga.js) to log files.</li>
+<li>A Ruby parser that parsed the log files and dumped meaningful data into a database.
+I also built some fuzzy algorithms to de-dup and de-fraud the searches and clicks because the accuracy of the data affects the P&amp;L of the business.</li>
+<li>A Rails application that sliced and diced the data for analysis by the management.
+The app started with only tables but I gradually added charts to the app so as to create a good analytics dashabord that provided insights to the numbers.</li>
+</ul>
+
+
+<p>Each component was interesting on its own, and I was pretty proud of my work back then.
+Looking back.. Not so, because I left my successor without any tests. <em>Terribly guilty!</em></p>
+
+<p>Anyway, as part of the Rails app,
+I wrote a RubyGem to help with the generation of charts,
+and this post is really about that - <a href="https://github.com/winston/google_visualr">GoogleVisualr</a>.</p>
+
+<p>To draw the charts, I picked <a href="https://developers.google.com/chart/">Google Charts</a>
+because it's free and easy to get started with.
+It's basically a JavaScript library and you'll write JavaScript to draw the charts.</p>
+
+<p>The generation of the charts is pretty easy and straight forward:</p>
+
+<ul>
+<li>Pick the chart type, e.g. Bar chart, Line chart etc.</li>
+<li>Pass data into the chart</li>
+<li>Draw the chart</li>
+</ul>
+
+
+<p>That's assuming you already have the data. But where do you usually get the data from?</p>
+
+<p>In any SQL-backed apps, you'll have to retrieve the data from the DB with Ruby/Python etc,
+convert the data into JavaScript objects somehow (simplest is to embed it in the views),
+and write JavaScript to use the data and generate the chart with it.</p>
+
+<p>Context switching between Ruby and JavaScript is troublesome..</p>
+
+<p>And so, that's how GoogleVisualr came about - a Ruby wrapper around the Google Charts.
+Now I can manipulate the numbers and construct the charts in Ruby,
+and the RubyGem provides a method to auto-generate the JavaScript required for the charts in the view!</p>
+
+<p>This simplicity works for most use cases, unless you require interactivity with the charts.
+Then you'll still need to write JavaScript for that.</p>
+
+<p>A really basic example:</p>
+
+<p><em>In your layout, load Google Ajax API in the head tag, at the very top.</em></p>
+
+<pre><code>&lt;script src='https://www.google.com/jsapi'&gt;&lt;/script&gt;
+</code></pre>
+
+<p><em>In a controller, e.g. <code>app/controllers/charts_controller.rb</code></em></p>
+
+<pre><code>def area_chart
+  data_table = GoogleVisualr::DataTable.new
+  # Add Column Headers
+  data_table.new_column('string', 'Year' )
+  data_table.new_column('number', 'Sales')
+  data_table.new_column('number', 'Expenses')
+
+  # Add Rows and Values
+  data_table.add_rows([
+      ['2004', 1000, 400],
+      ['2005', 1170, 460],
+      ['2006', 660, 1120],
+      ['2007', 1030, 540]
+  ])
+
+  option = { width: 400, height: 240, title: 'Company Performance' }
+  @chart = GoogleVisualr::Interactive::AreaChart.new(data_table, option)
+end
+</code></pre>
+
+<p><em>In the corresponding view, e.g. <code>app/views/charts/area_chart.html.erb</code></em></p>
+
+<pre><code>&lt;div id='chart'&gt;&lt;/div&gt;
+&lt;%= render_chart(@chart, 'chart') %&gt;
+</code></pre>
+
+<p>Go ahead! Check out <a href="https://github.com/winston/google_visualr">GoogleVisualr on GitHub</a> or the <a href="http://googlevisualr.herokuapp.com/">Docs</a> now.</p>
+
+<p>These are the slides which I presented at the Singapore Ruby Meetup on 14 Apr 2010.
+Definitely outdated, but it still explains the intention and basics of the RubyGem well.</p>
+
+<iframe src="http://www.slideshare.net/slideshow/embed_code/3737737" width="427" height="356" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px" allowfullscreen> </iframe>
+
+
+          </section>
+        </article>
+        <article class="comments">
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+            var disqus_shortname = 'winstonyw';
+            // var disqus_developer = 1;
+            (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </article>
+      </div>
+    </div>
+    <footer>
+      Just a boring footer. Nothing to see here lah. ~
+    </footer>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-297001-2']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
