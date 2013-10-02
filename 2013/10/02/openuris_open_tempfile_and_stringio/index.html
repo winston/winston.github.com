@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>WinstonYW - Just Another Tech Journal</title>
+    <title>OpenURI's open, Tempfile and StringIO - WinstonYW</title>
     <meta content="text/html; charset=utf-8" http-equiv="content-type" />
     <meta content='Winston Teo Yong Wei' name='author' />
     <link href='/assets/css/application.css' media='screen' rel='stylesheet' type='text/css' />
@@ -56,112 +56,52 @@
           </li>
         </ul>
       </section>
-    </header>
+  </header>
     <div id='center'>
       <div class='color-bar'></div>
       <div id='content'>
-        <article class='index'>
-  <h2>
-    Contents
-  </h2>
-  <article class='post-link'>
-    <span class='date'>
-      02 OCT 13
-    </span>
-    <a href='/2013/10/02/openuris_open_tempfile_and_stringio/'>
-      OpenURI's open, Tempfile and StringIO
-    </a>
-  </article>
-  <article class='post-link'>
-    <span class='date'>
-      01 OCT 13
-    </span>
-    <a href='/2013/10/01/ruby_reading_a_remote_zip_file/'>
-      Ruby - Reading A Remote Zip File
-    </a>
-  </article>
-  <article class='post-link'>
-    <span class='date'>
-      19 SEP 13
-    </span>
-    <a href='/2013/09/19/googlevisualr/'>
-      GoogleVisualr
-    </a>
-  </article>
-  <article class='post-link'>
-    <span class='date'>
-      27 AUG 13
-    </span>
-    <a href='/2013/08/27/pairing_and_email_sign_off/'>
-      Pairing And Email Sign Off
-    </a>
-  </article>
-  <article class='post-link'>
-    <span class='date'>
-      17 JUN 13
-    </span>
-    <a href='/2013/06/17/reddotrubyconf_2013_-_wrap_up/'>
-      RedDotRubyConf 2013 - Wrap Up
-    </a>
-  </article>
-  <article class='post-link'>
-    <span class='date'>
-      12 JUN 13
-    </span>
-    <a href='/2013/06/12/reddotrubyconf_2013_-_thank_you/'>
-      RedDotRubyConf 2013 - Thank You
-    </a>
-  </article>
-  <article class='post-link'>
-    <span class='date'>
-      21 MAR 13
-    </span>
-    <a href='/2013/03/21/installing-imagemagick-and-rmagick/'>
-      Installing ImageMagick and RMagick
-    </a>
-  </article>
-  <article class='post-link'>
-    <span class='date'>
-      20 MAR 13
-    </span>
-    <a href='/2013/03/20/test_after_commit/'>
-      Test After Commit
-    </a>
-  </article>
-  <article class='post-link'>
-    <span class='date'>
-      08 MAR 13
-    </span>
-    <a href='/2013/03/08/form_with_multiple_buttons/'>
-      Form With Multiple Buttons
-    </a>
-  </article>
-  <article class='post-link'>
-    <span class='date'>
-      24 FEB 13
-    </span>
-    <a href='/2013/02/24/jekyll_haml_sass_and_github_pages/'>
-      Jekyll, Haml, Sass and GitHub Pages
-    </a>
-  </article>
-  <article class='post-link'>
-    <span class='date'>
-      02 DEC 12
-    </span>
-    <a href='/2012/12/02/pair_programming/'>
-      Pair Programming
-    </a>
-  </article>
-  <article class='post-link'>
-    <span class='date'>
-      01 NOV 12
-    </span>
-    <a href='/2012/11/01/reboot/'>
-      Reboot
-    </a>
-  </article>
-</article>
+        <article class="post">
+          <h2>OpenURI's open, Tempfile and StringIO</h2>
+          <span class="date">02 OCTOBER 2013</span>
+          <section>
+            <p><code>OpenURI#open</code> has a dual personality. Consider the code below..</p>
 
+<pre><code>require 'open-uri'
+
+zipfile = open("http://example.com/file.zip")
+</code></pre>
+
+<p>With this, <code>zipfile</code> can either be a <code>Tempfile</code> instance or a <code>StringIO</code> instance.</p>
+
+<p>Apparently, that's how <code>OpenURI#open</code> works, and this <a href="http://stackoverflow.com/questions/10496874/why-does-openuri-treat-files-under-10kb-in-size-as-stringio">StackOverFlow post</a> explains it well.
+And as mentioned in the same post, to get <code>OpenURI#open</code> to always return a <code>Tempfile</code>,
+apply the initializer "hack".</p>
+
+<pre><code>require 'open-uri'
+
+# Don't allow downloaded files to be created as StringIO. Force a tempfile to be created.
+OpenURI::Buffer.send :remove_const, 'StringMax' if OpenURI::Buffer.const_defined?('StringMax')
+OpenURI::Buffer.const_set 'StringMax', 0
+</code></pre>
+
+<p>Or, you can just be deterministic and <a href="http://winstonyw.com/2013/10/01/ruby_reading_a_remote_zip_file/">create the Tempfile yourself</a>.</p>
+
+          </section>
+        </article>
+        <article class="comments">
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+            var disqus_shortname = 'winstonyw';
+            // var disqus_developer = 1;
+            (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </article>
       </div>
     </div>
     <footer>

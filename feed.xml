@@ -7,6 +7,35 @@
     <atom:link href="http://winstonyw.com/feed.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>OpenURI's open, Tempfile and StringIO</title>
+      <description>&lt;p&gt;&lt;code&gt;OpenURI#open&lt;/code&gt; has a dual personality. Consider the code below..&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;require 'open-uri'
+
+zipfile = open(&quot;http://example.com/file.zip&quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;With this, &lt;code&gt;zipfile&lt;/code&gt; can either be a &lt;code&gt;Tempfile&lt;/code&gt; instance or a &lt;code&gt;StringIO&lt;/code&gt; instance.&lt;/p&gt;
+
+&lt;p&gt;Apparently, that's how &lt;code&gt;OpenURI#open&lt;/code&gt; works, and this &lt;a href=&quot;http://stackoverflow.com/questions/10496874/why-does-openuri-treat-files-under-10kb-in-size-as-stringio&quot;&gt;StackOverFlow post&lt;/a&gt; explains it well.
+And as mentioned in the same post, to get &lt;code&gt;OpenURI#open&lt;/code&gt; to always return a &lt;code&gt;Tempfile&lt;/code&gt;,
+apply the initializer &quot;hack&quot;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;require 'open-uri'
+
+# Don't allow downloaded files to be created as StringIO. Force a tempfile to be created.
+OpenURI::Buffer.send :remove_const, 'StringMax' if OpenURI::Buffer.const_defined?('StringMax')
+OpenURI::Buffer.const_set 'StringMax', 0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Or, you can just be deterministic and &lt;a href=&quot;http://winstonyw.com/2013/10/01/ruby_reading_a_remote_zip_file/&quot;&gt;create the Tempfile yourself&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Wed, 02 Oct 2013 00:00:00 +0800</pubDate>
+      <link>http://winstonyw.com/2013/10/02/openuris_open_tempfile_and_stringio/</link>
+      <guid isPermaLink="true">http://winstonyw.com/2013/10/02/openuris_open_tempfile_and_stringio/</guid>
+    </item>
+    
+    <item>
       <title>Ruby - Reading A Remote Zip File</title>
       <description>&lt;p&gt;I need to access a remote zip file and this is something that works:&lt;/p&gt;
 
@@ -753,131 +782,6 @@ This Rake task will also commit and push the site to GitHub.&lt;/p&gt;
       <pubDate>Sun, 24 Feb 2013 00:00:00 +0800</pubDate>
       <link>http://winstonyw.com/2013/02/24/jekyll_haml_sass_and_github_pages/</link>
       <guid isPermaLink="true">http://winstonyw.com/2013/02/24/jekyll_haml_sass_and_github_pages/</guid>
-    </item>
-    
-    <item>
-      <title>Pair Programming</title>
-      <description>&lt;h3&gt;Now&lt;/h3&gt;
-
-&lt;p&gt;I have been at &lt;a href=&quot;http://www.neo.com&quot;&gt;Neo&lt;/a&gt;, formerly New Context, and formerly formerly Pivotal Labs Singapore, for 2 years now, and I do pair programming (PP) almost everyday.&lt;/p&gt;
-
-&lt;p&gt;When I don't, it's usually because of one of the following reasons:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;There's an odd number on the project team because someone is out for the day.&lt;/li&gt;
-&lt;li&gt;I need to do research and evaluation of new technology.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;p&gt;But we really value PP on the whole, and we try as much as possible to pair.&lt;/p&gt;
-
-&lt;h3&gt;Then&lt;/h3&gt;
-
-&lt;p&gt;Two years ago, when I first learned that PP is part of Pivotal Labs's everyday culture, I was intrigued but, at the same time, worried.
-I wondered how it was like, and how I would like it.&lt;/p&gt;
-
-&lt;p&gt;I got a taste of it during the interviews and I came out of it unharmed but exhausted.
-Nevertheless, it was fun and I enjoyed it.&lt;/p&gt;
-
-&lt;p&gt;But I was apprehensive and I deliberated for a while if I will be able to do this &lt;strong&gt;EVERY DAY&lt;/strong&gt;?
-I asked Google, and I was convinced by what I read from &lt;a href=&quot;http://www.sarahmei.com/blog/2010/04/14/thoughts-on-two-months-of-pairing/&quot;&gt;Sarah Mei's blog post&lt;/a&gt;, and I have not regretted my decision.&lt;/p&gt;
-
-&lt;h3&gt;Why Pair Programming?&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;Because we see lots of benefits in doing it!&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;More than that, these are the usual reasons I would give when people ask me about PP:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;&lt;em&gt;Focus&lt;/em&gt;&lt;/strong&gt;
-
-&lt;ul&gt;
-&lt;li&gt;You will not do Facebook or Twitter. You will get things done!&lt;/li&gt;
-&lt;li&gt;You will not go down rabbit holes unnecessarily and focus on delivery.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&lt;em&gt;Knowledge Exchange&lt;/em&gt;&lt;/strong&gt;
-
-&lt;ul&gt;
-&lt;li&gt;PP is especially efficient in bringing new hires up to speed.&lt;/li&gt;
-&lt;li&gt;PP is great for spreading technical knowledge amongst the experienced too.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&lt;em&gt;Collective Code Ownership&lt;/em&gt;&lt;/strong&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Anyone on the team can &lt;a href=&quot;http://www.martinfowler.com/bliki/CodeOwnership.html&quot;&gt;make code changes even when someone is away&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;PP means &lt;a href=&quot;http://en.wikipedia.org/wiki/Bus_factor&quot;&gt;bus factor&lt;/a&gt; != 1.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&lt;em&gt;High Code Quality&lt;/em&gt;&lt;/strong&gt;
-
-&lt;ul&gt;
-&lt;li&gt;You always have someone to discuss alternative designs and solutions.&lt;/li&gt;
-&lt;li&gt;PP is &lt;a href=&quot;http://www.codinghorror.com/blog/2007/11/pair-programming-vs-code-reviews.html&quot;&gt;code review on steriods&lt;/a&gt; and usually leads to better code and lesser bugs.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&lt;em&gt;Happiness&lt;/em&gt;&lt;/strong&gt;
-
-&lt;ul&gt;
-&lt;li&gt;At the end of each day, you deliver and you feel a great sense of satisfaction.&lt;/li&gt;
-&lt;li&gt;At the end of each day, you deliver and your boss is happy.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;h3&gt;Is Pair Programming For Everyone?&lt;/h3&gt;
-
-&lt;p&gt;Given that PP has so many advantages, should everyone do it?&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;No. No. No.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;The truth is, not everyone can be a pair programmer and not everyone will enjoy it.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;There will be some engineers who are not suitable as a pair:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;The &quot;Rock Star&quot;  feels you are slowing him down and he's uninterested in teaching.&lt;/li&gt;
-&lt;li&gt;The &quot;Researcher&quot; just want to code in silo and get to the bottom of everything.&lt;/li&gt;
-&lt;li&gt;The &quot;Judge&quot;      will question you on every keystroke.&lt;/li&gt;
-&lt;li&gt;The &quot;Silencer&quot;   cannot code and talk at the same time. Not so fun..&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;p&gt;In such cases, it's futile to try and force PP on the engineers.&lt;/p&gt;
-
-&lt;p&gt;However, it's then important to understand the benefits of PP and achieve all the above even without PP.&lt;/p&gt;
-
-&lt;p&gt;For &lt;strong&gt;&lt;em&gt;Focus&lt;/em&gt;&lt;/strong&gt; and &lt;strong&gt;&lt;em&gt;Knowledge Exchange&lt;/em&gt;&lt;/strong&gt;, those depend on individuals to make them happen.
-The organization can also help by having a prioritised backlog and structured stories
-to ensure that all engineers on the team are clear of their deliverables and datelines,
-and also have regular catchups amongst engineers to spread new technical knowledge.&lt;/p&gt;
-
-&lt;p&gt;To achieve &lt;strong&gt;&lt;em&gt;Collective Code Ownership&lt;/em&gt;&lt;/strong&gt; and &lt;strong&gt;&lt;em&gt;Good Code Quality&lt;/em&gt;&lt;/strong&gt;,
-the team can ensure that they have code review processes and tools in place:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/features/projects/codereview&quot;&gt;GitHub Pull Requests&lt;/a&gt; are great for code review.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://getbarkeep.org/&quot;&gt;Barkeep&lt;/a&gt; can also help.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;p&gt;The boundaries are limitless and these are just some suggestions that I can think of.&lt;/p&gt;
-
-&lt;h3&gt;Do The Good Stuff&lt;/h3&gt;
-
-&lt;p&gt;Pair Programming is not a silver bullet but it definitely increases engineering productivity.
-On occasions when you can't do PP, you should still attempt to imitate the benefits of PP.&lt;/p&gt;
-
-&lt;p&gt;As a caution, &lt;strong&gt;NO&lt;/strong&gt; teams should be transformed to do PP overnight,
-because PP is a skill that has to be learned and honed, and engineers should be hired to fit the PP culture.&lt;/p&gt;
-
-&lt;p&gt;I enjoy pair programming. It's fun.&lt;/p&gt;
-</description>
-      <pubDate>Sun, 02 Dec 2012 00:00:00 +0800</pubDate>
-      <link>http://winstonyw.com/2012/12/02/pair_programming/</link>
-      <guid isPermaLink="true">http://winstonyw.com/2012/12/02/pair_programming/</guid>
     </item>
     
   </channel>
