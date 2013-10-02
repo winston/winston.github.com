@@ -3,17 +3,24 @@ layout: post
 title: Ruby - Reading A Remote Zip File
 ---
 
-I need to access the contents of a remote zip file.
+I need to access a remote zip file and this is something that works:
 
-Do you have the same use case? This is something that works:
+    # In the console, gem install "httparty"
+    require "httparty"
 
-    require "httparty"  # HTTParty Gem
-    require "zip"       # RubyZip Gem
+    # In the console, gem install "rubyzip"
+    require "zip"
+
+    # Get the contents of the remote zip file via HTTParty
+    # and write it into a temp zip file
 
     zipfile = Tempfile.new("file")
     zipfile.binmode # This might not be necessary depending on the zip file
     zipfile.write(HTTParty.get("http://localhost:3000/file.zip").body)
     zipfile.close
+
+    # Unzip the temp zip file and process the contents
+    # Let garbage collection delete the temp zip file
 
     Zip::File.open(zipfile.path) do |file|
       file.each do |content|
@@ -23,31 +30,17 @@ Do you have the same use case? This is something that works:
       end
     end
 
-Basically, this is what the code above is doing (in memory):
+The code is simple, but at the start, I kept getting an error when unzipping the temp zip file,
+and I thought I was doing something wrong.
 
- - Get the contents of the remote zip file and write into a temp zip file
- - Unzip the temp zip file
- - Do whatever I want with the contents
- - Let garbage collection delete the temp zip file
+    End-of-central-directory signature not found
 
-Anyway, before I used HTTParty, I was trying to use `open` of OpenURI but it was terrible.
+Did some debugging and finally figured out that the problem was with the remote zip file
+- because the file was not fully constructed even though I had a link to it.
 
-So `OpenURI#open` would either give me a `Tempfile` instance or a `StringIO` instance when I use it in this way:
+The remote zip file link was actually returned by an earlier API call to an external service
+that also triggered the building of the remote zip file.
 
-    require 'open-uri'
+Moral of the story? Trust my code.
 
-    zipfile = open("http://example.com/file.zip")
-
-Apparently, that's how `OpenURI#open` works, and [StackOverFlow](http://stackoverflow.com/questions/10496874/why-does-openuri-treat-files-under-10kb-in-size-as-stringio) explains it brilliantly. However, I didn't really want to deal with the ambiguity.
-
-And even with the initializer "hack" as mentioned in the StackOverFlow post..
-
-    require 'open-uri'
-
-    # Don't allow downloaded files to be created as StringIO. Force a tempfile to be created.
-    OpenURI::Buffer.send :remove_const, 'StringMax' if OpenURI::Buffer.const_defined?('StringMax')
-    OpenURI::Buffer.const_set 'StringMax', 0
-
-.. I didn't get a Tempfile instance deterministically in my specs and rake tasks etc.
-
-So for now, I'll party hard with HTTParty.
+Anyway, [RubyZip is poor in performance](http://blog.huangzhimin.com/2012/10/02/avoid-using-rubyzip/). Might want to try [ZipRuby](http://zipruby.rubyforge.org/) instead.
