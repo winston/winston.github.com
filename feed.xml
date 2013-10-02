@@ -7,6 +7,57 @@
     <atom:link href="http://winstonyw.com/feed.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Ruby - Reading A Remote Zip File</title>
+      <description>&lt;p&gt;I need to access a remote zip file and this is something that works:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# In the console, gem install &quot;httparty&quot;
+require &quot;httparty&quot;
+
+# In the console, gem install &quot;rubyzip&quot;
+require &quot;zip&quot;
+
+# Get the contents of the remote zip file via HTTParty
+# and write it into a temp zip file
+
+zipfile = Tempfile.new(&quot;file&quot;)
+zipfile.binmode # This might not be necessary depending on the zip file
+zipfile.write(HTTParty.get(&quot;http://localhost:3000/file.zip&quot;).body)
+zipfile.close
+
+# Unzip the temp zip file and process the contents
+# Let garbage collection delete the temp zip file
+
+Zip::File.open(zipfile.path) do |file|
+  file.each do |content|
+    data = file.read(content)
+    puts data
+    # Do whatever you want with the contents
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The code is simple, but at the start, I kept getting an error when unzipping the temp zip file,
+and I thought I was doing something wrong.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;End-of-central-directory signature not found
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Did some debugging and finally figured out that the problem was with the remote zip file
+- because the file was not fully constructed even though I had a link to it.&lt;/p&gt;
+
+&lt;p&gt;The remote zip file link was actually returned by an earlier API call to an external service
+that also triggered the building of the remote zip file.&lt;/p&gt;
+
+&lt;p&gt;Moral of the story? Trust my code.&lt;/p&gt;
+
+&lt;p&gt;Anyway, &lt;a href=&quot;http://blog.huangzhimin.com/2012/10/02/avoid-using-rubyzip/&quot;&gt;RubyZip is poor in performance&lt;/a&gt;. Might want to try &lt;a href=&quot;http://zipruby.rubyforge.org/&quot;&gt;ZipRuby&lt;/a&gt; instead.&lt;/p&gt;
+</description>
+      <pubDate>Tue, 01 Oct 2013 00:00:00 +0800</pubDate>
+      <link>http://winstonyw.com/2013/10/01/ruby_reading_a_remote_zip_file/</link>
+      <guid isPermaLink="true">http://winstonyw.com/2013/10/01/ruby_reading_a_remote_zip_file/</guid>
+    </item>
+    
+    <item>
       <title>GoogleVisualr</title>
       <description>&lt;p&gt;In 2008, I worked at &lt;a href=&quot;http://wego.com&quot;&gt;Wego.com&lt;/a&gt; and I had to build a Google Analytics clone from scratch.
 The main reason for that was because Google Analytics didn't have an open API back then.
@@ -827,21 +878,6 @@ because PP is a skill that has to be learned and honed, and engineers should be 
       <pubDate>Sun, 02 Dec 2012 00:00:00 +0800</pubDate>
       <link>http://winstonyw.com/2012/12/02/pair_programming/</link>
       <guid isPermaLink="true">http://winstonyw.com/2012/12/02/pair_programming/</guid>
-    </item>
-    
-    <item>
-      <title>Reboot</title>
-      <description>&lt;p&gt;Hi. I am Winston.&lt;/p&gt;
-
-&lt;p&gt;This is my new blog, written in Markdown and hosted on GitHub.&lt;/p&gt;
-
-&lt;p&gt;Alright!&lt;/p&gt;
-
-&lt;p&gt;Good night.&lt;/p&gt;
-</description>
-      <pubDate>Thu, 01 Nov 2012 00:00:00 +0800</pubDate>
-      <link>http://winstonyw.com/2012/11/01/reboot/</link>
-      <guid isPermaLink="true">http://winstonyw.com/2012/11/01/reboot/</guid>
     </item>
     
   </channel>
