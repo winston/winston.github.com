@@ -7,25 +7,106 @@
     <atom:link href="http://winstonyw.com/feed.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Singapore Rails InstallFest</title>
+      <description>&lt;h2&gt;Background&lt;/h2&gt;
+
+&lt;p&gt;For the last year, I have been toying with the idea of starting a basic Ruby on Rails class to help people get started with Ruby on Rails.&lt;/p&gt;
+
+&lt;p&gt;I wanted to do it to grow the Ruby community in Singapore, and because teaching is FUN!
+However, I didn&#39;t have time to work on the materials, and so I never got anything started.&lt;/p&gt;
+
+&lt;p&gt;One day, I came across &lt;a href=&quot;https://groups.google.com/forum/#!topic/rails-oceania/8pXB_JP7SbY&quot;&gt;this thread on &quot;Ruby or Rails Oceania&quot;&lt;/a&gt;
+about Rails InstallFest, and I was immediately excited as it seems to be aligned with what I had in mind.&lt;/p&gt;
+
+&lt;p&gt;And so, I emailed &lt;a href=&quot;https://twitter.com/lindsaar&quot;&gt;Mikel&lt;/a&gt; of &lt;a href=&quot;http://www.reinteractive.net/&quot;&gt;reInteractive&lt;/a&gt; to enquire about the possibility and he referred me to Chloe, reInteractive&#39;s Community Manager
+who was really enthusiastic about helping us get started with the Rails InstallFest.&lt;/p&gt;
+
+&lt;h2&gt;The Event&lt;/h2&gt;
+
+&lt;p&gt;Rails InstallFest happened on 5 Oct 2013, 9:30am at &lt;a href=&quot;http://siliconstraits.com/&quot;&gt;Silicon Straits CO.LAB&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;At first, I was really worried about the turnout as it poured heavily in the morning on 5 Oct.
+But my fears were unfounded as we saw a total of 27 partcipants and 8 volunteer coaches.
+The particpants came from all sorts of background including product/business folks, developers, designers and students.&lt;/p&gt;
+
+&lt;p&gt;For our first Rails InstallFest, this is what the partipants have to do:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Get Ruby on Rails installed on your machine using the &lt;a href=&quot;http://railsinstaller.org&quot;&gt;Rails Installer&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Follow this &lt;a href=&quot;http://blog.reinterative.net/posts/32&quot;&gt;blog post&lt;/a&gt; and get a blog deployed on Heroku&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;At the end of the day, all of the participants got Ruby on Rails installed on their laptops,
+and about half of them got a simple blog deployed on Heroku. Yea!&lt;/p&gt;
+
+&lt;h2&gt;Thank You&lt;/h2&gt;
+
+&lt;p&gt;reInteractive really helped a lot in making the first Singapore Rails InstallFest a success.
+Especially Chloe, who helped made sure I have all that I need - materials and vouchers!
+Without them, the event wouldn&#39;t have happened. Thank you reInteractive and Chloe!&lt;/p&gt;
+
+&lt;p&gt;We also required a venue for the event, and James readily offered his space for our use.
+Silicon Straits was really &lt;em&gt;cosy&lt;/em&gt; and &lt;em&gt;conducive for learning&lt;/em&gt; as remarked by a number of the participants in their feedback,
+and I am really grateful to James for loaning out his space! Thank you James and Silicon Straits!&lt;/p&gt;
+
+&lt;p&gt;And finally, all I can say is that the Singapore Ruby community is sooooooo full of love!
+After I annouced the event and asked for volunteer coaches, many stepped up!&lt;/p&gt;
+
+&lt;p&gt;Thank you Chong-Yee, Jeffrey, Jaryl, Kevin, Paul, Ray Chuan and Sean
+for volunteering your time on a Saturday morning as coaches!&lt;/p&gt;
+
+&lt;h2&gt;Improvements&lt;/h2&gt;
+
+&lt;p&gt;We collected feedback from the participants and the overall sentiment is that
+the class was a really useful session to help them get started in Ruby on Rails.&lt;/p&gt;
+
+&lt;p&gt;At the same time, most remarked that the volunteer coaches were friendly and helpful.
+Together with the conducive environment, they found learning RoR to be easy.&lt;/p&gt;
+
+&lt;p&gt;However, it would have been better if we did a brief walkthrough of the blog post exercise,
+so that the participants can better appreciate and understand what they were doing,
+and not just blindly follow the blog post.&lt;/p&gt;
+
+&lt;p&gt;In addition, there&#39;s also a suggestion to group the participants into small learning teams so that they interact and learn from one another within their small groups.&lt;/p&gt;
+
+&lt;p&gt;--&lt;/p&gt;
+
+&lt;p&gt;Overall, I enjoyed running the first Rails InstallFest in SG,
+and I am sure we&#39;ll continue to have more RoR training sessions in the future. =)&lt;/p&gt;
+
+&lt;p&gt;Time for some pictures!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/rails_installfest-1.jpg&quot; alt=&quot;Silicon Straits&quot; /&gt;
+&lt;img src=&quot;/assets/images/rails_installfest-2.jpg&quot; alt=&quot;Attendees&quot; /&gt;
+&lt;img src=&quot;/assets/images/rails_installfest-3.jpg&quot; alt=&quot;Attendees&quot; /&gt;
+&lt;img src=&quot;/assets/images/rails_installfest-4.jpg&quot; alt=&quot;Attendees&quot; /&gt;&lt;/p&gt;
+</description>
+      <pubDate>Mon, 07 Oct 2013 00:00:00 +0800</pubDate>
+      <link>http://winstonyw.com/2013/10/07/rails_installfest/</link>
+      <guid isPermaLink="true">http://winstonyw.com/2013/10/07/rails_installfest/</guid>
+    </item>
+    
+    <item>
       <title>OpenURI's open, Tempfile and StringIO</title>
       <description>&lt;p&gt;&lt;code&gt;OpenURI#open&lt;/code&gt; has a dual personality. Consider the code below..&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;require 'open-uri'
+&lt;pre&gt;&lt;code&gt;require &#39;open-uri&#39;
 
 zipfile = open(&quot;http://example.com/file.zip&quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;With this, &lt;code&gt;zipfile&lt;/code&gt; can either be a &lt;code&gt;Tempfile&lt;/code&gt; instance or a &lt;code&gt;StringIO&lt;/code&gt; instance.&lt;/p&gt;
 
-&lt;p&gt;Apparently, that's how &lt;code&gt;OpenURI#open&lt;/code&gt; works, and this &lt;a href=&quot;http://stackoverflow.com/questions/10496874/why-does-openuri-treat-files-under-10kb-in-size-as-stringio&quot;&gt;StackOverFlow post&lt;/a&gt; explains it well.
+&lt;p&gt;Apparently, that&#39;s how &lt;code&gt;OpenURI#open&lt;/code&gt; works, and this &lt;a href=&quot;http://stackoverflow.com/questions/10496874/why-does-openuri-treat-files-under-10kb-in-size-as-stringio&quot;&gt;StackOverFlow post&lt;/a&gt; explains it well.
 And as mentioned in the same post, to get &lt;code&gt;OpenURI#open&lt;/code&gt; to always return a &lt;code&gt;Tempfile&lt;/code&gt;,
 apply the initializer &quot;hack&quot;.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;require 'open-uri'
+&lt;pre&gt;&lt;code&gt;require &#39;open-uri&#39;
 
-# Don't allow downloaded files to be created as StringIO. Force a tempfile to be created.
-OpenURI::Buffer.send :remove_const, 'StringMax' if OpenURI::Buffer.const_defined?('StringMax')
-OpenURI::Buffer.const_set 'StringMax', 0
+# Don&#39;t allow downloaded files to be created as StringIO. Force a tempfile to be created.
+OpenURI::Buffer.send :remove_const, &#39;StringMax&#39; if OpenURI::Buffer.const_defined?(&#39;StringMax&#39;)
+OpenURI::Buffer.const_set &#39;StringMax&#39;, 0
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Or, you can just be deterministic and &lt;a href=&quot;http://winstonyw.com/2013/10/01/ruby_reading_a_remote_zip_file/&quot;&gt;create the Tempfile yourself&lt;/a&gt;.&lt;/p&gt;
@@ -89,9 +170,9 @@ that also triggered the building of the remote zip file.&lt;/p&gt;
     <item>
       <title>GoogleVisualr</title>
       <description>&lt;p&gt;In 2008, I worked at &lt;a href=&quot;http://wego.com&quot;&gt;Wego.com&lt;/a&gt; and I had to build a Google Analytics clone from scratch.
-The main reason for that was because Google Analytics didn't have an open API back then.
+The main reason for that was because Google Analytics didn&#39;t have an open API back then.
 The collected data was important to the P&amp;amp;L as it was used to bill our partners (CPM/CPC)
-and so it's crucial that we maintain absolute control over it.&lt;/p&gt;
+and so it&#39;s crucial that we maintain absolute control over it.&lt;/p&gt;
 
 &lt;p&gt;The tool, aptly named Wegonomics, eventually also had the billing functionalities built in.&lt;/p&gt;
 
@@ -114,8 +195,8 @@ I wrote a RubyGem to help with the generation of charts,
 and this post is really about that - &lt;a href=&quot;https://github.com/winston/google_visualr&quot;&gt;GoogleVisualr&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;To draw the charts, I picked &lt;a href=&quot;https://developers.google.com/chart/&quot;&gt;Google Charts&lt;/a&gt;
-because it's free and easy to get started with.
-It's basically a JavaScript library and you'll write JavaScript to draw the charts.&lt;/p&gt;
+because it&#39;s free and easy to get started with.
+It&#39;s basically a JavaScript library and you&#39;ll write JavaScript to draw the charts.&lt;/p&gt;
 
 &lt;p&gt;The generation of the charts is pretty easy and straight forward:&lt;/p&gt;
 
@@ -126,26 +207,26 @@ It's basically a JavaScript library and you'll write JavaScript to draw the char
 &lt;/ul&gt;
 
 
-&lt;p&gt;That's assuming you already have the data. But where do you usually get the data from?&lt;/p&gt;
+&lt;p&gt;That&#39;s assuming you already have the data. But where do you usually get the data from?&lt;/p&gt;
 
-&lt;p&gt;In any SQL-backed apps, you'll have to retrieve the data from the DB with Ruby/Python etc,
+&lt;p&gt;In any SQL-backed apps, you&#39;ll have to retrieve the data from the DB with Ruby/Python etc,
 convert the data into JavaScript objects somehow (simplest is to embed it in the views),
 and write JavaScript to use the data and generate the chart with it.&lt;/p&gt;
 
 &lt;p&gt;Context switching between Ruby and JavaScript is troublesome..&lt;/p&gt;
 
-&lt;p&gt;And so, that's how GoogleVisualr came about - a Ruby wrapper around the Google Charts.
+&lt;p&gt;And so, that&#39;s how GoogleVisualr came about - a Ruby wrapper around the Google Charts.
 Now I can manipulate the numbers and construct the charts in Ruby,
 and the RubyGem provides a method to auto-generate the JavaScript required for the charts in the view!&lt;/p&gt;
 
 &lt;p&gt;This simplicity works for most use cases, unless you require interactivity with the charts.
-Then you'll still need to write JavaScript for that.&lt;/p&gt;
+Then you&#39;ll still need to write JavaScript for that.&lt;/p&gt;
 
 &lt;p&gt;A really basic example:&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;In your layout, load Google Ajax API in the head tag, at the very top.&lt;/em&gt;&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;&amp;lt;script src='https://www.google.com/jsapi'&amp;gt;&amp;lt;/script&amp;gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;script src=&#39;https://www.google.com/jsapi&#39;&amp;gt;&amp;lt;/script&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;em&gt;In a controller, e.g. &lt;code&gt;app/controllers/charts_controller.rb&lt;/code&gt;&lt;/em&gt;&lt;/p&gt;
@@ -153,27 +234,27 @@ Then you'll still need to write JavaScript for that.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;def area_chart
   data_table = GoogleVisualr::DataTable.new
   # Add Column Headers
-  data_table.new_column('string', 'Year' )
-  data_table.new_column('number', 'Sales')
-  data_table.new_column('number', 'Expenses')
+  data_table.new_column(&#39;string&#39;, &#39;Year&#39; )
+  data_table.new_column(&#39;number&#39;, &#39;Sales&#39;)
+  data_table.new_column(&#39;number&#39;, &#39;Expenses&#39;)
 
   # Add Rows and Values
   data_table.add_rows([
-      ['2004', 1000, 400],
-      ['2005', 1170, 460],
-      ['2006', 660, 1120],
-      ['2007', 1030, 540]
+      [&#39;2004&#39;, 1000, 400],
+      [&#39;2005&#39;, 1170, 460],
+      [&#39;2006&#39;, 660, 1120],
+      [&#39;2007&#39;, 1030, 540]
   ])
 
-  option = { width: 400, height: 240, title: 'Company Performance' }
+  option = { width: 400, height: 240, title: &#39;Company Performance&#39; }
   @chart = GoogleVisualr::Interactive::AreaChart.new(data_table, option)
 end
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;em&gt;In the corresponding view, e.g. &lt;code&gt;app/views/charts/area_chart.html.erb&lt;/code&gt;&lt;/em&gt;&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;&amp;lt;div id='chart'&amp;gt;&amp;lt;/div&amp;gt;
-&amp;lt;%= render_chart(@chart, 'chart') %&amp;gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;div id=&#39;chart&#39;&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;%= render_chart(@chart, &#39;chart&#39;) %&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Go ahead! Check out &lt;a href=&quot;https://github.com/winston/google_visualr&quot;&gt;GoogleVisualr on GitHub&lt;/a&gt; or the &lt;a href=&quot;http://googlevisualr.herokuapp.com/&quot;&gt;Docs&lt;/a&gt; now.&lt;/p&gt;
@@ -191,20 +272,20 @@ Definitely outdated, but it still explains the intention and basics of the RubyG
     
     <item>
       <title>Pairing And Email Sign Off</title>
-      <description>&lt;p&gt;There's something that stuck with me since I started doing pair programming -
+      <description>&lt;p&gt;There&#39;s something that stuck with me since I started doing pair programming -
 signing off emails as a pair &lt;em&gt;&quot;Winston and [My Pair]&quot;&lt;/em&gt;
 whenever we have to reply to emails while pairing.&lt;/p&gt;
 
-&lt;p&gt;&lt;em&gt;&quot;Why?&quot;&lt;/em&gt; - I was asked once. I can't relate the exact story anymore, but the incident
+&lt;p&gt;&lt;em&gt;&quot;Why?&quot;&lt;/em&gt; - I was asked once. I can&#39;t relate the exact story anymore, but the incident
 which made me conscious of doing that happened on the first few days of working at Pivotal Labs.&lt;/p&gt;
 
 &lt;p&gt;I was pairing with Nate Clark then, and he had to shoot an email out to our clients perhaps. After he finished writing the email, he signed off as &quot;Nate &amp;amp; Winston&quot;.&lt;/p&gt;
 
 &lt;p&gt;Somehow, that simple gesture made me feel &lt;strong&gt;welcomed, trusted, and respected as a pair&lt;/strong&gt; - that I was not just a pair of eyes looking over his shoulder.&lt;/p&gt;
 
-&lt;p&gt;Soon, I also realized that it's not just Nate who was doing that but all of the other Pivots whom I had a chance to work with.&lt;/p&gt;
+&lt;p&gt;Soon, I also realized that it&#39;s not just Nate who was doing that but all of the other Pivots whom I had a chance to work with.&lt;/p&gt;
 
-&lt;p&gt;Being &lt;strong&gt;mindful&lt;/strong&gt; of your pair makes your pair happy, and you'll be happy too!&lt;/p&gt;
+&lt;p&gt;Being &lt;strong&gt;mindful&lt;/strong&gt; of your pair makes your pair happy, and you&#39;ll be happy too!&lt;/p&gt;
 </description>
       <pubDate>Tue, 27 Aug 2013 00:00:00 +0800</pubDate>
       <link>http://winstonyw.com/2013/08/27/pairing_and_email_sign_off/</link>
@@ -213,18 +294,18 @@ which made me conscious of doing that happened on the first few days of working 
     
     <item>
       <title>RedDotRubyConf 2013 - Wrap Up</title>
-      <description>&lt;p&gt;It's been a few weeks since RDRC 2013. Good time to do a wrap up!&lt;/p&gt;
+      <description>&lt;p&gt;It&#39;s been a few weeks since RDRC 2013. Good time to do a wrap up!&lt;/p&gt;
 
 &lt;p&gt;For those who have missed it, I have also written a
-&lt;a href=&quot;http://winstonyw.com/2013/06/12/reddotrubyconf_2013_-_thank_you/&quot;&gt;Thank You&lt;/a&gt; post which contains links to speakers' slides and related resources.&lt;/p&gt;
+&lt;a href=&quot;http://winstonyw.com/2013/06/12/reddotrubyconf_2013_-_thank_you/&quot;&gt;Thank You&lt;/a&gt; post which contains links to speakers&#39; slides and related resources.&lt;/p&gt;
 
 &lt;h2&gt;RDRC 2013: The Beginning&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://twitter.com/andycroll&quot;&gt;Andy Croll&lt;/a&gt; broke the news to some of us last Oct
-that he's going back to the UK in Dec and would like to handover RedDotRubyConf to someone.&lt;/p&gt;
+that he&#39;s going back to the UK in Dec and would like to handover RedDotRubyConf to someone.&lt;/p&gt;
 
 &lt;p&gt;On a personal note, I really wanted to do RDRC because I would like to contribute back
-to the Ruby community in Singapore, as I wouldn't be who I am or where I am if not for Ruby.&lt;/p&gt;
+to the Ruby community in Singapore, as I wouldn&#39;t be who I am or where I am if not for Ruby.&lt;/p&gt;
 
 &lt;p&gt;After a few days of consideration, and support from &lt;a href=&quot;https://twitter.com/carlcoryell&quot;&gt;Carl&lt;/a&gt;,
 I decided to volunteer myself and my colleagues also gladly offered to help out wherever they can.&lt;/p&gt;
@@ -241,7 +322,7 @@ But by and large, this was a community event, ran by individuals who really love
 &lt;h3&gt;Dates&lt;/h3&gt;
 
 &lt;p&gt;June 7 and 8 were picked purposefully a weekend after &lt;a href=&quot;http://rubykaigi.org/2013/&quot;&gt;RubyKaigi&lt;/a&gt;,
-based on a thought that some of the speakers and audience of RubyKaigi wouldn't mind coming down to Singapore the week after.&lt;/p&gt;
+based on a thought that some of the speakers and audience of RubyKaigi wouldn&#39;t mind coming down to Singapore the week after.&lt;/p&gt;
 
 &lt;p&gt;The strategy worked.&lt;/p&gt;
 
@@ -252,11 +333,11 @@ I was audacious and sent out emails to a number of them. 7 said yes and the rest
 I was actually prepared to be rejected by all of them, so I am really grateful for their replies.
 Anyway, the big names really helped to drive the early ticket sales too.&lt;/p&gt;
 
-&lt;p&gt;I think I was really lucky. Next year, I hope I'll be as lucky.&lt;/p&gt;
+&lt;p&gt;I think I was really lucky. Next year, I hope I&#39;ll be as lucky.&lt;/p&gt;
 
 &lt;h3&gt;Venue&lt;/h3&gt;
 
-&lt;p&gt;RDRC required a venue that's accessible and inexpensive.
+&lt;p&gt;RDRC required a venue that&#39;s accessible and inexpensive.
 There were several choices:&lt;/p&gt;
 
 &lt;ul&gt;
@@ -269,7 +350,7 @@ There were several choices:&lt;/p&gt;
 &lt;/ul&gt;
 
 
-&lt;p&gt;Biopolis was the best option out of them all, because it's:&lt;/p&gt;
+&lt;p&gt;Biopolis was the best option out of them all, because it&#39;s:&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;available on June 7 and 8,&lt;/li&gt;
@@ -321,7 +402,7 @@ will sign up for the Lightning Talk slots.&lt;/p&gt;
 
 &lt;p&gt;To get all these done, a ton of emails were sent..&lt;/p&gt;
 
-&lt;p&gt;Not easy for someone who's much more used to writing in Ruby prose!&lt;/p&gt;
+&lt;p&gt;Not easy for someone who&#39;s much more used to writing in Ruby prose!&lt;/p&gt;
 
 &lt;h2&gt;Attendees&lt;/h2&gt;
 
@@ -335,12 +416,12 @@ will sign up for the Lightning Talk slots.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/rdrc-registrations_by_month.png&quot; alt=&quot;Registrations by Month&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;I believe in karma. The next time I attend a conference, I'll get the tickets early!&lt;/p&gt;
+&lt;p&gt;I believe in karma. The next time I attend a conference, I&#39;ll get the tickets early!&lt;/p&gt;
 
 &lt;p&gt;You should too! As that helps to reduce logistical challenges and let me sleep better.&lt;/p&gt;
 
 &lt;p&gt;Interestingly, one of the things I did to encourage sales was to email folks
-who dropped off after they filled in their details but didn't complete the payment step.&lt;/p&gt;
+who dropped off after they filled in their details but didn&#39;t complete the payment step.&lt;/p&gt;
 
 &lt;p&gt;Some replied, telling me that their plans changed and so they were not able to make it,
 while a lot actually re-registered (and paid) after the gentle reminder.&lt;/p&gt;
@@ -382,7 +463,7 @@ Please give me suggestions on how to make it not suck (less getting a barista).&
 
 &lt;h3&gt;T-shirts&lt;/h3&gt;
 
-&lt;p&gt;I'll make sure to get the correct sizes and measurements up on the registration site, so that you can pick one that fits.
+&lt;p&gt;I&#39;ll make sure to get the correct sizes and measurements up on the registration site, so that you can pick one that fits.
 And, female sizes too.&lt;/p&gt;
 
 &lt;h3&gt;Swag&lt;/h3&gt;
@@ -391,7 +472,7 @@ And, female sizes too.&lt;/p&gt;
 
 &lt;h3&gt;WiFi&lt;/h3&gt;
 
-&lt;p&gt;Some say yes. Some say no. I'll see what I can do next year.&lt;/p&gt;
+&lt;p&gt;Some say yes. Some say no. I&#39;ll see what I can do next year.&lt;/p&gt;
 
 &lt;h3&gt;Video&lt;/h3&gt;
 
@@ -404,7 +485,7 @@ people will have less incentive for attending RDRC, knowing that videos will be 
 
 &lt;p&gt;--&lt;/p&gt;
 
-&lt;p&gt;That's it. See you all next year!&lt;/p&gt;
+&lt;p&gt;That&#39;s it. See you all next year!&lt;/p&gt;
 
 &lt;p&gt;Drop me an email - suggestions, compliments or criticisms. Thank you!&lt;/p&gt;
 </description>
@@ -415,7 +496,7 @@ people will have less incentive for attending RDRC, knowing that videos will be 
     
     <item>
       <title>RedDotRubyConf 2013 - Thank You</title>
-      <description>&lt;p&gt;I didn't do this alone - RDRC 2013 is an event by the community, for the community. &lt;a href=&quot;https://twitter.com/abhayashenoy&quot;&gt;Abhaya&lt;/a&gt;, &lt;a href=&quot;https://twitter.com/luweidewei&quot;&gt;Wei&lt;/a&gt;, &lt;a href=&quot;https://twitter.com/mohangk&quot;&gt;Mohan&lt;/a&gt;, and many more all helped to make this happen. They are my heros!&lt;/p&gt;
+      <description>&lt;p&gt;I didn&#39;t do this alone - RDRC 2013 is an event by the community, for the community. &lt;a href=&quot;https://twitter.com/abhayashenoy&quot;&gt;Abhaya&lt;/a&gt;, &lt;a href=&quot;https://twitter.com/luweidewei&quot;&gt;Wei&lt;/a&gt;, &lt;a href=&quot;https://twitter.com/mohangk&quot;&gt;Mohan&lt;/a&gt;, and many more all helped to make this happen. They are my heros!&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Firstly, I would like to thank &lt;a href=&quot;http://twitter.com/andycroll&quot;&gt;Andy&lt;/a&gt; - founder of RDRC.&lt;/strong&gt;&lt;/p&gt;
 
@@ -435,7 +516,7 @@ people will have less incentive for attending RDRC, knowing that videos will be 
 
 &lt;p&gt;You guys are awesome, and the knowledge and experience that you shared with the us during the 2 days was priceless.&lt;/p&gt;
 
-&lt;p&gt;We have all leveled up, and it's because of you guys.&lt;/p&gt;
+&lt;p&gt;We have all leveled up, and it&#39;s because of you guys.&lt;/p&gt;
 
 &lt;p&gt;Thank you! Hope to see you all again, somewhere, someday.&lt;/p&gt;
 
@@ -457,14 +538,14 @@ people will have less incentive for attending RDRC, knowing that videos will be 
 
 &lt;h3&gt;Resources&lt;/h3&gt;
 
-&lt;p&gt;&lt;em&gt;This list will be updated timely. Otherwise, &lt;a href=&quot;https://gist.github.com/cheeaun/5729325&quot;&gt;Cheeaun's list&lt;/a&gt; is pretty good too.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;This list will be updated timely. Otherwise, &lt;a href=&quot;https://gist.github.com/cheeaun/5729325&quot;&gt;Cheeaun&#39;s list&lt;/a&gt; is pretty good too.&lt;/em&gt;&lt;/p&gt;
 
 &lt;h4&gt;Slides For Day 1&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/winston/reddotrubyconf-2013-day-1&quot;&gt;My Slides&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Aaron Patterson: &lt;a href=&quot;https://speakerdeck.com/tenderlove/reddotrubyconf&quot;&gt;Refactoring Rails&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Aaron Patterson: &lt;a href=&quot;https://speakerdeck.com/tenderlove/americas-next-top-engineer&quot;&gt;America's Next Top Engineer&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Aaron Patterson: &lt;a href=&quot;https://speakerdeck.com/tenderlove/americas-next-top-engineer&quot;&gt;America&#39;s Next Top Engineer&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Ola Bini: &lt;a href=&quot;/assets/downloads/JRubyForTheWin.pdf&quot;&gt;JRuby For The Win&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Pablo Astigarraga: &lt;a href=&quot;https://speakerdeck.com/pote/50-shades-of-mvc&quot;&gt;50 Shades of MVC&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Alexey Gaziev: &lt;a href=&quot;http://www.slideshare.net/gazay/gon-rdrc&quot;&gt;Rails And Javascript: Brothers In Arms Using Gon&lt;/a&gt;&lt;/li&gt;
@@ -488,7 +569,7 @@ people will have less incentive for attending RDRC, knowing that videos will be 
 &lt;li&gt;José Valim: &lt;a href=&quot;https://speakerdeck.com/plataformatec/concurrency-in-ruby-tools-of-the-trade&quot;&gt;Concurrency In Ruby: Tools Of The Trade&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Akira Matsuda: &lt;a href=&quot;https://speakerdeck.com/a_matsuda/ruby-2-dot-0-on-rails-in-production&quot;&gt;Ruby 2.0 On Rails In Production&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Simon Robson: &lt;a href=&quot;https://speakerdeck.com/shr/optimising-self-at-reddotrubyconf-2013&quot;&gt;Optimising Self&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Hiroshi Shibata: &lt;a href=&quot;https://speakerdeck.com/hsbt/from-legacy-to-edge&quot;&gt;From 'Legacy' To 'Edge': Continuous Upgrades For Rails Apps&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Hiroshi Shibata: &lt;a href=&quot;https://speakerdeck.com/hsbt/from-legacy-to-edge&quot;&gt;From &#39;Legacy&#39; To &#39;Edge&#39;: Continuous Upgrades For Rails Apps&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Chang Sau Sheong: &lt;a href=&quot;https://speakerdeck.com/sausheong/playing-with-ruby&quot;&gt;Playing With Ruby&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Yi-Ting Cheng: &lt;a href=&quot;http://xdite.github.io/security-basic/&quot;&gt;Secure Your Rails Application: The Basics&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Christopher Rigor: Identical Environments Using Chef, AWS And Vagrant&lt;/li&gt;
@@ -501,7 +582,7 @@ people will have less incentive for attending RDRC, knowing that videos will be 
 &lt;h4&gt;Photos&lt;/h4&gt;
 
 &lt;ul&gt;
-&lt;li&gt;@reddotrubyconf's &lt;a href=&quot;https://twitter.com/reddotrubyconf/media/grid&quot;&gt;Twitter Photos&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;@reddotrubyconf&#39;s &lt;a href=&quot;https://twitter.com/reddotrubyconf/media/grid&quot;&gt;Twitter Photos&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;/assets/images/rdrc-friday-hug.png&quot;&gt;Friday Hug (Actual Size)&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -531,7 +612,7 @@ people will have less incentive for attending RDRC, knowing that videos will be 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;The errors I got when I didn't install ImageMagick with the config options:&lt;/p&gt;
+&lt;p&gt;The errors I got when I didn&#39;t install ImageMagick with the config options:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;It seems your ruby installation is missing psych (for YAML output).
 To eliminate this warning, please install libyaml and reinstall your ruby.
@@ -552,7 +633,7 @@ checking for HDRI disabled version of ImageMagick... yes
 /usr/local/bin/Magick-config: line 53: pkg-config: command not found
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;The errors I got when I didn't do the symlinks:&lt;/p&gt;
+&lt;p&gt;The errors I got when I didn&#39;t do the symlinks:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;It seems your ruby installation is missing psych (for YAML output).
 To eliminate this warning, please install libyaml and reinstall your ruby.
@@ -572,7 +653,7 @@ checking for sys/types.h... yes
 checking for wand/MagickWand.h... yes
 checking for InitializeMagick() in -lMagickCore... no
 checking for InitializeMagick() in -lMagick... no
-Can't install RMagick 2.12.2. Can't find the ImageMagick library or one of the dependent libraries. Check the mkmf.log file for more detailed information.
+Can&#39;t install RMagick 2.12.2. Can&#39;t find the ImageMagick library or one of the dependent libraries. Check the mkmf.log file for more detailed information.
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;And seriously, you might want to consider the &lt;a href=&quot;http://rubygems.org/gems/mini_magick&quot;&gt;MiniMagick&lt;/a&gt; gem instead.&lt;/p&gt;
@@ -586,7 +667,7 @@ Can't install RMagick 2.12.2. Can't find the ImageMagick library or one of the d
       <title>Test After Commit</title>
       <description>&lt;p&gt;Sometimes, you will need to test the &lt;code&gt;after_commit&lt;/code&gt; call back in Rails. Really.&lt;/p&gt;
 
-&lt;p&gt;Such as when you are using &lt;a href=&quot;https://github.com/plataformatec/devise&quot;&gt;Devise&lt;/a&gt;, and you want to send your emails asynchronously through &lt;a href=&quot;https://github.com/plataformatec/devise/blob/master/lib/devise/models/authenticatable.rb#L130&quot;&gt;Devise's recommendation&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Such as when you are using &lt;a href=&quot;https://github.com/plataformatec/devise&quot;&gt;Devise&lt;/a&gt;, and you want to send your emails asynchronously through &lt;a href=&quot;https://github.com/plataformatec/devise/blob/master/lib/devise/models/authenticatable.rb#L130&quot;&gt;Devise&#39;s recommendation&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Assuming that you are also using RSpec and transactional fixtures, then &lt;a href=&quot;https://github.com/grosser/test_after_commit&quot;&gt;test_after_commit&lt;/a&gt; is what you will need.&lt;/p&gt;
 
@@ -629,159 +710,6 @@ and it would perform the action and go to the location that was specified in the
       <pubDate>Fri, 08 Mar 2013 00:00:00 +0800</pubDate>
       <link>http://winstonyw.com/2013/03/08/form_with_multiple_buttons/</link>
       <guid isPermaLink="true">http://winstonyw.com/2013/03/08/form_with_multiple_buttons/</guid>
-    </item>
-    
-    <item>
-      <title>Jekyll, Haml, Sass and GitHub Pages</title>
-      <description>&lt;p&gt;A recap of how I got this Jekyll blog ready..&lt;/p&gt;
-
-&lt;p&gt;To start, create a basic Jekyll directory following the instructions on &lt;a href=&quot;https://github.com/mojombo/jekyll/wiki/usage&quot;&gt;Jekyll's Wiki&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;By default, Jekyll only works with HTML and CSS..&lt;/p&gt;
-
-&lt;p&gt;To use Jekyll with Haml and Sass, markup converters have to be added.&lt;/p&gt;
-
-&lt;p&gt;However, by design, Jekyll doesn't evaluate &lt;code&gt;layouts&lt;/code&gt; through any Haml converter.
-Therefore the converter will only work for &lt;code&gt;index.haml&lt;/code&gt; that doesn't contain much code.
-There are work arounds to ensure that Haml &lt;code&gt;layouts&lt;/code&gt; will get converted to HTML, but the &lt;code&gt;layouts&lt;/code&gt; wouldn't get parsed and reloaded for &lt;code&gt;jekyll --auto --server&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;In the end, my &lt;code&gt;layouts&lt;/code&gt; are in HTML because the rapid feedback was important to me.&lt;/p&gt;
-
-&lt;p&gt;Anyway, to add Haml and Sass converters, create a &lt;code&gt;_plugins&lt;/code&gt; folder.&lt;/p&gt;
-
-&lt;p&gt;Add a Haml converter at &lt;code&gt;_plugins/haml.rb&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;module&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;Jekyll&lt;/span&gt;
-  &lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;haml&amp;#39;&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;HamlConverter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Converter&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;safe&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;priority&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:low&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;matches&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ext&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;ext&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=~&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/haml/i&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;output_ext&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ext&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-      &lt;span class=&quot;s2&quot;&gt;&amp;quot;.html&amp;quot;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;convert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;engine&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;Haml&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:Engine&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;engine&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;render&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;rescue&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;StandardError&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;
-      &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;!!! HAML Error: &amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Add a Sass converter &lt;code&gt;_plugins/sass.rb&lt;/code&gt; and place &lt;code&gt;.scss&lt;/code&gt; files in &lt;code&gt;./assets/css&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;module&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;Jekyll&lt;/span&gt;
-  &lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;sass&amp;#39;&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SassConverter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Converter&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;safe&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;priority&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:low&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;matches&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ext&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;ext&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=~&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/scss/i&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;output_ext&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ext&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-      &lt;span class=&quot;s2&quot;&gt;&amp;quot;.css&amp;quot;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;convert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;engine&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;Sass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:Engine&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:syntax&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:scss&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:load_paths&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;./assets/css/&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;engine&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;render&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;rescue&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;StandardError&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;
-      &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;!!! SASS Error: &amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Everything should work up till this point, and &lt;code&gt;_site&lt;/code&gt; would contain the generated blog.&lt;/p&gt;
-
-&lt;p&gt;However, pushing this directory straight up to GitHub will fail. &lt;a href=&quot;https://help.github.com/articles/pages-don-t-build-unable-to-run-jekyll&quot;&gt;Because plugins are evil&lt;/a&gt;:&lt;/p&gt;
-
-&lt;blockquote&gt;&lt;p&gt;The Pages server will not build with plugins that are not marked as safe.&lt;/p&gt;
-
-&lt;p&gt;Note that this includes all plugins in the _plugins folder.&lt;/p&gt;&lt;/blockquote&gt;
-
-&lt;p&gt;The deployment becomes slightly complex, and we'll &lt;em&gt;borrow&lt;/em&gt; some ideas from &lt;a href=&quot;http://octopress.org&quot;&gt;Octopress&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Convert the current directory branch from &lt;code&gt;master&lt;/code&gt; to &lt;code&gt;source&lt;/code&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$&amp;gt; git branch -m master source
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Add &lt;code&gt;_site&lt;/code&gt; to &lt;code&gt;.gitignore&lt;/code&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$&amp;gt; echo '_site' &amp;gt;&amp;gt; .gitignore
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Create a deployment directory.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$&amp;gt; mkdir deploy
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Add &lt;code&gt;deploy&lt;/code&gt; to &lt;code&gt;.gitignore&lt;/code&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$&amp;gt; echo 'deploy' &amp;gt;&amp;gt; .gitignore
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Make &lt;code&gt;deploy&lt;/code&gt; a master branch.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$&amp;gt; cd deploy
-$&amp;gt; git init .
-$&amp;gt; git commit -am &quot;Initialize&quot;
-$&amp;gt; git remote add origin ...
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Add a Rake task that copies &lt;code&gt;_site&lt;/code&gt; files in &lt;code&gt;source&lt;/code&gt; branch to &lt;code&gt;deploy&lt;/code&gt; (master branch).
-This Rake task will also commit and push the site to GitHub.&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;desc&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Deploy&amp;quot;&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;task&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:deploy&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;## Deploying to Github Pages..&amp;quot;&lt;/span&gt;
-
-  &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Dir&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;deploy_dir&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/*&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rm_rf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;## Copying &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;public_dir&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; to &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;deploy_dir&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;cp_r&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;public_dir&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/.&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;deploy_dir&lt;/span&gt;
-
-  &lt;span class=&quot;n&quot;&gt;cd&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;deploy_dir&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-    &lt;span class=&quot;nb&quot;&gt;system&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;git add .&amp;quot;&lt;/span&gt;
-    &lt;span class=&quot;nb&quot;&gt;system&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;git add -u&amp;quot;&lt;/span&gt;
-
-    &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;## Commiting: Site updated at &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;now&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;utc&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;message&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Site updated at &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;now&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;utc&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;
-    &lt;span class=&quot;nb&quot;&gt;system&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;git commit -m &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&amp;quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&amp;quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;
-
-    &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;## Pushing generated &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;deploy_dir&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; website&amp;quot;&lt;/span&gt;
-    &lt;span class=&quot;nb&quot;&gt;system&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;git push origin master --force&amp;quot;&lt;/span&gt;
-
-    &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;## Deploy Complete!&amp;quot;&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Finally, the site can now be deployed to GitHub pages!&lt;/p&gt;
-
-&lt;p&gt;One last thing. To get syntax highlighting with Pygments, generate and include the CSS file.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;pygmentize -S default -f html &amp;gt; assets/css/pygments.css
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Maybe I should have just used Octopress.&lt;/p&gt;
-</description>
-      <pubDate>Sun, 24 Feb 2013 00:00:00 +0800</pubDate>
-      <link>http://winstonyw.com/2013/02/24/jekyll_haml_sass_and_github_pages/</link>
-      <guid isPermaLink="true">http://winstonyw.com/2013/02/24/jekyll_haml_sass_and_github_pages/</guid>
     </item>
     
   </channel>
