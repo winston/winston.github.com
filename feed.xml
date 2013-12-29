@@ -7,6 +7,73 @@
     <atom:link href="http://winstonyw.com/feed.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Passion Drives You To Do Crazy Things</title>
+      <description>&lt;p&gt;Many of you would know, I left Pivotal Labs/Neo Innovations in October to join a startup, and now, I&#39;ll be leaving the startup too.&lt;/p&gt;
+
+&lt;p&gt;--&lt;/p&gt;
+
+&lt;p&gt;Since the day I learned about Ruby, I know it&#39;s going to change my life.&lt;/p&gt;
+
+&lt;p&gt;Since the day I learned about Agile practices, I know it&#39;s going to change many people&#39;s lives.&lt;/p&gt;
+
+&lt;p&gt;I might have exaggerated a little, but right now these are the two things I am passionate about.&lt;/p&gt;
+
+&lt;p&gt;I believe that the World (or Singapore for a start) can do with more Ruby engineers,
+and companies can benefit from Agile practices such as Pair Programming, Test Driven Development, Continuous Integration, Retrospectives etc.&lt;/p&gt;
+
+&lt;p&gt;Having worked with Friendster.com, Viki.com, many other startups and even Government agencies while I was with Pivotal Labs,
+I am confident of the value that Ruby and/or Agile can bring to a company.&lt;/p&gt;
+
+&lt;p&gt;With that in mind, I have decided to step out to pursue my ambition of helping companies in Singapore grow through the sharing of my knowledge in these areas.&lt;/p&gt;
+
+&lt;p&gt;Being employed with a startup unfortunately doesn&#39;t afford me the convenience to help others or startups
+and although I have been doing this in my spare time (e.g. Rails InstallFest), I realized that I really want to do this on a fulltime basis.&lt;/p&gt;
+
+&lt;p&gt;It&#39;s crazy, but the calling is strong and this could be my version of self-actualization.&lt;/p&gt;
+
+&lt;p&gt;--&lt;/p&gt;
+
+&lt;p&gt;In the last year, I have met lots of people in the startup industry
+when I was running monthy Ruby meetups and organizing RedDotRubyConf 2013.&lt;/p&gt;
+
+&lt;p&gt;I realised that despite the availability of funding for these startups in Singapore,
+a lot of them do not have access to a ready pool of engineering talents or knowledge of how to manage an engineering team effectively.&lt;/p&gt;
+
+&lt;p&gt;This means that the startups have to first solve the problems of engineering shortage and engineering management
+before they can tackle the problem that the startup was originally formed to solve.&lt;/p&gt;
+
+&lt;p&gt;Hence I see an opportunity for me to try and help solve these problems with my experience in Ruby and in Agile practices.&lt;/p&gt;
+
+&lt;p&gt;As an experiment, I worked with a friend, who runs a company doing Joomla, for two weeks and shared with him Ruby on Rails and Agile practices.&lt;/p&gt;
+
+&lt;p&gt;We did pair programming and he&#39;s now a convert to Ruby on Rails, and exploring the possibility of using Ruby more for their projects.
+The Agile practices have also helped improved the processes in his company, and in his words &quot;made my engineers very happy&quot;.&lt;/p&gt;
+
+&lt;p&gt;To hear that really touched me and further reaffirmed my decision to step out.&lt;/p&gt;
+
+&lt;p&gt;I have the ability to help make engineers happy and I should continue to do it!&lt;/p&gt;
+
+&lt;p&gt;--&lt;/p&gt;
+
+&lt;p&gt;So what am I going to do?&lt;/p&gt;
+
+&lt;p&gt;I have several ideas right now on what I can do, but nothing concrete yet.
+I&#39;ll be working for the startup until January to help ease the transition, though my notice period is just one week.
+After that, I&#39;ll take some time off for a few weeks to distill my thoughts and to firm up my action plans.&lt;/p&gt;
+
+&lt;p&gt;I could be doing Ruby on Rails courses, Agile consultation, Pair Programming etc.
+But whichever it is, my guiding principle is clear - I want to share my knowledge and do more for the local startup community.&lt;/p&gt;
+
+&lt;p&gt;Meanwhile, if you would just like to chat or you have advice for me, feel free to reach out!&lt;/p&gt;
+
+&lt;p&gt;Anyway, fail also ok. At least I tried! It&#39;s going to be an exciting 2014 ahead.&lt;/p&gt;
+</description>
+      <pubDate>Sun, 22 Dec 2013 00:00:00 +0800</pubDate>
+      <link>http://winstonyw.com/2013/12/22/passion_drives_you_to_do_crazy_things/</link>
+      <guid isPermaLink="true">http://winstonyw.com/2013/12/22/passion_drives_you_to_do_crazy_things/</guid>
+    </item>
+    
+    <item>
       <title>Singapore Rails InstallFest</title>
       <description>&lt;h2&gt;Background&lt;/h2&gt;
 
@@ -676,40 +743,6 @@ Can&#39;t install RMagick 2.12.2. Can&#39;t find the ImageMagick library or one 
       <pubDate>Wed, 20 Mar 2013 00:00:00 +0800</pubDate>
       <link>http://winstonyw.com/2013/03/20/test_after_commit/</link>
       <guid isPermaLink="true">http://winstonyw.com/2013/03/20/test_after_commit/</guid>
-    </item>
-    
-    <item>
-      <title>Form With Multiple Buttons</title>
-      <description>&lt;p&gt;Suppose you have a form and you need to have two buttons that post to different locations -
-button &quot;Accept&quot; posts to &lt;code&gt;/accept&lt;/code&gt; and button &quot;Reject&quot; posts to &lt;code&gt;/reject&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Without HTML5, you probably have to use JavaScript..&lt;/p&gt;
-
-&lt;p&gt;HTML5 makes it trivial, as it introduced the &lt;a href=&quot;http://www.w3.org/html/wg/drafts/html/master/forms.html#attr-fae-form&quot;&gt;concept of &lt;em&gt;&lt;em&gt;form&lt;/em&gt;&lt;/em&gt; and &lt;em&gt;&lt;em&gt;form-associated element&lt;/em&gt;&lt;/em&gt;&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;By default, the form owner of a submit &lt;code&gt;input&lt;/code&gt; is the nearest &lt;code&gt;form&lt;/code&gt; element ancestor,
-and it would perform the action and go to the location that was specified in the &lt;code&gt;form&lt;/code&gt; tag.&lt;/p&gt;
-
-&lt;p&gt;However, HTML5 allows you to specify &lt;code&gt;form&lt;/code&gt; attribute (and more) on an &lt;code&gt;input&lt;/code&gt; tag to override its default &lt;code&gt;form&lt;/code&gt; association.&lt;/p&gt;
-
-&lt;p&gt;In code, that means you can do the following:&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;form&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;myform&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;input&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;name&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;name&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;text&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/form&amp;gt;&lt;/span&gt;
-
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;input&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;submit&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;value=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Accept&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;form=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;myform&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;formmethod=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;POST&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;formaction=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;/accept&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;input&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;submit&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;value=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Reject&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;form=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;myform&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;formmethod=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;POST&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;formaction=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;/reject&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Side note.. To test this in Rspec + Capybara, specs have to run with a JavaScript driver.&lt;/p&gt;
-
-&lt;p&gt;I really dig this.&lt;/p&gt;
-</description>
-      <pubDate>Fri, 08 Mar 2013 00:00:00 +0800</pubDate>
-      <link>http://winstonyw.com/2013/03/08/form_with_multiple_buttons/</link>
-      <guid isPermaLink="true">http://winstonyw.com/2013/03/08/form_with_multiple_buttons/</guid>
     </item>
     
   </channel>
