@@ -121,36 +121,39 @@ Then you'll still need to write JavaScript for that.</p>
 
 <p><em>In your layout, load Google Ajax API in the head tag, at the very top.</em></p>
 
-<pre><code>&lt;script src='https://www.google.com/jsapi'&gt;&lt;/script&gt;
-</code></pre>
+<div class="highlight"><pre><code class="html"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&#39;https://www.google.com/jsapi&#39;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</code></pre></div>
+
 
 <p><em>In a controller, e.g. <code>app/controllers/charts_controller.rb</code></em></p>
 
-<pre><code>def area_chart
-  data_table = GoogleVisualr::DataTable.new
-  # Add Column Headers
-  data_table.new_column('string', 'Year' )
-  data_table.new_column('number', 'Sales')
-  data_table.new_column('number', 'Expenses')
+<div class="highlight"><pre><code class="ruby"><span class="k">def</span> <span class="nf">area_chart</span>
+  <span class="n">data_table</span> <span class="o">=</span> <span class="ss">GoogleVisualr</span><span class="p">:</span><span class="ss">:DataTable</span><span class="o">.</span><span class="n">new</span>
+  <span class="c1"># Add Column Headers</span>
+  <span class="n">data_table</span><span class="o">.</span><span class="n">new_column</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">,</span> <span class="s1">&#39;Year&#39;</span> <span class="p">)</span>
+  <span class="n">data_table</span><span class="o">.</span><span class="n">new_column</span><span class="p">(</span><span class="s1">&#39;number&#39;</span><span class="p">,</span> <span class="s1">&#39;Sales&#39;</span><span class="p">)</span>
+  <span class="n">data_table</span><span class="o">.</span><span class="n">new_column</span><span class="p">(</span><span class="s1">&#39;number&#39;</span><span class="p">,</span> <span class="s1">&#39;Expenses&#39;</span><span class="p">)</span>
 
-  # Add Rows and Values
-  data_table.add_rows([
-      ['2004', 1000, 400],
-      ['2005', 1170, 460],
-      ['2006', 660, 1120],
-      ['2007', 1030, 540]
-  ])
+  <span class="c1"># Add Rows and Values</span>
+  <span class="n">data_table</span><span class="o">.</span><span class="n">add_rows</span><span class="p">(</span><span class="o">[</span>
+      <span class="o">[</span><span class="s1">&#39;2004&#39;</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">400</span><span class="o">]</span><span class="p">,</span>
+      <span class="o">[</span><span class="s1">&#39;2005&#39;</span><span class="p">,</span> <span class="mi">1170</span><span class="p">,</span> <span class="mi">460</span><span class="o">]</span><span class="p">,</span>
+      <span class="o">[</span><span class="s1">&#39;2006&#39;</span><span class="p">,</span> <span class="mi">660</span><span class="p">,</span> <span class="mi">1120</span><span class="o">]</span><span class="p">,</span>
+      <span class="o">[</span><span class="s1">&#39;2007&#39;</span><span class="p">,</span> <span class="mi">1030</span><span class="p">,</span> <span class="mi">540</span><span class="o">]</span>
+  <span class="o">]</span><span class="p">)</span>
 
-  option = { width: 400, height: 240, title: 'Company Performance' }
-  @chart = GoogleVisualr::Interactive::AreaChart.new(data_table, option)
-end
-</code></pre>
+  <span class="n">option</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">width</span><span class="p">:</span> <span class="mi">400</span><span class="p">,</span> <span class="ss">height</span><span class="p">:</span> <span class="mi">240</span><span class="p">,</span> <span class="ss">title</span><span class="p">:</span> <span class="s1">&#39;Company Performance&#39;</span> <span class="p">}</span>
+  <span class="vi">@chart</span> <span class="o">=</span> <span class="ss">GoogleVisualr</span><span class="p">:</span><span class="ss">:Interactive</span><span class="o">::</span><span class="no">AreaChart</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">data_table</span><span class="p">,</span> <span class="n">option</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre></div>
+
 
 <p><em>In the corresponding view, e.g. <code>app/views/charts/area_chart.html.erb</code></em></p>
 
-<pre><code>&lt;div id='chart'&gt;&lt;/div&gt;
-&lt;%= render_chart(@chart, 'chart') %&gt;
-</code></pre>
+<div class="highlight"><pre><code class="erb"><span class="x">&lt;div id=&#39;chart&#39;&gt;&lt;/div&gt;</span>
+<span class="cp">&lt;%=</span> <span class="n">render_chart</span><span class="p">(</span><span class="vi">@chart</span><span class="p">,</span> <span class="s1">&#39;chart&#39;</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="x"></span>
+</code></pre></div>
+
 
 <p>Go ahead! Check out <a href="https://github.com/winston/google_visualr">GoogleVisualr on GitHub</a> or the <a href="http://googlevisualr.herokuapp.com/">Docs</a> now.</p>
 

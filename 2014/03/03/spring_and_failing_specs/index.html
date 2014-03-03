@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>OpenURI's open, Tempfile and StringIO - WinstonYW</title>
+    <title>Spring And Failing Specs - WinstonYW</title>
     <meta content="text/html; charset=utf-8" http-equiv="content-type" />
     <meta content='Winston Teo Yong Wei' name='author' />
     <link href='/assets/css/application.css' media='screen' rel='stylesheet' type='text/css' />
@@ -61,32 +61,76 @@
       <div class='color-bar'></div>
       <div id='content'>
         <article class="post">
-          <h2>OpenURI's open, Tempfile and StringIO</h2>
-          <span class="date">02 OCTOBER 2013</span>
+          <h2>Spring And Failing Specs</h2>
+          <span class="date">03 MARCH 2014</span>
           <section>
-            <p><code>OpenURI#open</code> has a dual personality. Consider the code below..</p>
+            <p><a href="https://github.com/rails/spring">Spring</a> will be <a href="http://edgeguides.rubyonrails.org/4_1_release_notes.html">included in Rails 4.1</a> as the defacto Application Preloader.
+It's similar to <a href="https://github.com/burke/zeus">Zeus</a> which keeps your application running in the background during development,
+so that any rake or spec command will run speedily without having to reload the app.</p>
 
-<div class="highlight"><pre><code class="ruby"><span class="nb">require</span> <span class="s1">&#39;open-uri&#39;</span>
+<p>Anyway, I was using <code>spring</code>, <code>spring-commands-rspec</code> and <code>enumerize</code> gems in my app
+and was running specs with <code>spring rspec</code> when this happened:</p>
 
-<span class="n">zipfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;http://example.com/file.zip&quot;</span><span class="p">)</span>
+<pre><code>$&gt; spring rspec
+
+........F.............................
+
+Failures:
+
+  1) Feedback validations
+     Failure/Error: it { should enumerize(:emotion).in(:happy, :sad) }
+     NoMethodError:
+       undefined method `enumerize' for #&lt;RSpec::Core::ExampleGroup::Nested_3::Nested_2:0x000001029bcd20&gt;
+     # ./spec/models/feedback_spec.rb:22:in `block (3 levels) in &lt;top (required)&gt;'
+     # -e:1:in `&lt;main&gt;'
+
+Finished in 0.27399 seconds
+38 examples, 1 failure
+</code></pre>
+
+<p>However, if I just do <code>rspec</code>, the specs passed!</p>
+
+<pre><code>$&gt; rspec
+
+......................................
+
+Finished in 0.27061 seconds
+38 examples, 0 failures
+
+Randomized with seed 2852
+</code></pre>
+
+<p>Dug into the problem and found that this was a loading issue with <code>enumerize</code>.</p>
+
+<p>This was how the <code>enumerize</code> matchers were loaded:</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="k">if</span> <span class="n">defined?</span><span class="p">(</span><span class="o">::</span><span class="no">RSpec</span><span class="p">)</span>
+  <span class="nb">require</span> <span class="s1">&#39;enumerize/integrations/rspec&#39;</span>
+<span class="k">end</span>
 </code></pre></div>
 
 
-<p>With this, <code>zipfile</code> can either be a <code>Tempfile</code> instance or a <code>StringIO</code> instance.</p>
+<p>And it works fine for plain <code>rspec</code> command because <code>rspec</code> loads before <code>rails</code>.
+However, when <code>spring</code> starts the application, <code>rspec</code> is not yet loaded and so
+the matchers will not be required as well.</p>
 
-<p>Apparently, that's how <code>OpenURI#open</code> works, and this <a href="http://stackoverflow.com/questions/10496874/why-does-openuri-treat-files-under-10kb-in-size-as-stringio">StackOverFlow post</a> explains it well.
-And as mentioned in the same post, to get <code>OpenURI#open</code> to always return a <code>Tempfile</code>,
-apply the initializer "hack".</p>
+<p>The fix is to load <code>rspec</code> like this:</p>
 
-<div class="highlight"><pre><code class="ruby"><span class="nb">require</span> <span class="s1">&#39;open-uri&#39;</span>
-
-<span class="c1"># Don&#39;t allow downloaded files to be created as StringIO. Force a tempfile to be created.</span>
-<span class="ss">OpenURI</span><span class="p">:</span><span class="ss">:Buffer</span><span class="o">.</span><span class="n">send</span> <span class="ss">:remove_const</span><span class="p">,</span> <span class="s1">&#39;StringMax&#39;</span> <span class="k">if</span> <span class="ss">OpenURI</span><span class="p">:</span><span class="ss">:Buffer</span><span class="o">.</span><span class="n">const_defined?</span><span class="p">(</span><span class="s1">&#39;StringMax&#39;</span><span class="p">)</span>
-<span class="ss">OpenURI</span><span class="p">:</span><span class="ss">:Buffer</span><span class="o">.</span><span class="n">const_set</span> <span class="s1">&#39;StringMax&#39;</span><span class="p">,</span> <span class="mi">0</span>
+<div class="highlight"><pre><code class="ruby"><span class="k">begin</span>
+  <span class="nb">require</span> <span class="s1">&#39;rspec/matchers&#39;</span>
+<span class="k">rescue</span> <span class="no">LoadError</span>
+<span class="k">else</span>
+  <span class="nb">require</span> <span class="s1">&#39;enumerize/integrations/rspec&#39;</span>
+<span class="k">end</span>
 </code></pre></div>
 
 
-<p>Or, you can just be deterministic and <a href="http://winstonyw.com/2013/10/01/ruby_reading_a_remote_zip_file/">create the Tempfile yourself</a>.</p>
+<p>This makes sure that the <code>enumerize</code> matchers will only required when <code>rspec/matchers</code> can be required without errors,
+which means it will only load in dev or test environment because you shouldn't have <code>rspec</code> bundled in your production environment.</p>
+
+<p><a href="https://github.com/brainspec/enumerize/pull/143">Pull request over here</a>.</p>
+
+<p>Keep this in mind when you encounter weird failing specs when using <code>spring</code>.</p>
 
           </section>
         </article>

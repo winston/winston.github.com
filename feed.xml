@@ -7,6 +7,81 @@
     <atom:link href="http://winstonyw.com/feed.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Spring And Failing Specs</title>
+      <description>&lt;p&gt;&lt;a href=&quot;https://github.com/rails/spring&quot;&gt;Spring&lt;/a&gt; will be &lt;a href=&quot;http://edgeguides.rubyonrails.org/4_1_release_notes.html&quot;&gt;included in Rails 4.1&lt;/a&gt; as the defacto Application Preloader.
+It&#39;s similar to &lt;a href=&quot;https://github.com/burke/zeus&quot;&gt;Zeus&lt;/a&gt; which keeps your application running in the background during development,
+so that any rake or spec command will run speedily without having to reload the app.&lt;/p&gt;
+
+&lt;p&gt;Anyway, I was using &lt;code&gt;spring&lt;/code&gt;, &lt;code&gt;spring-commands-rspec&lt;/code&gt; and &lt;code&gt;enumerize&lt;/code&gt; gems in my app
+and was running specs with &lt;code&gt;spring rspec&lt;/code&gt; when this happened:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$&amp;gt; spring rspec
+
+........F.............................
+
+Failures:
+
+  1) Feedback validations
+     Failure/Error: it { should enumerize(:emotion).in(:happy, :sad) }
+     NoMethodError:
+       undefined method `enumerize&#39; for #&amp;lt;RSpec::Core::ExampleGroup::Nested_3::Nested_2:0x000001029bcd20&amp;gt;
+     # ./spec/models/feedback_spec.rb:22:in `block (3 levels) in &amp;lt;top (required)&amp;gt;&#39;
+     # -e:1:in `&amp;lt;main&amp;gt;&#39;
+
+Finished in 0.27399 seconds
+38 examples, 1 failure
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;However, if I just do &lt;code&gt;rspec&lt;/code&gt;, the specs passed!&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$&amp;gt; rspec
+
+......................................
+
+Finished in 0.27061 seconds
+38 examples, 0 failures
+
+Randomized with seed 2852
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Dug into the problem and found that this was a loading issue with &lt;code&gt;enumerize&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;This was how the &lt;code&gt;enumerize&lt;/code&gt; matchers were loaded:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;defined?&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;RSpec&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;enumerize/integrations/rspec&amp;#39;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;And it works fine for plain &lt;code&gt;rspec&lt;/code&gt; command because &lt;code&gt;rspec&lt;/code&gt; loads before &lt;code&gt;rails&lt;/code&gt;.
+However, when &lt;code&gt;spring&lt;/code&gt; starts the application, &lt;code&gt;rspec&lt;/code&gt; is not yet loaded and so
+the matchers will not be required as well.&lt;/p&gt;
+
+&lt;p&gt;The fix is to load &lt;code&gt;rspec&lt;/code&gt; like this:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;begin&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;rspec/matchers&amp;#39;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;rescue&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;LoadError&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;enumerize/integrations/rspec&amp;#39;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This makes sure that the &lt;code&gt;enumerize&lt;/code&gt; matchers will only required when &lt;code&gt;rspec/matchers&lt;/code&gt; can be required without errors,
+which means it will only load in dev or test environment because you shouldn&#39;t have &lt;code&gt;rspec&lt;/code&gt; bundled in your production environment.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/brainspec/enumerize/pull/143&quot;&gt;Pull request over here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Keep this in mind when you encounter weird failing specs when using &lt;code&gt;spring&lt;/code&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Mon, 03 Mar 2014 00:00:00 +0800</pubDate>
+      <link>http://winstonyw.com/2014/03/03/spring_and_failing_specs/</link>
+      <guid isPermaLink="true">http://winstonyw.com/2014/03/03/spring_and_failing_specs/</guid>
+    </item>
+    
+    <item>
       <title>Passion Drives You To Do Crazy Things</title>
       <description>&lt;p&gt;Many of you would know, I left Pivotal Labs/Neo Innovations in October to join a startup, and now, I&#39;ll be leaving the startup too.&lt;/p&gt;
 
@@ -158,10 +233,11 @@ and I am sure we&#39;ll continue to have more RoR training sessions in the futur
       <title>OpenURI's open, Tempfile and StringIO</title>
       <description>&lt;p&gt;&lt;code&gt;OpenURI#open&lt;/code&gt; has a dual personality. Consider the code below..&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;require &#39;open-uri&#39;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;open-uri&amp;#39;&lt;/span&gt;
 
-zipfile = open(&quot;http://example.com/file.zip&quot;)
-&lt;/code&gt;&lt;/pre&gt;
+&lt;span class=&quot;n&quot;&gt;zipfile&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;http://example.com/file.zip&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
 
 &lt;p&gt;With this, &lt;code&gt;zipfile&lt;/code&gt; can either be a &lt;code&gt;Tempfile&lt;/code&gt; instance or a &lt;code&gt;StringIO&lt;/code&gt; instance.&lt;/p&gt;
 
@@ -169,12 +245,13 @@ zipfile = open(&quot;http://example.com/file.zip&quot;)
 And as mentioned in the same post, to get &lt;code&gt;OpenURI#open&lt;/code&gt; to always return a &lt;code&gt;Tempfile&lt;/code&gt;,
 apply the initializer &quot;hack&quot;.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;require &#39;open-uri&#39;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;open-uri&amp;#39;&lt;/span&gt;
 
-# Don&#39;t allow downloaded files to be created as StringIO. Force a tempfile to be created.
-OpenURI::Buffer.send :remove_const, &#39;StringMax&#39; if OpenURI::Buffer.const_defined?(&#39;StringMax&#39;)
-OpenURI::Buffer.const_set &#39;StringMax&#39;, 0
-&lt;/code&gt;&lt;/pre&gt;
+&lt;span class=&quot;c1&quot;&gt;# Don&amp;#39;t allow downloaded files to be created as StringIO. Force a tempfile to be created.&lt;/span&gt;
+&lt;span class=&quot;ss&quot;&gt;OpenURI&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:Buffer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;send&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:remove_const&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;StringMax&amp;#39;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;OpenURI&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:Buffer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;const_defined?&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;StringMax&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;ss&quot;&gt;OpenURI&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:Buffer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;const_set&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;StringMax&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
 
 &lt;p&gt;Or, you can just be deterministic and &lt;a href=&quot;http://winstonyw.com/2013/10/01/ruby_reading_a_remote_zip_file/&quot;&gt;create the Tempfile yourself&lt;/a&gt;.&lt;/p&gt;
 </description>
@@ -187,31 +264,32 @@ OpenURI::Buffer.const_set &#39;StringMax&#39;, 0
       <title>Ruby - Reading A Remote Zip File</title>
       <description>&lt;p&gt;I need to access a remote zip file and this is something that works:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# In the console, gem install &quot;httparty&quot;
-require &quot;httparty&quot;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# In the console, gem install &amp;quot;httparty&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;httparty&amp;quot;&lt;/span&gt;
 
-# In the console, gem install &quot;rubyzip&quot;
-require &quot;zip&quot;
+&lt;span class=&quot;c1&quot;&gt;# In the console, gem install &amp;quot;rubyzip&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;zip&amp;quot;&lt;/span&gt;
 
-# Get the contents of the remote zip file via HTTParty
-# and write it into a temp zip file
+&lt;span class=&quot;c1&quot;&gt;# Get the contents of the remote zip file via HTTParty&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# and write it into a temp zip file&lt;/span&gt;
 
-zipfile = Tempfile.new(&quot;file&quot;)
-zipfile.binmode # This might not be necessary depending on the zip file
-zipfile.write(HTTParty.get(&quot;http://localhost:3000/file.zip&quot;).body)
-zipfile.close
+&lt;span class=&quot;n&quot;&gt;zipfile&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Tempfile&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;file&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;zipfile&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;binmode&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# This might not be necessary depending on the zip file&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;zipfile&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;HTTParty&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;http://localhost:3000/file.zip&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;zipfile&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;close&lt;/span&gt;
 
-# Unzip the temp zip file and process the contents
-# Let garbage collection delete the temp zip file
+&lt;span class=&quot;c1&quot;&gt;# Unzip the temp zip file and process the contents&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# Let garbage collection delete the temp zip file&lt;/span&gt;
 
-Zip::File.open(zipfile.path) do |file|
-  file.each do |content|
-    data = file.read(content)
-    puts data
-    # Do whatever you want with the contents
-  end
-end
-&lt;/code&gt;&lt;/pre&gt;
+&lt;span class=&quot;ss&quot;&gt;Zip&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:File&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;zipfile&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;read&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# Do whatever you want with the contents&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
 
 &lt;p&gt;The code is simple, but at the start, I kept getting an error when unzipping the temp zip file,
 and I thought I was doing something wrong.&lt;/p&gt;
@@ -293,36 +371,39 @@ Then you&#39;ll still need to write JavaScript for that.&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;In your layout, load Google Ajax API in the head tag, at the very top.&lt;/em&gt;&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;&amp;lt;script src=&#39;https://www.google.com/jsapi&#39;&amp;gt;&amp;lt;/script&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;https://www.google.com/jsapi&amp;#39;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
 
 &lt;p&gt;&lt;em&gt;In a controller, e.g. &lt;code&gt;app/controllers/charts_controller.rb&lt;/code&gt;&lt;/em&gt;&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;def area_chart
-  data_table = GoogleVisualr::DataTable.new
-  # Add Column Headers
-  data_table.new_column(&#39;string&#39;, &#39;Year&#39; )
-  data_table.new_column(&#39;number&#39;, &#39;Sales&#39;)
-  data_table.new_column(&#39;number&#39;, &#39;Expenses&#39;)
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;area_chart&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;data_table&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;GoogleVisualr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:DataTable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# Add Column Headers&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;data_table&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new_column&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;string&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Year&amp;#39;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;data_table&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new_column&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;number&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Sales&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;data_table&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new_column&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;number&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Expenses&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
-  # Add Rows and Values
-  data_table.add_rows([
-      [&#39;2004&#39;, 1000, 400],
-      [&#39;2005&#39;, 1170, 460],
-      [&#39;2006&#39;, 660, 1120],
-      [&#39;2007&#39;, 1030, 540]
-  ])
+  &lt;span class=&quot;c1&quot;&gt;# Add Rows and Values&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;data_table&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add_rows&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;2004&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;400&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;2005&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1170&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;460&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;2006&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;660&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1120&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;2007&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1030&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;540&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
-  option = { width: 400, height: 240, title: &#39;Company Performance&#39; }
-  @chart = GoogleVisualr::Interactive::AreaChart.new(data_table, option)
-end
-&lt;/code&gt;&lt;/pre&gt;
+  &lt;span class=&quot;n&quot;&gt;option&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;400&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;240&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Company Performance&amp;#39;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;vi&quot;&gt;@chart&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;GoogleVisualr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:Interactive&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;AreaChart&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data_table&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;option&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
 
 &lt;p&gt;&lt;em&gt;In the corresponding view, e.g. &lt;code&gt;app/views/charts/area_chart.html.erb&lt;/code&gt;&lt;/em&gt;&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;&amp;lt;div id=&#39;chart&#39;&amp;gt;&amp;lt;/div&amp;gt;
-&amp;lt;%= render_chart(@chart, &#39;chart&#39;) %&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;erb&quot;&gt;&lt;span class=&quot;x&quot;&gt;&amp;lt;div id=&amp;#39;chart&amp;#39;&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;render_chart&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@chart&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;chart&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
 
 &lt;p&gt;Go ahead! Check out &lt;a href=&quot;https://github.com/winston/google_visualr&quot;&gt;GoogleVisualr on GitHub&lt;/a&gt; or the &lt;a href=&quot;http://googlevisualr.herokuapp.com/&quot;&gt;Docs&lt;/a&gt; now.&lt;/p&gt;
 
@@ -669,15 +750,14 @@ people will have less incentive for attending RDRC, knowing that videos will be 
 
 &lt;p&gt;The correct way to do it:&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;brew remove imagemagick
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;brew install imagemagick --disable-openmp --build-from-source
+&lt;pre&gt;&lt;code&gt;$ brew remove imagemagick
+$ brew install imagemagick --disable-openmp --build-from-source
 
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /usr/local/Cellar/imagemagick/6.8.0-10/lib
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ln -s libMagick++-Q16.7.dylib   libMagick++.dylib
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ln -s libMagickCore-Q16.7.dylib libMagickCore.dylib
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ln -s libMagickWand-Q16.7.dylib libMagickWand.dylib
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
+$ cd /usr/local/Cellar/imagemagick/6.8.0-10/lib
+$ ln -s libMagick++-Q16.7.dylib   libMagick++.dylib
+$ ln -s libMagickCore-Q16.7.dylib libMagickCore.dylib
+$ ln -s libMagickWand-Q16.7.dylib libMagickWand.dylib
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;The errors I got when I didn&#39;t install ImageMagick with the config options:&lt;/p&gt;
 
@@ -728,21 +808,6 @@ Can&#39;t install RMagick 2.12.2. Can&#39;t find the ImageMagick library or one 
       <pubDate>Thu, 21 Mar 2013 00:00:00 +0800</pubDate>
       <link>http://winstonyw.com/2013/03/21/installing-imagemagick-and-rmagick/</link>
       <guid isPermaLink="true">http://winstonyw.com/2013/03/21/installing-imagemagick-and-rmagick/</guid>
-    </item>
-    
-    <item>
-      <title>Test After Commit</title>
-      <description>&lt;p&gt;Sometimes, you will need to test the &lt;code&gt;after_commit&lt;/code&gt; call back in Rails. Really.&lt;/p&gt;
-
-&lt;p&gt;Such as when you are using &lt;a href=&quot;https://github.com/plataformatec/devise&quot;&gt;Devise&lt;/a&gt;, and you want to send your emails asynchronously through &lt;a href=&quot;https://github.com/plataformatec/devise/blob/master/lib/devise/models/authenticatable.rb#L130&quot;&gt;Devise&#39;s recommendation&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Assuming that you are also using RSpec and transactional fixtures, then &lt;a href=&quot;https://github.com/grosser/test_after_commit&quot;&gt;test_after_commit&lt;/a&gt; is what you will need.&lt;/p&gt;
-
-&lt;p&gt;The RubyGem works as expected and &lt;code&gt;bundle install&lt;/code&gt; is eaaaaasy.&lt;/p&gt;
-</description>
-      <pubDate>Wed, 20 Mar 2013 00:00:00 +0800</pubDate>
-      <link>http://winstonyw.com/2013/03/20/test_after_commit/</link>
-      <guid isPermaLink="true">http://winstonyw.com/2013/03/20/test_after_commit/</guid>
     </item>
     
   </channel>

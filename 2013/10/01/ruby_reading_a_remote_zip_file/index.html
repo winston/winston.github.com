@@ -66,31 +66,32 @@
           <section>
             <p>I need to access a remote zip file and this is something that works:</p>
 
-<pre><code># In the console, gem install "httparty"
-require "httparty"
+<div class="highlight"><pre><code class="ruby"><span class="c1"># In the console, gem install &quot;httparty&quot;</span>
+<span class="nb">require</span> <span class="s2">&quot;httparty&quot;</span>
 
-# In the console, gem install "rubyzip"
-require "zip"
+<span class="c1"># In the console, gem install &quot;rubyzip&quot;</span>
+<span class="nb">require</span> <span class="s2">&quot;zip&quot;</span>
 
-# Get the contents of the remote zip file via HTTParty
-# and write it into a temp zip file
+<span class="c1"># Get the contents of the remote zip file via HTTParty</span>
+<span class="c1"># and write it into a temp zip file</span>
 
-zipfile = Tempfile.new("file")
-zipfile.binmode # This might not be necessary depending on the zip file
-zipfile.write(HTTParty.get("http://localhost:3000/file.zip").body)
-zipfile.close
+<span class="n">zipfile</span> <span class="o">=</span> <span class="no">Tempfile</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;file&quot;</span><span class="p">)</span>
+<span class="n">zipfile</span><span class="o">.</span><span class="n">binmode</span> <span class="c1"># This might not be necessary depending on the zip file</span>
+<span class="n">zipfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="no">HTTParty</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;http://localhost:3000/file.zip&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">body</span><span class="p">)</span>
+<span class="n">zipfile</span><span class="o">.</span><span class="n">close</span>
 
-# Unzip the temp zip file and process the contents
-# Let garbage collection delete the temp zip file
+<span class="c1"># Unzip the temp zip file and process the contents</span>
+<span class="c1"># Let garbage collection delete the temp zip file</span>
 
-Zip::File.open(zipfile.path) do |file|
-  file.each do |content|
-    data = file.read(content)
-    puts data
-    # Do whatever you want with the contents
-  end
-end
-</code></pre>
+<span class="ss">Zip</span><span class="p">:</span><span class="ss">:File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">zipfile</span><span class="o">.</span><span class="n">path</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">file</span><span class="o">|</span>
+  <span class="n">file</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">content</span><span class="o">|</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+    <span class="nb">puts</span> <span class="n">data</span>
+    <span class="c1"># Do whatever you want with the contents</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div>
+
 
 <p>The code is simple, but at the start, I kept getting an error when unzipping the temp zip file,
 and I thought I was doing something wrong.</p>
