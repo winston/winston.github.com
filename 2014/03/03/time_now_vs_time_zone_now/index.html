@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Time.now vs Time.zone.now - WinstonYW</title>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta content='Winston Teo Yong Wei' name='author' />
+    <link href='/assets/css/application.css' media='screen' rel='stylesheet' type='text/css' />
+    <!-- http://davidbcalhoun.com/2010/viewport-metatag -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+  </head>
+  <body>
+    <header>
+      <div class='title-color-bar'></div>
+      <section id='profile'>
+        <h1>
+          <a href="/">WinstonYW</a>
+        </h1>
+        <h2>
+          Just Another Tech Journal
+        </h2>
+      </section>
+      <div class='aside-color-bar'></div>
+      <section id="projects">
+        <h2>Projects</h2>
+        <ul>
+          <li>
+            <a href="https://github.com/winston/google_visualr">GoogleVisualr</a>
+          </li>
+          <li>
+            <a href="https://github.com/winston/cactus">Cactus</a>
+          </li>
+          <li>
+            <a href="http://gigest.herokuapp.com">Gigest App</a>
+          </li>
+        </ul>
+      </section>
+      <section id="elsewhere">
+        <h2>Elsewhere</h2>
+        <ul>
+          <li>
+            <a href="https://twitter.com/winstonyw">Twitter</a>
+          </li>
+          <li>
+            <a href="https://github.com/winston">GitHub</a>
+          </li>
+          <li>
+            <a href="http://www.linkedin.com/in/winstonyw">LinkedIn</a>
+          </li>
+          <li>
+            <a href="mailto:winstonyw+blog@gmail.com">Email</a>
+          </li>
+          <li>
+            <a href="#">RSS</a>
+          </li>
+        </ul>
+      </section>
+  </header>
+    <div id='center'>
+      <div class='color-bar'></div>
+      <div id='content'>
+        <article class="post">
+          <h2>Time.now vs Time.zone.now</h2>
+          <span class="date">03 MARCH 2014</span>
+          <section>
+            <p>Ruby <code>Time</code> can get confusing when used in your Rails app. What <code>Time</code> is it now?</p>
+
+<p>Suppose I have a server in UTC time and all of my users are from Singapore (GMT +08:00),
+then your Rails app's <code>time_zone</code> should be configured to SGT.</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="c1"># config/application.rb</span>
+
+<span class="c1"># Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.</span>
+<span class="c1"># Run &quot;rake -D time&quot; for a list of tasks for finding time zone names. Default is UTC.</span>
+<span class="n">config</span><span class="o">.</span><span class="n">time_zone</span> <span class="o">=</span> <span class="s1">&#39;Singapore&#39;</span>
+</code></pre></div>
+
+
+<p>Besides that, instead of using <code>Time.now</code>, use <code>Time.zone.now</code> especially when
+you are printing time attributes as display to your users.</p>
+
+<p>Why? Let's explore the difference:</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">irb</span><span class="o">&gt;</span> <span class="no">Time</span><span class="o">.</span><span class="n">zone</span> <span class="o">=</span> <span class="s2">&quot;Singapore&quot;</span>
+<span class="o">=&gt;</span> <span class="s2">&quot;Singapore&quot;</span>
+<span class="n">irb</span><span class="o">&gt;</span> <span class="no">Time</span><span class="o">.</span><span class="n">now</span>
+<span class="o">=&gt;</span> <span class="mi">2014</span><span class="o">-</span><span class="mo">03</span><span class="o">-</span><span class="mo">03</span> <span class="mi">11</span><span class="p">:</span><span class="mo">07</span><span class="p">:</span><span class="mo">05</span> <span class="o">+</span><span class="mo">0000</span>
+<span class="n">irb</span><span class="o">&gt;</span> <span class="no">Time</span><span class="o">.</span><span class="n">zone</span><span class="o">.</span><span class="n">now</span>
+<span class="o">=&gt;</span> <span class="no">Mon</span><span class="p">,</span> <span class="mo">03</span> <span class="no">Mar</span> <span class="mi">2014</span> <span class="mi">19</span><span class="p">:</span><span class="mo">07</span><span class="p">:</span><span class="mi">12</span> <span class="no">SGT</span> <span class="o">+</span><span class="mi">08</span><span class="p">:</span><span class="mo">00</span>
+</code></pre></div>
+
+
+<p><code>Time.now</code> uses the system time because it's is part of the Ruby standard library.</p>
+
+<p>However, <code>Time.zone.now</code> returns the time, corrected to our Singapore time zone
+because it's been <a href="https://github.com/rails/rails/blob/master/activesupport/lib/active_support/core_ext/time/zones.rb#L11">extended by ActiveSupport</a> to have the <code>zone</code> method.</p>
+
+<p>Therefore, in order for your users to see the time in SGT, use <code>Time.zone.now</code> in your code. In fact, use <code>Time.current</code>. <a href="https://github.com/rails/rails/blob/master/activesupport/lib/active_support/core_ext/time/calculations.rb#L29">Read the code</a> to find out what's the difference.</p>
+
+<p>What about <code>DateTime</code>?</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">irb</span><span class="o">&gt;</span> <span class="no">Time</span><span class="o">.</span><span class="n">zone</span> <span class="o">=</span> <span class="s2">&quot;Singapore&quot;</span>
+<span class="o">=&gt;</span> <span class="s2">&quot;Singapore&quot;</span>
+<span class="n">irb</span><span class="o">&gt;</span> <span class="no">DateTime</span><span class="o">.</span><span class="n">now</span>
+<span class="o">=&gt;</span> <span class="no">Mon</span><span class="p">,</span> <span class="mo">03</span> <span class="no">Mar</span> <span class="mi">2014</span> <span class="mi">11</span><span class="p">:</span><span class="mi">15</span><span class="p">:</span><span class="mi">08</span> <span class="o">+</span><span class="mo">0000</span>
+<span class="n">irb</span><span class="o">&gt;</span> <span class="no">DateTime</span><span class="o">.</span><span class="n">now</span><span class="o">.</span><span class="n">in_time_zone</span>
+<span class="o">=&gt;</span> <span class="no">Mon</span><span class="p">,</span> <span class="mo">03</span> <span class="no">Mar</span> <span class="mi">2014</span> <span class="mi">19</span><span class="p">:</span><span class="mi">15</span><span class="p">:</span><span class="mi">14</span> <span class="no">SGT</span> <span class="o">+</span><span class="mi">08</span><span class="p">:</span><span class="mo">00</span>
+</code></pre></div>
+
+
+<p><code>DateTime</code> returns the system time too because it's also part of the Ruby standard library.</p>
+
+<p>The method to convert <code>DateTime</code> to our time zone is the <code>.in_time_zone</code> method which <a href="https://github.com/rails/rails/blob/master/activesupport/lib/active_support/core_ext/date_and_time/zones.rb#L19">also accepts a time zone as a param</a>.</p>
+
+<p>Now then.. What do you do when you query the database with ActiveRecord?</p>
+
+<p>You can use either <code>Time.now</code> or <code>Time.current</code>.
+Both will work because ActiveRecord will convert the times to UTC before sending it to the database,
+as all time columns in the database are also stored in UTC. Let's verify..</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">irb</span><span class="o">&gt;</span> <span class="no">Feedback</span><span class="o">.</span><span class="n">all</span>
+  <span class="no">Feedback</span> <span class="no">Load</span> <span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="mi">4</span><span class="n">ms</span><span class="p">)</span>  <span class="no">SELECT</span> <span class="s2">&quot;feedbacks&quot;</span><span class="o">.</span><span class="n">*</span> <span class="no">FROM</span> <span class="s2">&quot;feedbacks&quot;</span>
+<span class="o">=&gt;</span> <span class="o">[</span><span class="c1">#&lt;Feedback id: 1, created_at: &quot;2014-03-03 11:29:26&quot;, updated_at: &quot;2014-03-03 11:29:26&quot;&gt;]</span>
+</code></pre></div>
+
+
+<p>Notice that <code>created_at</code> and <code>updated_at</code> columns are stored in UTC.</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">irb</span><span class="o">&gt;</span> <span class="no">Feedback</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">created_at</span>
+  <span class="no">Feedback</span> <span class="no">Load</span> <span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="mi">4</span><span class="n">ms</span><span class="p">)</span>  <span class="no">SELECT</span> <span class="s2">&quot;feedbacks&quot;</span><span class="o">.</span><span class="n">*</span> <span class="no">FROM</span> <span class="s2">&quot;feedbacks&quot;</span> <span class="no">ORDER</span> <span class="no">BY</span> <span class="s2">&quot;feedbacks&quot;</span><span class="o">.</span><span class="s2">&quot;id&quot;</span> <span class="no">ASC</span> <span class="no">LIMIT</span> <span class="mi">1</span>
+<span class="o">=&gt;</span> <span class="no">Mon</span><span class="p">,</span> <span class="mo">03</span> <span class="no">Mar</span> <span class="mi">2014</span> <span class="mi">19</span><span class="p">:</span><span class="mi">29</span><span class="p">:</span><span class="mi">26</span> <span class="no">SGT</span> <span class="o">+</span><span class="mi">08</span><span class="p">:</span><span class="mo">00</span>
+</code></pre></div>
+
+
+<p>When you retrieve an object and print <code>created_at</code>, it will be converted to your time zone.</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">irb</span><span class="o">&gt;</span> <span class="no">Time</span><span class="o">.</span><span class="n">now</span>
+<span class="o">=&gt;</span> <span class="mi">2014</span><span class="o">-</span><span class="mo">03</span><span class="o">-</span><span class="mo">03</span> <span class="mi">11</span><span class="p">:</span><span class="mi">41</span><span class="p">:</span><span class="mi">31</span> <span class="o">+</span><span class="mo">0000</span>
+<span class="n">irb</span><span class="o">&gt;</span> <span class="no">Feedback</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s2">&quot;created_at &lt; ?&quot;</span><span class="p">,</span> <span class="no">Time</span><span class="o">.</span><span class="n">now</span><span class="p">)</span>
+  <span class="no">Feedback</span> <span class="no">Load</span> <span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="mi">5</span><span class="n">ms</span><span class="p">)</span>  <span class="no">SELECT</span> <span class="s2">&quot;feedbacks&quot;</span><span class="o">.</span><span class="n">*</span> <span class="no">FROM</span> <span class="s2">&quot;feedbacks&quot;</span> <span class="no">WHERE</span> <span class="p">(</span><span class="n">created_at</span> <span class="o">&lt;</span> <span class="s1">&#39;2014-03-03 11:41:32.687457&#39;</span><span class="p">)</span>
+<span class="o">=&gt;</span> <span class="o">[</span><span class="c1">#&lt;Feedback id: 1, created_at: &quot;2014-03-03 11:29:26&quot;, updated_at: &quot;2014-03-03 11:29:26&quot;&gt;]</span>
+</code></pre></div>
+
+
+<p>When you use <code>Time.now</code>, it generates a SQL query with time in UTC.</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">irb</span><span class="o">&gt;</span> <span class="no">Time</span><span class="o">.</span><span class="n">current</span>
+<span class="o">=&gt;</span> <span class="no">Mon</span><span class="p">,</span> <span class="mo">03</span> <span class="no">Mar</span> <span class="mi">2014</span> <span class="mi">19</span><span class="p">:</span><span class="mi">42</span><span class="p">:</span><span class="mi">22</span> <span class="no">SGT</span> <span class="o">+</span><span class="mi">08</span><span class="p">:</span><span class="mo">00</span>
+<span class="n">irb</span><span class="o">&gt;</span> <span class="no">Feedback</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s2">&quot;created_at &lt; ?&quot;</span><span class="p">,</span> <span class="no">Time</span><span class="o">.</span><span class="n">current</span><span class="p">)</span>
+  <span class="no">Feedback</span> <span class="no">Load</span> <span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="mi">4</span><span class="n">ms</span><span class="p">)</span>  <span class="no">SELECT</span> <span class="s2">&quot;feedbacks&quot;</span><span class="o">.</span><span class="n">*</span> <span class="no">FROM</span> <span class="s2">&quot;feedbacks&quot;</span> <span class="no">WHERE</span> <span class="p">(</span><span class="n">created_at</span> <span class="o">&lt;</span> <span class="s1">&#39;2014-03-03 11:42:23.549020&#39;</span><span class="p">)</span>
+<span class="o">=&gt;</span> <span class="o">[</span><span class="c1">#&lt;Feedback id: 1, created_at: &quot;2014-03-03 11:29:26&quot;, updated_at: &quot;2014-03-03 11:29:26&quot;&gt;]</span>
+</code></pre></div>
+
+
+<p>When you use <code>Time.current</code>, it also generates a SQL query with time in UTC.</p>
+
+<p>Hope this helps to explain <code>Time</code> in Rails!</p>
+
+<p>Further reading:</p>
+
+<ul>
+<li><a href="http://www.elabs.se/blog/36-working-with-time-zones-in-ruby-on-rails">Working with time zones in Ruby on Rails</a></li>
+<li><a href="http://danilenko.org/2012/7/6/rails_timezones/">The Exhaustive Guide to Rails Time Zones</a></li>
+</ul>
+
+
+          </section>
+        </article>
+        <article class="comments">
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+            var disqus_shortname = 'winstonyw';
+            // var disqus_developer = 1;
+            (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </article>
+      </div>
+    </div>
+    <footer>
+      Just a boring footer. Nothing to see here lah. ~
+    </footer>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-297001-2']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
