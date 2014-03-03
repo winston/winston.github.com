@@ -5,30 +5,32 @@ title: Ruby - Reading A Remote Zip File
 
 I need to access a remote zip file and this is something that works:
 
-    # In the console, gem install "httparty"
-    require "httparty"
+{% highlight ruby %}
+# In the console, gem install "httparty"
+require "httparty"
 
-    # In the console, gem install "rubyzip"
-    require "zip"
+# In the console, gem install "rubyzip"
+require "zip"
 
-    # Get the contents of the remote zip file via HTTParty
-    # and write it into a temp zip file
+# Get the contents of the remote zip file via HTTParty
+# and write it into a temp zip file
 
-    zipfile = Tempfile.new("file")
-    zipfile.binmode # This might not be necessary depending on the zip file
-    zipfile.write(HTTParty.get("http://localhost:3000/file.zip").body)
-    zipfile.close
+zipfile = Tempfile.new("file")
+zipfile.binmode # This might not be necessary depending on the zip file
+zipfile.write(HTTParty.get("http://localhost:3000/file.zip").body)
+zipfile.close
 
-    # Unzip the temp zip file and process the contents
-    # Let garbage collection delete the temp zip file
+# Unzip the temp zip file and process the contents
+# Let garbage collection delete the temp zip file
 
-    Zip::File.open(zipfile.path) do |file|
-      file.each do |content|
-        data = file.read(content)
-        puts data
-        # Do whatever you want with the contents
-      end
-    end
+Zip::File.open(zipfile.path) do |file|
+  file.each do |content|
+    data = file.read(content)
+    puts data
+    # Do whatever you want with the contents
+  end
+end
+{% endhighlight %}
 
 The code is simple, but at the start, I kept getting an error when unzipping the temp zip file,
 and I thought I was doing something wrong.

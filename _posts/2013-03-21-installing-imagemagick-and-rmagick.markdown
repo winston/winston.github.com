@@ -7,15 +7,13 @@ Specific to Mac OS X 10.7.\*, ImageMagick v6.8.0-10 and RMagick v2.\*.
 
 The correct way to do it:
 
-{% highlight bash %}
-$ brew remove imagemagick
-$ brew install imagemagick --disable-openmp --build-from-source
+    $ brew remove imagemagick
+    $ brew install imagemagick --disable-openmp --build-from-source
 
-$ cd /usr/local/Cellar/imagemagick/6.8.0-10/lib
-$ ln -s libMagick++-Q16.7.dylib   libMagick++.dylib
-$ ln -s libMagickCore-Q16.7.dylib libMagickCore.dylib
-$ ln -s libMagickWand-Q16.7.dylib libMagickWand.dylib
-{% endhighlight %}
+    $ cd /usr/local/Cellar/imagemagick/6.8.0-10/lib
+    $ ln -s libMagick++-Q16.7.dylib   libMagick++.dylib
+    $ ln -s libMagickCore-Q16.7.dylib libMagickCore.dylib
+    $ ln -s libMagickWand-Q16.7.dylib libMagickWand.dylib
 
 The errors I got when I didn't install ImageMagick with the config options:
 

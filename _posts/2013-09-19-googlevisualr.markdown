@@ -54,34 +54,39 @@ A really basic example:
 
 *In your layout, load Google Ajax API in the head tag, at the very top.*
 
-    <script src='https://www.google.com/jsapi'></script>
+{% highlight html %}
+<script src='https://www.google.com/jsapi'></script>
+{% endhighlight %}
 
 *In a controller, e.g. `app/controllers/charts_controller.rb`*
 
-    def area_chart
-      data_table = GoogleVisualr::DataTable.new
-      # Add Column Headers
-      data_table.new_column('string', 'Year' )
-      data_table.new_column('number', 'Sales')
-      data_table.new_column('number', 'Expenses')
+{% highlight ruby %}
+def area_chart
+  data_table = GoogleVisualr::DataTable.new
+  # Add Column Headers
+  data_table.new_column('string', 'Year' )
+  data_table.new_column('number', 'Sales')
+  data_table.new_column('number', 'Expenses')
 
-      # Add Rows and Values
-      data_table.add_rows([
-          ['2004', 1000, 400],
-          ['2005', 1170, 460],
-          ['2006', 660, 1120],
-          ['2007', 1030, 540]
-      ])
+  # Add Rows and Values
+  data_table.add_rows([
+      ['2004', 1000, 400],
+      ['2005', 1170, 460],
+      ['2006', 660, 1120],
+      ['2007', 1030, 540]
+  ])
 
-      option = { width: 400, height: 240, title: 'Company Performance' }
-      @chart = GoogleVisualr::Interactive::AreaChart.new(data_table, option)
-    end
-
+  option = { width: 400, height: 240, title: 'Company Performance' }
+  @chart = GoogleVisualr::Interactive::AreaChart.new(data_table, option)
+end
+{% endhighlight %}
 
 *In the corresponding view, e.g. `app/views/charts/area_chart.html.erb`*
 
-    <div id='chart'></div>
-    <%= render_chart(@chart, 'chart') %>
+{% highlight erb %}
+<div id='chart'></div>
+<%= render_chart(@chart, 'chart') %>
+{% endhighlight %}
 
 Go ahead! Check out [GoogleVisualr on GitHub](https://github.com/winston/google_visualr) or the [Docs](http://googlevisualr.herokuapp.com/) now.
 
