@@ -101,12 +101,12 @@ Not easy for someone who's much more used to writing in Ruby prose!
 ## Attendees
 
 ### Registrants by Country
-![Registrants by Country](/assets/images/rdrc-registrants_by_country.png)
+![Registrants by Country](/assets/images/rdrc13-registrants_by_country.png)
 
 27 countries in total - with almost 50% of the audience coming from abroad.
 
 ### Registrations by Month
-![Registrations by Month](/assets/images/rdrc-registrations_by_month.png)
+![Registrations by Month](/assets/images/rdrc13-registrations_by_month.png)
 
 I believe in karma. The next time I attend a conference, I'll get the tickets early!
 
@@ -138,7 +138,7 @@ You guys are not drinking enough water!
 
 ## Improvements
 
-Still [collecting feedback](http://bit.ly/rdrc-feedback) but I already have some ideas on what can be improved next year.
+Still [collecting feedback](http://bit.ly/rdrc13-feedback) but I already have some ideas on what can be improved next year.
 
 ### Breakfast
 I was hungry in the morning, and so were all of you. Sorry!

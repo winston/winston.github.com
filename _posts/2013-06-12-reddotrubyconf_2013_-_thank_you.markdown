@@ -7,7 +7,7 @@ I didn't do this alone - RDRC 2013 is an event by the community, for the communi
 
 **Firstly, I would like to thank [Andy](http://twitter.com/andycroll) - founder of RDRC.**
 
-![Andy Croll](/assets/images/rdrc-andycroll.png)
+![Andy Croll](/assets/images/rdrc13-andycroll.png)
 
 Without him, RedDotRubyConf would not had happened in 2011 and 2012, and he gave us a great conference structure which I mostly copied for RDRC 2013.
 
@@ -17,7 +17,7 @@ Thank you, Andy! We missed your British humour, but we all know that Singapore h
 
 **Secondly, a big thank you to all the speakers who made time for RDRC 2013.**
 
-![Speakers](/assets/images/rdrc-speakers.jpg)
+![Speakers](/assets/images/rdrc13-speakers.jpg)
 
 24 speakers in all - 7 "Key Notes", 12 CFPs, and 5 Lightning Talks.
 
@@ -29,7 +29,7 @@ Thank you! Hope to see you all again, somewhere, someday.
 
 **Lastly, I would like to thank everyone who attended RDRC 2013.**
 
-![Attendees](/assets/images/rdrc-attendees.jpg)
+![Attendees](/assets/images/rdrc13-attendees.jpg)
 
 300+ Rubyists from all over the World. Thank you for your support!
 
@@ -87,8 +87,8 @@ _This list will be updated timely. Otherwise, [Cheeaun's list](https://gist.gith
 #### Photos
 
 - @reddotrubyconf's [Twitter Photos](https://twitter.com/reddotrubyconf/media/grid)
-- [Friday Hug (Actual Size)](/assets/images/rdrc-friday-hug.png)
+- [Friday Hug (Actual Size)](/assets/images/rdrc13-friday-hug.png)
 
 ### Jobs Board
 
-Download the [photo of the Jobs Board](/assets/images/rdrc-jobs-board.jpg).
+Download the [photo of the Jobs Board](/assets/images/rdrc13-jobs-board.jpg).
