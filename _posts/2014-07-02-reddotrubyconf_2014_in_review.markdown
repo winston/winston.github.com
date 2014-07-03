@@ -131,7 +131,7 @@ I'll be updating these, but otherwise, [Cheeaun's list](https://gist.github.com/
 ### Slides
 
 - My Slides, [Day 1](https://speakerdeck.com/winston/reddotrubyconf-2014-day-1) and [Day 2](https://speakerdeck.com/winston/reddotrubyconf-2014-day-2)
-- Speakers's slides are linked on [www.reddotrubyconf.com](www.reddotrubyconf.com)
+- Speakers' slides are linked on [www.reddotrubyconf.com](http://www.reddotrubyconf.com)
 
 ### Photos
 
