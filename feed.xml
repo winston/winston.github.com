@@ -7,6 +7,167 @@
     <atom:link href="http://winstonyw.com/feed.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>RedDotRubyConf 2014 In Review</title>
+      <description>&lt;p&gt;RedDotRubyConf is 4 years old now, and this is the 2nd year that I am running it.&lt;/p&gt;
+
+&lt;p&gt;Although it&#39;s not my first, it&#39;s actually even tougher than the previous year,
+because I really wanted to make sure that it would be bigger and better than before.&lt;/p&gt;
+
+&lt;p&gt;Judging from the feedback so far, I think I did ok for the second time. :)&lt;/p&gt;
+
+&lt;p&gt;At this moment, I am full of gratitude to everyone who helped made RDRC a success,
+especially &lt;em&gt;Jaryl, Yink, Kevin, Alarice&lt;/em&gt; - my Ruby Heroes,
+and &lt;a href=&quot;https://speakerdeck.com/winston/reddotrubyconf-2014-day-2?slide=17&quot;&gt;many others&lt;/a&gt;!&lt;/p&gt;
+
+&lt;h2&gt;Thank You, Sponsors!&lt;/h2&gt;
+
+&lt;p&gt;We have a lot more sponsors this year, and all of them are awesome!&lt;/p&gt;
+
+&lt;p&gt;They didn&#39;t ask for much but just wanted to do their bit and help to build the community.
+Hope the conference helped to boost their brand and even hire a few good folks too.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.neo.com&quot;&gt;Neo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.thoughtworks.com/&quot;&gt;ThoughtWorks&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/&quot;&gt;GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.tinkerbox.com.sg/&quot;&gt;Tinkerbox&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.techinasia.com/&quot;&gt;TechInAsia&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.engineyard.com/&quot;&gt;EngineYard&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://piktochart.com/&quot;&gt;Piktochart&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://odd-e.com/&quot;&gt;Odd-e&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.referralcandy.com/&quot;&gt;ReferralCandy&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://modern.ie/en-us&quot;&gt;Microsoft&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.oreilly.com/&quot;&gt;O&#39;Reilly&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://pragprog.com/&quot;&gt;Pragmatic Bookshelf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://grabtaxi.com/singapore/&quot;&gt;GrabTaxi&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h2&gt;Thank You, Speakers!&lt;/h2&gt;
+
+&lt;p&gt;Speakers, we cannot do without any of you. All of you were awesome!&lt;/p&gt;
+
+&lt;p&gt;28 speakers in all - 6 Key Notes, 14 CFPs and 6 Lightning Talks.&lt;/p&gt;
+
+&lt;p&gt;I am sure all of us learned a ton from all the speakers in those 2 days.&lt;/p&gt;
+
+&lt;p&gt;As I was running around most of the time, I didn&#39;t manage to listen to all the great talks.
+Luckily, we have Confreaks covering the show this year, so I&#39;ll catch up on the talks soon.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/rdrc14-speakers.jpg&quot; alt=&quot;Speakers&quot; /&gt;&lt;/p&gt;
+
+&lt;h2&gt;Thank YOU!&lt;/h2&gt;
+
+&lt;p&gt;What is a conference without an audience? RedDotRubyConf is for all of you!&lt;/p&gt;
+
+&lt;p&gt;Almost 350 Rubyists from all over the World gathered together for 2-days to celebrate Ruby on the tiny island called Singapore.&lt;/p&gt;
+
+&lt;p&gt;This year, we also have the most number of female attendees and students,
+and it&#39;s my hope to continue to grow the numbers for these two segments in the next year.&lt;/p&gt;
+
+&lt;p&gt;Thank you all for your support!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/rdrc14-attendees.jpg&quot; alt=&quot;Speakers&quot; /&gt;&lt;/p&gt;
+
+&lt;h2&gt;Infographics&lt;/h2&gt;
+
+&lt;p&gt;Let&#39;s look at some infographics now, powered by &lt;a href=&quot;http://piktochart.com/&quot;&gt;Piktochart&lt;/a&gt;, one of our sponsors.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Piktochart is awesome! It&#39;s my first time using the service and I am blown away. Try it!&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/rdrc14-infographics.jpg&quot; alt=&quot;Infographics&quot; /&gt;&lt;/p&gt;
+
+&lt;h2&gt;Improvements&lt;/h2&gt;
+
+&lt;p&gt;Of course, nothing is perfect, and the day after it ended,
+I have already been thinking of improvements that I could do for 2015.&lt;/p&gt;
+
+&lt;h3&gt;Ticketing and Registration&lt;/h3&gt;
+
+&lt;p&gt;I really wanted to try out &lt;a href=&quot;http://about.peatix.com/colorsync.html?hl=en&quot;&gt;Peatix&#39;s Colorsync&lt;/a&gt;, but alas,
+we have some restrictions that&#39;s better handled by the traditional spreadsheet method. Bummer..&lt;/p&gt;
+
+&lt;p&gt;Anyway, next year, I hope to make the entire ticketing and registration experience better,
+and also to find ways to make discovery and interactions amongst attendees easier.&lt;/p&gt;
+
+&lt;h3&gt;Swag&lt;/h3&gt;
+
+&lt;p&gt;I got some pretty bad lanyards, I know. Sorry! I&#39;ll fix it next year.&lt;/p&gt;
+
+&lt;p&gt;Also, someone suggested actually giving out a book. Plausible. I&#39;ll consider that.&lt;/p&gt;
+
+&lt;h3&gt;Breakfast and Water&lt;/h3&gt;
+
+&lt;p&gt;Yes! There were breakfasts this year! I hope it helped to tide you till lunch time.&lt;/p&gt;
+
+&lt;p&gt;But, I&#39;ll definitely up the quantity and variety next year.&lt;/p&gt;
+
+&lt;p&gt;And it also seems like water is actually more popular than the sodas. Someone mentioned that maybe we are all more health conscious nowadays?&lt;/p&gt;
+
+&lt;p&gt;Ok. Let&#39;s do more water and less sodas.&lt;/p&gt;
+
+&lt;h3&gt;Cleanup&lt;/h3&gt;
+
+&lt;p&gt;I received good feedback about the cocktail tables and how it encouraged conversations during lunch.&lt;/p&gt;
+
+&lt;p&gt;However, at the same time, I am disappointed that a lot of the plates and soda cans were left on the cocktail tables after lunch. :(&lt;/p&gt;
+
+&lt;p&gt;Also, with 350+ people, A LOT of trash is generated!&lt;/p&gt;
+
+&lt;p&gt;Next year, I&#39;ll need to think about getting cleaning help.&lt;/p&gt;
+
+&lt;h3&gt;Local Speakers&lt;/h3&gt;
+
+&lt;p&gt;Same problem as last year. We need more local speakers! Where are all of you?&lt;/p&gt;
+
+&lt;p&gt;How can I make more local speakers submit CFPs? Hmm..&lt;/p&gt;
+
+&lt;h3&gt;Social Media&lt;/h3&gt;
+
+&lt;p&gt;This year, I got the team contribute to &lt;a href=&quot;http://twitter.com/reddotrubyconf&quot;&gt;@reddotrubyconf&lt;/a&gt; during the conference.&lt;/p&gt;
+
+&lt;p&gt;I think we can do more next year, with a &quot;social media plan&quot; to keep it entertaining for all.&lt;/p&gt;
+
+&lt;h2&gt;Resources&lt;/h2&gt;
+
+&lt;p&gt;I&#39;ll be updating these, but otherwise, &lt;a href=&quot;https://gist.github.com/cheeaun/abe650f6a0591f73014e&quot;&gt;Cheeaun&#39;s list&lt;/a&gt; is awesome too!&lt;/p&gt;
+
+&lt;h3&gt;Slides&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;My Slides, &lt;a href=&quot;https://speakerdeck.com/winston/reddotrubyconf-2014-day-1&quot;&gt;Day 1&lt;/a&gt; and &lt;a href=&quot;https://speakerdeck.com/winston/reddotrubyconf-2014-day-2&quot;&gt;Day 2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Speakers&#39;s slides are linked on &lt;a href=&quot;www.reddotrubyconf.com&quot;&gt;www.reddotrubyconf.com&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Photos&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.flickr.com/photos/reddotrubyconf&quot;&gt;RedDotRubyConf&#39;s Flickr&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.flickr.com/photos/ngpestelos/sets/72157645418666805/&quot;&gt;Nestor Pestelos&#39;s Flickr&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Videos&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;Confreaks are in the process of editing the videos. Stay tuned.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h3&gt;Jobs Board&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;Photo of Jobs Board to come soon. Stay tuned.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;--&lt;/p&gt;
+
+&lt;p&gt;That&#39;s it. See you all in 2015!&lt;/p&gt;
+
+&lt;p&gt;Drop me an email - suggestions, compliments or criticisms. Thank you!&lt;/p&gt;
+</description>
+      <pubDate>Wed, 02 Jul 2014 00:00:00 +0800</pubDate>
+      <link>http://winstonyw.com/2014/07/02/reddotrubyconf_2014_in_review/</link>
+      <guid isPermaLink="true">http://winstonyw.com/2014/07/02/reddotrubyconf_2014_in_review/</guid>
+    </item>
+    
+    <item>
       <title>Time.now vs Time.zone.now</title>
       <description>&lt;p&gt;Ruby &lt;code&gt;Time&lt;/code&gt; can get confusing when used in your Rails app. What &lt;code&gt;Time&lt;/code&gt; is it now?&lt;/p&gt;
 
@@ -109,7 +270,7 @@ as all time columns in the database are also stored in UTC. Let&#39;s verify..&l
 &lt;/ul&gt;
 
 </description>
-      <pubDate>Mon, 03 Mar 2014 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 03 Mar 2014 00:00:00 +0800</pubDate>
       <link>http://winstonyw.com/2014/03/03/time_now_vs_time_zone_now/</link>
       <guid isPermaLink="true">http://winstonyw.com/2014/03/03/time_now_vs_time_zone_now/</guid>
     </item>
@@ -184,7 +345,7 @@ which means it will only load in dev or test environment because you shouldn&#39
 
 &lt;p&gt;Keep this in mind when you encounter weird failing specs when using &lt;code&gt;spring&lt;/code&gt;.&lt;/p&gt;
 </description>
-      <pubDate>Mon, 03 Mar 2014 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 03 Mar 2014 00:00:00 +0800</pubDate>
       <link>http://winstonyw.com/2014/03/03/spring_and_failing_specs/</link>
       <guid isPermaLink="true">http://winstonyw.com/2014/03/03/spring_and_failing_specs/</guid>
     </item>
@@ -251,7 +412,7 @@ But whichever it is, my guiding principle is clear - I want to share my knowledg
 
 &lt;p&gt;Anyway, fail also ok. At least I tried! It&#39;s going to be an exciting 2014 ahead.&lt;/p&gt;
 </description>
-      <pubDate>Sun, 22 Dec 2013 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 22 Dec 2013 00:00:00 +0800</pubDate>
       <link>http://winstonyw.com/2013/12/22/passion_drives_you_to_do_crazy_things/</link>
       <guid isPermaLink="true">http://winstonyw.com/2013/12/22/passion_drives_you_to_do_crazy_things/</guid>
     </item>
@@ -332,7 +493,7 @@ and I am sure we&#39;ll continue to have more RoR training sessions in the futur
 &lt;img src=&quot;/assets/images/rails_installfest-3.jpg&quot; alt=&quot;Attendees&quot; /&gt;
 &lt;img src=&quot;/assets/images/rails_installfest-4.jpg&quot; alt=&quot;Attendees&quot; /&gt;&lt;/p&gt;
 </description>
-      <pubDate>Mon, 07 Oct 2013 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 07 Oct 2013 00:00:00 +0800</pubDate>
       <link>http://winstonyw.com/2013/10/07/rails_installfest/</link>
       <guid isPermaLink="true">http://winstonyw.com/2013/10/07/rails_installfest/</guid>
     </item>
@@ -363,7 +524,7 @@ apply the initializer &quot;hack&quot;.&lt;/p&gt;
 
 &lt;p&gt;Or, you can just be deterministic and &lt;a href=&quot;http://winstonyw.com/2013/10/01/ruby_reading_a_remote_zip_file/&quot;&gt;create the Tempfile yourself&lt;/a&gt;.&lt;/p&gt;
 </description>
-      <pubDate>Wed, 02 Oct 2013 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 02 Oct 2013 00:00:00 +0800</pubDate>
       <link>http://winstonyw.com/2013/10/02/openuris_open_tempfile_and_stringio/</link>
       <guid isPermaLink="true">http://winstonyw.com/2013/10/02/openuris_open_tempfile_and_stringio/</guid>
     </item>
@@ -415,7 +576,7 @@ that also triggered the building of the remote zip file.&lt;/p&gt;
 
 &lt;p&gt;Anyway, &lt;a href=&quot;http://blog.huangzhimin.com/2012/10/02/avoid-using-rubyzip/&quot;&gt;RubyZip is poor in performance&lt;/a&gt;. Might want to try &lt;a href=&quot;http://zipruby.rubyforge.org/&quot;&gt;ZipRuby&lt;/a&gt; instead.&lt;/p&gt;
 </description>
-      <pubDate>Tue, 01 Oct 2013 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 01 Oct 2013 00:00:00 +0800</pubDate>
       <link>http://winstonyw.com/2013/10/01/ruby_reading_a_remote_zip_file/</link>
       <guid isPermaLink="true">http://winstonyw.com/2013/10/01/ruby_reading_a_remote_zip_file/</guid>
     </item>
@@ -521,7 +682,7 @@ Definitely outdated, but it still explains the intention and basics of the RubyG
 &lt;iframe src=&quot;http://www.slideshare.net/slideshow/embed_code/3737737&quot; width=&quot;427&quot; height=&quot;356&quot; frameborder=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; scrolling=&quot;no&quot; style=&quot;border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px&quot; allowfullscreen&gt; &lt;/iframe&gt;
 
 </description>
-      <pubDate>Thu, 19 Sep 2013 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 19 Sep 2013 00:00:00 +0800</pubDate>
       <link>http://winstonyw.com/2013/09/19/googlevisualr/</link>
       <guid isPermaLink="true">http://winstonyw.com/2013/09/19/googlevisualr/</guid>
     </item>
@@ -543,7 +704,7 @@ which made me conscious of doing that happened on the first few days of working 
 
 &lt;p&gt;Being &lt;strong&gt;mindful&lt;/strong&gt; of your pair makes your pair happy, and you&#39;ll be happy too!&lt;/p&gt;
 </description>
-      <pubDate>Tue, 27 Aug 2013 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 27 Aug 2013 00:00:00 +0800</pubDate>
       <link>http://winstonyw.com/2013/08/27/pairing_and_email_sign_off/</link>
       <guid isPermaLink="true">http://winstonyw.com/2013/08/27/pairing_and_email_sign_off/</guid>
     </item>
@@ -664,13 +825,13 @@ will sign up for the Lightning Talk slots.&lt;/p&gt;
 
 &lt;h3&gt;Registrants by Country&lt;/h3&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/rdrc-registrants_by_country.png&quot; alt=&quot;Registrants by Country&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/rdrc13-registrants_by_country.png&quot; alt=&quot;Registrants by Country&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;27 countries in total - with almost 50% of the audience coming from abroad.&lt;/p&gt;
 
 &lt;h3&gt;Registrations by Month&lt;/h3&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/rdrc-registrations_by_month.png&quot; alt=&quot;Registrations by Month&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/rdrc13-registrations_by_month.png&quot; alt=&quot;Registrations by Month&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;I believe in karma. The next time I attend a conference, I&#39;ll get the tickets early!&lt;/p&gt;
 
@@ -706,7 +867,7 @@ You guys are not drinking enough water!&lt;/p&gt;
 
 &lt;h2&gt;Improvements&lt;/h2&gt;
 
-&lt;p&gt;Still &lt;a href=&quot;http://bit.ly/rdrc-feedback&quot;&gt;collecting feedback&lt;/a&gt; but I already have some ideas on what can be improved next year.&lt;/p&gt;
+&lt;p&gt;Still &lt;a href=&quot;http://bit.ly/rdrc13-feedback&quot;&gt;collecting feedback&lt;/a&gt; but I already have some ideas on what can be improved next year.&lt;/p&gt;
 
 &lt;h3&gt;Breakfast&lt;/h3&gt;
 
@@ -745,111 +906,9 @@ people will have less incentive for attending RDRC, knowing that videos will be 
 
 &lt;p&gt;Drop me an email - suggestions, compliments or criticisms. Thank you!&lt;/p&gt;
 </description>
-      <pubDate>Mon, 17 Jun 2013 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 17 Jun 2013 00:00:00 +0800</pubDate>
       <link>http://winstonyw.com/2013/06/17/reddotrubyconf_2013_-_wrap_up/</link>
       <guid isPermaLink="true">http://winstonyw.com/2013/06/17/reddotrubyconf_2013_-_wrap_up/</guid>
-    </item>
-    
-    <item>
-      <title>RedDotRubyConf 2013 - Thank You</title>
-      <description>&lt;p&gt;I didn&#39;t do this alone - RDRC 2013 is an event by the community, for the community. &lt;a href=&quot;https://twitter.com/abhayashenoy&quot;&gt;Abhaya&lt;/a&gt;, &lt;a href=&quot;https://twitter.com/luweidewei&quot;&gt;Wei&lt;/a&gt;, &lt;a href=&quot;https://twitter.com/mohangk&quot;&gt;Mohan&lt;/a&gt;, and many more all helped to make this happen. They are my heros!&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Firstly, I would like to thank &lt;a href=&quot;http://twitter.com/andycroll&quot;&gt;Andy&lt;/a&gt; - founder of RDRC.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/rdrc-andycroll.png&quot; alt=&quot;Andy Croll&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Without him, RedDotRubyConf would not had happened in 2011 and 2012, and he gave us a great conference structure which I mostly copied for RDRC 2013.&lt;/p&gt;
-
-&lt;p&gt;Throughout the months of preparing for RDRC 2013, he was also ever helpful in providing suggestions and encouragement to us.&lt;/p&gt;
-
-&lt;p&gt;Thank you, Andy! We missed your British humour, but we all know that Singapore has to be independent someday right? =)&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Secondly, a big thank you to all the speakers who made time for RDRC 2013.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/rdrc-speakers.jpg&quot; alt=&quot;Speakers&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;24 speakers in all - 7 &quot;Key Notes&quot;, 12 CFPs, and 5 Lightning Talks.&lt;/p&gt;
-
-&lt;p&gt;You guys are awesome, and the knowledge and experience that you shared with the us during the 2 days was priceless.&lt;/p&gt;
-
-&lt;p&gt;We have all leveled up, and it&#39;s because of you guys.&lt;/p&gt;
-
-&lt;p&gt;Thank you! Hope to see you all again, somewhere, someday.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Lastly, I would like to thank everyone who attended RDRC 2013.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/rdrc-attendees.jpg&quot; alt=&quot;Attendees&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;300+ Rubyists from all over the World. Thank you for your support!&lt;/p&gt;
-
-&lt;p&gt;I am also touched and encouraged by the lovely feedback that I have received thus far, and I am really grateful for making new friends amongst you all.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;A little jealous though, because you all had more time to chat with the speakers than me!&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;--&lt;/p&gt;
-
-&lt;p&gt;I had a great time at RDRC 2013 and I hope everyone enjoyed themselves too.&lt;/p&gt;
-
-&lt;p&gt;See you all next year!&lt;/p&gt;
-
-&lt;h3&gt;Resources&lt;/h3&gt;
-
-&lt;p&gt;&lt;em&gt;This list will be updated timely. Otherwise, &lt;a href=&quot;https://gist.github.com/cheeaun/5729325&quot;&gt;Cheeaun&#39;s list&lt;/a&gt; is pretty good too.&lt;/em&gt;&lt;/p&gt;
-
-&lt;h4&gt;Slides For Day 1&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/winston/reddotrubyconf-2013-day-1&quot;&gt;My Slides&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Aaron Patterson: &lt;a href=&quot;https://speakerdeck.com/tenderlove/reddotrubyconf&quot;&gt;Refactoring Rails&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Aaron Patterson: &lt;a href=&quot;https://speakerdeck.com/tenderlove/americas-next-top-engineer&quot;&gt;America&#39;s Next Top Engineer&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Ola Bini: &lt;a href=&quot;/assets/downloads/JRubyForTheWin.pdf&quot;&gt;JRuby For The Win&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Pablo Astigarraga: &lt;a href=&quot;https://speakerdeck.com/pote/50-shades-of-mvc&quot;&gt;50 Shades of MVC&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Alexey Gaziev: &lt;a href=&quot;http://www.slideshare.net/gazay/gon-rdrc&quot;&gt;Rails And Javascript: Brothers In Arms Using Gon&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Luismi Cavallé: &lt;a href=&quot;https://speakerdeck.com/cavalle/keep-your-activerecord-models-manageable-the-rails-way&quot;&gt;Keep Your ActiveRecord Models Manageable The Rails Way&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Richard Huang: &lt;a href=&quot;http://huangzhimin.com/2013/06/07/my-presentation-at-reddotrubyconf-2013/&quot;&gt;Building Asynchronous APIs&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Paul Gallagher: &lt;a href=&quot;http://www.slideshare.net/tardate/ruby-the-hard-bits&quot;&gt;Ruby - The Hard Bits&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Sakchai Siripanyawuth: &lt;a href=&quot;http://www.slideshare.net/artellectual/better-ujsforrails&quot;&gt;A Better UJS for Rails&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Max Gorin: &lt;a href=&quot;https://speakerdeck.com/nomadcoder/client-server-gui-web-components-with-ext-js-and-rails&quot;&gt;Client-Server GUI Web Components With Ext JS And Rails&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Bartosz Knapik: &lt;a href=&quot;https://speakerdeck.com/bartes/meet-angularjs-and-fall-in-love&quot;&gt;Meet AngularJS And Fall In Love&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Matthew Rudy Jacobs: &lt;a href=&quot;https://speakerdeck.com/matthewrudy/make-me-a-better-rubyist&quot;&gt;Make Me A Better Rubyist&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Kentaro Kuribayashi: &lt;a href=&quot;https://speakerdeck.com/kentaro/glint&quot;&gt;Glint - Fires Arbitrary TCP Server Processs For Tests&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Robert Roach: &lt;a href=&quot;http://rjayroach.files.wordpress.com/2013/06/ember_reddot_ruby_conf.pdf&quot;&gt;EmberJS&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Jim Weirich: &lt;a href=&quot;https://github.com/jimweirich/presentation_kata_and_analysis/blob/master/pdf/KataAndAnalysis.key.pdf&quot;&gt;Code Kata And Analysis&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;h4&gt;Slides For Day 2&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/winston/reddotrubyconf-2013-day-2&quot;&gt;My Slides&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;José Valim: &lt;a href=&quot;https://speakerdeck.com/plataformatec/concurrency-in-ruby-tools-of-the-trade&quot;&gt;Concurrency In Ruby: Tools Of The Trade&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Akira Matsuda: &lt;a href=&quot;https://speakerdeck.com/a_matsuda/ruby-2-dot-0-on-rails-in-production&quot;&gt;Ruby 2.0 On Rails In Production&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Simon Robson: &lt;a href=&quot;https://speakerdeck.com/shr/optimising-self-at-reddotrubyconf-2013&quot;&gt;Optimising Self&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Hiroshi Shibata: &lt;a href=&quot;https://speakerdeck.com/hsbt/from-legacy-to-edge&quot;&gt;From &#39;Legacy&#39; To &#39;Edge&#39;: Continuous Upgrades For Rails Apps&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Chang Sau Sheong: &lt;a href=&quot;https://speakerdeck.com/sausheong/playing-with-ruby&quot;&gt;Playing With Ruby&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Yi-Ting Cheng: &lt;a href=&quot;http://xdite.github.io/security-basic/&quot;&gt;Secure Your Rails Application: The Basics&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Christopher Rigor: Identical Environments Using Chef, AWS And Vagrant&lt;/li&gt;
-&lt;li&gt;Prem Sichanugrist: &lt;a href=&quot;https://speakerdeck.com/sikachu/dependencies-testing-with-appraisal-and-bundler&quot;&gt;Dependencies Testing With Appraisal And Bundler&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Nigel Rausch: Fast &amp;amp; Effective View Testing&lt;/li&gt;
-&lt;li&gt;Steve Klabnik: Functional Reactive Programming In Ruby&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;h4&gt;Photos&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;@reddotrubyconf&#39;s &lt;a href=&quot;https://twitter.com/reddotrubyconf/media/grid&quot;&gt;Twitter Photos&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;/assets/images/rdrc-friday-hug.png&quot;&gt;Friday Hug (Actual Size)&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;h3&gt;Jobs Board&lt;/h3&gt;
-
-&lt;p&gt;Download the &lt;a href=&quot;/assets/images/rdrc-jobs-board.jpg&quot;&gt;photo of the Jobs Board&lt;/a&gt;.&lt;/p&gt;
-</description>
-      <pubDate>Wed, 12 Jun 2013 00:00:00 +0000</pubDate>
-      <link>http://winstonyw.com/2013/06/12/reddotrubyconf_2013_-_thank_you/</link>
-      <guid isPermaLink="true">http://winstonyw.com/2013/06/12/reddotrubyconf_2013_-_thank_you/</guid>
     </item>
     
   </channel>
