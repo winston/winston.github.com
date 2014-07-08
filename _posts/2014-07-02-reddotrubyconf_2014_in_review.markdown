@@ -137,6 +137,7 @@ I'll be updating these, but otherwise, [Cheeaun's list](https://gist.github.com/
 
 - [RedDotRubyConf's Flickr](https://www.flickr.com/photos/reddotrubyconf)
 - [Nestor Pestelos's Flickr](https://www.flickr.com/photos/ngpestelos/sets/72157645418666805/)
+- [Faun's Photos](http://photos.faun.me/Events/RedDotRubyConf2014/)
 
 ### Videos
 
