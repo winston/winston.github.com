@@ -33,6 +33,7 @@ GEM
     pygments.rb (0.5.2)
       posix-spawn (~> 0.3.6)
       yajl-ruby (~> 1.1.0)
+    rake (10.1.0)
     rdiscount (2.1.6)
     redcarpet (2.2.2)
     safe_yaml (0.7.1)
@@ -49,5 +50,6 @@ DEPENDENCIES
   bourbon
   haml
   jekyll
+  rake
   rdiscount
   sass
