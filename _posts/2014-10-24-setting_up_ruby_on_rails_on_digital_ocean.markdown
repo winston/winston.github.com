@@ -326,7 +326,7 @@ server {
     server_name 		<app_domain>;
     passenger_enabled 	on;
     rails_env    		production;
-    root         		/home/demo/<app_domain>/current/public;
+    root         		/home/deploy/<app_domain>/current/public;
 }
 ````
 
