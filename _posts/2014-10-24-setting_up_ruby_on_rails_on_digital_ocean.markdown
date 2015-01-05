@@ -235,6 +235,13 @@ machine$> mina init
 Created config/deploy.rb.
 ```` 
 
+Use `rvm` or `rbenv`.
+
+````
+require 'mina/rvm'
+# require 'mina/rbenv'
+````
+
 Update `config/deploy.rb` with Droplet's Details.
 
 ````
