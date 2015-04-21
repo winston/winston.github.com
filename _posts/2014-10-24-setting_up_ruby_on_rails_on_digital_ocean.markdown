@@ -3,9 +3,10 @@ layout: post
 title: Setting Up Ruby on Rails On Digital Ocean
 ---
 
-Documentation of how I setup [SGBusFeedback.com](http://www.sgbusfeedback.com), 
-a basic Ruby on Rails application backed by a PostgreSQL database 
-on Digital Ocean. 
+**Edit** This has been updated for Ubuntu 14.10, Ruby 2.2.2 and Postgres 9.4.
+
+Documentation of how I setup [SGBusFeedback.com](http://www.sgbusfeedback.com),
+a basic Ruby on Rails application backed by a PostgreSQL database on Digital Ocean.
 
 Noting it down for my future self.
 
@@ -13,7 +14,7 @@ Noting it down for my future self.
 ## Create Droplet on Digital Ocean
 
 - Login to Digital Ocean and start `Create`-ing a Droplet
-- Size		: $5/mth 
+- Size		: $5/mth
 - Region	: Singapore
 - Image		: Linux Distribtions > Ubuntu 14.04 x64
 - Add SSH key for easy access to the Droplet
@@ -46,7 +47,7 @@ Generating public/private rsa key pair.
 Enter file in which to save the key (/Users/winston/.ssh/id_rsa): id_deploy_digital_ocean
 ...
 ````
-Copy the SSH key to the Droplet. 
+Copy the SSH key to the Droplet.
 
 On Mac? `brew install ssh-copy-id`. On Linux? You already have `ssh-copy-id`.
 
@@ -88,8 +89,8 @@ Host	<appname>
 	Port			8888
 	User			deploy
 	IdentityFile 	~/.ssh/id_deploy_digital_ocean
-````	
-	
+````
+
 ````
 machine$> ssh <appname>
 ````
@@ -121,11 +122,11 @@ droplet$> gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3
 Relogin to shell, install RVM requirements, and Ruby.
 
 ````
-droplet$> source ~/.rvm/scripts/rvm
-droplet$> echo "source ~/.rvm/scripts/rvm" >> ~/.bashrc
+droplet$> source /etc/profile.d/rvm.sh
+droplet$> echo "source /etc/profile.d/rvm.sh" >> ~/.bashrc
 droplet$> rvm requirements
-droplet$> rvm install 2.1.4
-droplet$> rvm use 2.1.4 --default
+droplet$> rvm install 2.2.2
+droplet$> rvm use 2.2.2 --default
 droplet$> ruby -v
 ````
 
@@ -174,11 +175,11 @@ Also find out where your `ruby` is, and use that for `passenger_ruby`.
 
 ````
 droplet$> passenger-config --ruby-command
-  Command: /home/demo/.rvm/gems/ruby-2.1.2/wrappers/ruby
-  Version: ruby 2.1.2p95 (2014-05-08 revision 45877) [x86_64-linux]
-  To use in Apache: PassengerRuby /home/deploy/.rvm/gems/ruby-2.1.2/wrappers/ruby
-  To use in Nginx : passenger_ruby /home/deplopy/.rvm/gems/ruby-2.1.2/wrappers/ruby
-  To use with Standalone: /home/deploy/.rvm/gems/ruby-2.1.2/wrappers/ruby /usr/bin/passenger start
+  Command: /usr/local/rvm/gems/ruby-2.2.2/wrappers/ruby
+  Version: ruby 2.2.2p95 (2015-04-13 revision 50295) [x86_64-linux]
+  To use in Apache: PassengerRuby /usr/local/rvm/gems/ruby-2.2.2/wrappers/ruby
+  To use in Nginx : passenger_ruby /usr/local/rvm/gems/ruby-2.2.2/wrappers/ruby
+  To use with Standalone: /usr/local/rvm/gems/ruby-2.2.2/wrappers/ruby /usr/bin/passenger start
 ````
 
 ````
@@ -192,7 +193,7 @@ droplet$> sudo service nginx restart
 Install it.
 
 ````
-droplet$> sudo apt-get install postgresql postgresql-contrib libpq-dev
+droplet$> sudo apt-get install postgresql-9.4 libpq-dev
 ````
 
 Set up Postgres user.
@@ -233,7 +234,7 @@ Init Mina on your application.
 ````
 machine$> mina init
 Created config/deploy.rb.
-```` 
+````
 
 Use `rvm` or `rbenv`.
 
