@@ -1,7 +1,10 @@
 name        : WinstonYW
 description : This is the blog of Winston Teo Yong Wei. Mostly about Ruby and the Community.
 url         : http://winstonyw.com
-permalink : pretty
-markdown  : rdiscount
-pygments  : true
-exclude   : ["README", "Gemfile", "Gemfile.lock", "Rakefile", "deploy", "wordpress_archives", "vendor"]
+permalink   : pretty
+markdown    : rdiscount
+highlighter : pygments
+exclude     : ["README", "Gemfile", "Gemfile.lock", "Rakefile", "deploy", "wordpress_archives", "vendor"]
+gems        : [bourbon, neat]
+sass:
+  sass_dir: assets/css

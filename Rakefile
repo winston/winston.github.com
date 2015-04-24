@@ -27,12 +27,12 @@ end
 
 desc "Launch Dev"
 task :dev do
-  system "jekyll serve --watch"
+  system "bundle exec jekyll serve --watch"
 end
 
 desc "Build"
 task :build do
-  system "jekyll build #{public_dir}"
+  system "bundle exec jekyll build #{public_dir}"
 end
 
 # Stolen from Octopress
