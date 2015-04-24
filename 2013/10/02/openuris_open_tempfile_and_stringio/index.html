@@ -66,10 +66,9 @@
           <section>
             <p><code>OpenURI#open</code> has a dual personality. Consider the code below..</p>
 
-<div class="highlight"><pre><code class="ruby"><span class="nb">require</span> <span class="s1">&#39;open-uri&#39;</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;open-uri&#39;</span>
 
-<span class="n">zipfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;http://example.com/file.zip&quot;</span><span class="p">)</span>
-</code></pre></div>
+<span class="n">zipfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;http://example.com/file.zip&quot;</span><span class="p">)</span></code></pre></div>
 
 
 <p>With this, <code>zipfile</code> can either be a <code>Tempfile</code> instance or a <code>StringIO</code> instance.</p>
@@ -78,12 +77,11 @@
 And as mentioned in the same post, to get <code>OpenURI#open</code> to always return a <code>Tempfile</code>,
 apply the initializer "hack".</p>
 
-<div class="highlight"><pre><code class="ruby"><span class="nb">require</span> <span class="s1">&#39;open-uri&#39;</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;open-uri&#39;</span>
 
 <span class="c1"># Don&#39;t allow downloaded files to be created as StringIO. Force a tempfile to be created.</span>
-<span class="ss">OpenURI</span><span class="p">:</span><span class="ss">:Buffer</span><span class="o">.</span><span class="n">send</span> <span class="ss">:remove_const</span><span class="p">,</span> <span class="s1">&#39;StringMax&#39;</span> <span class="k">if</span> <span class="ss">OpenURI</span><span class="p">:</span><span class="ss">:Buffer</span><span class="o">.</span><span class="n">const_defined?</span><span class="p">(</span><span class="s1">&#39;StringMax&#39;</span><span class="p">)</span>
-<span class="ss">OpenURI</span><span class="p">:</span><span class="ss">:Buffer</span><span class="o">.</span><span class="n">const_set</span> <span class="s1">&#39;StringMax&#39;</span><span class="p">,</span> <span class="mi">0</span>
-</code></pre></div>
+<span class="no">OpenURI</span><span class="o">::</span><span class="no">Buffer</span><span class="o">.</span><span class="n">send</span> <span class="ss">:remove_const</span><span class="p">,</span> <span class="s1">&#39;StringMax&#39;</span> <span class="k">if</span> <span class="no">OpenURI</span><span class="o">::</span><span class="no">Buffer</span><span class="o">.</span><span class="n">const_defined?</span><span class="p">(</span><span class="s1">&#39;StringMax&#39;</span><span class="p">)</span>
+<span class="no">OpenURI</span><span class="o">::</span><span class="no">Buffer</span><span class="o">.</span><span class="n">const_set</span> <span class="s1">&#39;StringMax&#39;</span><span class="p">,</span> <span class="mi">0</span></code></pre></div>
 
 
 <p>Or, you can just be deterministic and <a href="http://winstonyw.com/2013/10/01/ruby_reading_a_remote_zip_file/">create the Tempfile yourself</a>.</p>

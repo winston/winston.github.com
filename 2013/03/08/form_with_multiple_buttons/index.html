@@ -78,13 +78,12 @@ and it would perform the action and go to the location that was specified in the
 
 <p>In code, that means you can do the following:</p>
 
-<div class="highlight"><pre><code class="html"><span class="nt">&lt;form</span> <span class="na">id=</span><span class="s">&quot;myform&quot;</span><span class="nt">&gt;</span>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;form</span> <span class="na">id=</span><span class="s">&quot;myform&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;input</span> <span class="na">id=</span><span class="s">&quot;name&quot;</span> <span class="na">name=</span><span class="s">&quot;name&quot;</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span><span class="nt">&gt;</span>
 <span class="nt">&lt;/form&gt;</span>
 
 <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;submit&quot;</span> <span class="na">value=</span><span class="s">&quot;Accept&quot;</span> <span class="na">form=</span><span class="s">&quot;myform&quot;</span> <span class="na">formmethod=</span><span class="s">&quot;POST&quot;</span> <span class="na">formaction=</span><span class="s">&quot;/accept&quot;</span><span class="nt">&gt;</span>
-<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;submit&quot;</span> <span class="na">value=</span><span class="s">&quot;Reject&quot;</span> <span class="na">form=</span><span class="s">&quot;myform&quot;</span> <span class="na">formmethod=</span><span class="s">&quot;POST&quot;</span> <span class="na">formaction=</span><span class="s">&quot;/reject&quot;</span><span class="nt">&gt;</span>
-</code></pre></div>
+<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;submit&quot;</span> <span class="na">value=</span><span class="s">&quot;Reject&quot;</span> <span class="na">form=</span><span class="s">&quot;myform&quot;</span> <span class="na">formmethod=</span><span class="s">&quot;POST&quot;</span> <span class="na">formaction=</span><span class="s">&quot;/reject&quot;</span><span class="nt">&gt;</span></code></pre></div>
 
 
 <p>Side note.. To test this in Rspec + Capybara, specs have to run with a JavaScript driver.</p>

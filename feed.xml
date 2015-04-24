@@ -7,6 +7,349 @@
     <atom:link href="http://winstonyw.com/feed.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Setting Up Ruby on Rails On Digital Ocean</title>
+      <description>&lt;p&gt;&lt;strong&gt;Edit&lt;/strong&gt; This has been updated for Ubuntu 14.10, Ruby 2.2.2 and Postgres 9.4.&lt;/p&gt;
+
+&lt;p&gt;Documentation of how I setup &lt;a href=&quot;http://www.sgbusfeedback.com&quot;&gt;SGBusFeedback.com&lt;/a&gt;,
+a basic Ruby on Rails application backed by a PostgreSQL database on Digital Ocean.&lt;/p&gt;
+
+&lt;p&gt;Noting it down for my future self.&lt;/p&gt;
+
+&lt;h2&gt;Create Droplet on Digital Ocean&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Login to Digital Ocean and start &lt;code&gt;Create&lt;/code&gt;-ing a Droplet&lt;/li&gt;
+&lt;li&gt;Size      : $5/mth&lt;/li&gt;
+&lt;li&gt;Region    : Singapore&lt;/li&gt;
+&lt;li&gt;Image     : Linux Distribtions &gt; Ubuntu 14.04 x64&lt;/li&gt;
+&lt;li&gt;Add SSH key for easy access to the Droplet&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Create Droplet&lt;/code&gt;!&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h2&gt;Set Up Droplet&lt;/h2&gt;
+
+&lt;p&gt;Assuming that your SSH key has been set up properly, SSH into your Droplet.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;machine$&amp;gt; ssh root@&amp;lt;ipaddress&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Add a Deploy User&lt;/h3&gt;
+
+&lt;p&gt;Create a &lt;code&gt;deploy&lt;/code&gt; user on the Droplet.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;droplet$&amp;gt; sudo adduser deploy
+droplet$&amp;gt; sudo adduser deploy sudo #add to sudo group
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Create a SSH key on your machine, and upload the key.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;machine$&amp;gt; ssh-keygen
+Generating public/private rsa key pair.
+Enter file in which to save the key (/Users/winston/.ssh/id_rsa): id_deploy_digital_ocean
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Copy the SSH key to the Droplet.&lt;/p&gt;
+
+&lt;p&gt;On Mac? &lt;code&gt;brew install ssh-copy-id&lt;/code&gt;. On Linux? You already have &lt;code&gt;ssh-copy-id&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;machine$&amp;gt; ssh-copy-id -i ~/.ssh/id_deploy_digital_ocean deploy@&amp;lt;ipaddress&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now you can login to your Droplet with:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;machine$&amp;gt; ssh-add ~/.ssh/id_deploy_digital_ocean
+machine$&amp;gt; ssh deploy@&amp;lt;ipaddress&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Harden Droplet&lt;/h3&gt;
+
+&lt;p&gt;Modify SSH settings &lt;code&gt;/etc/ssh/sshd_config&lt;/code&gt; in the Droplet.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Add &lt;code&gt;PermitRootLogin without-password&lt;/code&gt; (&lt;a href=&quot;http://askubuntu.com/questions/449364/what-does-without-password-mean-in-sshd-config-file&quot;&gt;What?&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Add &lt;code&gt;UseDNS no&lt;/code&gt; (&lt;a href=&quot;http://unix.stackexchange.com/questions/56941/what-is-the-point-of-sshd-usedns-option&quot;&gt;What?&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Change &lt;code&gt;Port&lt;/code&gt; to something unique and take note. E.g. &lt;code&gt;8888&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Reload SSH with &lt;code&gt;reload ssh&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Verify your SSH settings with your new user. In a new Terminal:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;machine$&amp;gt; ssh -p 8888 deploy@&amp;lt;ipaddress&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Bonus. Add this to &lt;code&gt;~/.ssh/config&lt;/code&gt; on your machine so that login will be a breeze.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# in ~/.ssh/config
+Host    &amp;lt;appname&amp;gt;
+    HostName        &amp;lt;ipaddress&amp;gt;
+    Port            8888
+    User            deploy
+    IdentityFile    ~/.ssh/id_deploy_digital_ocean
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;machine$&amp;gt; ssh &amp;lt;appname&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Update and Upgrade Ubuntu&lt;/h3&gt;
+
+&lt;p&gt;A Ruby on Rails server requires quite a few things. Installed these as the &lt;code&gt;deploy&lt;/code&gt; user.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;droplet$&amp;gt; sudo apt-get update
+droplet$&amp;gt; sudo apt-get upgrade
+droplet$&amp;gt; sudo apt-get install git-core
+droplet$&amp;gt; sudo apt-get install nodejs # for assets compilation.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;RVM&lt;/h3&gt;
+
+&lt;p&gt;Install RVM.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;droplet$&amp;gt; curl -L https://get.rvm.io | bash -s stable
+# If an error about gpg occurs, follow the instructions..
+droplet$&amp;gt; gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3
+# https://github.com/wayneeseguin/rvm/issues/3110
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Relogin to shell, install RVM requirements, and Ruby.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;droplet$&amp;gt; source /etc/profile.d/rvm.sh
+droplet$&amp;gt; echo &quot;source /etc/profile.d/rvm.sh&quot; &amp;gt;&amp;gt; ~/.bashrc
+droplet$&amp;gt; rvm requirements
+droplet$&amp;gt; rvm install 2.2.2
+droplet$&amp;gt; rvm use 2.2.2 --default
+droplet$&amp;gt; ruby -v
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;RubyGems Setup&lt;/h3&gt;
+
+&lt;p&gt;Prevent RubyGems from installing docs.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;droplet$&amp;gt; echo &quot;gem: --no-ri --no-rdoc&quot; &amp;gt; ~/.gemrc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Install Nginx and Passenger&lt;/h3&gt;
+
+&lt;p&gt;Follow the instructions on the &lt;a href=&quot;https://www.phusionpassenger.com/documentation/Users%20guide%20Nginx.html#installation&quot;&gt;Official Documentation&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h4&gt;Condensed Version:&lt;/h4&gt;
+
+&lt;p&gt;Install Phusion&#39;s PGP key and add HTTPS support for ATP.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;droplet$&amp;gt; sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 561F9B9CAC40B2F7
+droplet$&amp;gt; sudo apt-get install apt-transport-https ca-certificates
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Add Passenger&#39;s repository. &lt;em&gt;&lt;strong&gt;Just one.&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;droplet$&amp;gt; sudo sh -c &#39;echo &quot;deb https://oss-binaries.phusionpassenger.com/apt/passenger trusty main&quot; &amp;gt;&amp;gt; /etc/apt/sources.list.d/passenger.list&#39;
+droplet$&amp;gt; sudo chown root: /etc/apt/sources.list.d/passenger.list
+droplet$&amp;gt; sudo chmod 600 /etc/apt/sources.list.d/passenger.list
+droplet$&amp;gt; sudo apt-get update
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Install Nginx and Passenger packages.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# The Official Documentation uses `nginx-extras` but `nginx-full` is good enough.
+droplet$&amp;gt; sudo apt-get install nginx-full passenger
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Edit &lt;code&gt;/etc/nginx/nginx.conf&lt;/code&gt; and uncomment &lt;code&gt;passenger_root&lt;/code&gt; and &lt;code&gt;passenger_ruby&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Also find out where your &lt;code&gt;ruby&lt;/code&gt; is, and use that for &lt;code&gt;passenger_ruby&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;droplet$&amp;gt; passenger-config --ruby-command
+  Command: /usr/local/rvm/gems/ruby-2.2.2/wrappers/ruby
+  Version: ruby 2.2.2p95 (2015-04-13 revision 50295) [x86_64-linux]
+  To use in Apache: PassengerRuby /usr/local/rvm/gems/ruby-2.2.2/wrappers/ruby
+  To use in Nginx : passenger_ruby /usr/local/rvm/gems/ruby-2.2.2/wrappers/ruby
+  To use with Standalone: /usr/local/rvm/gems/ruby-2.2.2/wrappers/ruby /usr/bin/passenger start
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;droplet$&amp;gt; sudo vi /etc/nginx/nginx.conf
+... Edits ..
+droplet$&amp;gt; sudo service nginx restart
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Install PostgreSQL&lt;/h3&gt;
+
+&lt;p&gt;Install it.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;droplet$&amp;gt; sudo apt-get install postgresql-9.4 libpq-dev
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Set up Postgres user.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;password&lt;/code&gt; that you used here will be used in your app&#39;s &lt;code&gt;database.yml&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;droplet$&amp;gt; sudo su - postgres
+droplet$&amp;gt; psql -c&quot;alter user postgres with password &#39;strong123password&#39;;&quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Create the Production database.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;droplet$&amp;gt; psql
+psql&amp;gt; create database &amp;lt;production_dbname&amp;gt;;
+psql&amp;gt; exit
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Connect GitHub Repo to Droplet&lt;/h3&gt;
+
+&lt;p&gt;Create a SSH key on the Droplet, and then add it to the GitHub repo.&lt;/p&gt;
+
+&lt;p&gt;Follow the instructions here: &lt;a href=&quot;https://help.github.com/articles/generating-ssh-keys/&quot;&gt;https://help.github.com/articles/generating-ssh-keys/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Make sure you run this &lt;code&gt;droplet$&amp;gt; ssh -T git@github.com&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;This will ensure that Mina can deploy with GitHub.&lt;/p&gt;
+
+&lt;h3&gt;Setup Mina&lt;/h3&gt;
+
+&lt;p&gt;Follow the instructions on &lt;a href=&quot;https://github.com/mina-deploy/mina&quot;&gt;Mina&#39;s README&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h4&gt;Condensed Version:&lt;/h4&gt;
+
+&lt;p&gt;Init Mina on your application.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;machine$&amp;gt; mina init
+Created config/deploy.rb.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Use &lt;code&gt;rvm&lt;/code&gt; or &lt;code&gt;rbenv&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;require &#39;mina/rvm&#39;
+# require &#39;mina/rbenv&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Update &lt;code&gt;config/deploy.rb&lt;/code&gt; with Droplet&#39;s Details.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set :domain,       &amp;lt;ipaddress&amp;gt;
+set :deploy_to,   &#39;/home/deploy/&amp;lt;app_domain&#39;
+set :repository,  &#39;git@github.com:&amp;lt;user&amp;gt;/&amp;lt;repo&amp;gt;.git&#39;
+set :branch,      &#39;master&#39;
+set :user,        &#39;deploy&#39;
+set :port,        &#39;8888&#39;
+....
+task :environment do
+  queue &#39;source ~/.bash_profile&#39;
+
+  # For those using RVM, use this to load an RVM version@gemset.
+  invoke :&#39;rvm:use[ruby-2.1.4]&#39;
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;SetUp Mina on Droplet.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;machine$&amp;gt; mina setup
+-----&amp;gt; Using RVM environment &#39;ruby-2.1.4&#39;
+       Using /home/demo/.rvm/gems/ruby-2.1.4
+-----&amp;gt; Setting up /home/deploy/&amp;lt;app_domain&amp;gt;
+
+       total 16
+       drwxrwxr-x 4 deploy deploy 4096 Nov  5 02:00 .
+       drwxr-xr-x 8 deploy deploy 4096 Nov  5 02:00 ..
+       drwxrwxr-x 2 deploy deploy 4096 Nov  5 02:00 releases
+       drwxrwxr-x 4 deploy deploy 4096 Nov  5 02:00 shared
+
+-----&amp;gt; Done.
+-----&amp;gt; Be sure to edit &#39;shared/config/database.yml&#39;.
+-----&amp;gt; Be sure to edit &#39;shared/config/secrets.yml&#39;.
+       Elapsed time: 1.00 seconds
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;Important!&lt;/strong&gt;&lt;/em&gt; Update &lt;code&gt;shared/config/database.yml&lt;/code&gt; and &lt;code&gt;shared/config/secrets.yml&lt;/code&gt; on the Droplet.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#database.yml
+production:
+    adapter: postgresql
+    encoding: unicode
+    database: &amp;lt;production_dbname&amp;gt;
+    username: postgres
+    password: strong123password
+    host: localhost
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;#secrets.yml
+production:
+    secret_key_base: &amp;lt;Generated from `rake secret`&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You might also need these settings in &lt;code&gt;.bash_profile&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# vi .bash_profile
+export LANGUAGE=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now, you can deploy your application to the Droplet.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;machine$&amp;gt; mina deploy
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Update Nginx Configuration&lt;/h3&gt;
+
+&lt;p&gt;Update the file &lt;code&gt;/etc/nginx/sites-enabled/default&lt;/code&gt; with these settings:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;server {
+    listen 80 default_server;
+    listen [::]:80 default_server ipv6only=on;
+
+    server_name         &amp;lt;app_domain&amp;gt;;
+    passenger_enabled   on;
+    rails_env           production;
+    root                /home/deploy/&amp;lt;app_domain&amp;gt;/current/public;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Restart the Nginx server, you should be able to see your app at the &lt;code&gt;ipaddress&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;droplet$&amp;gt; sudo service nginx restart
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Next Steps&lt;/h3&gt;
+
+&lt;p&gt;At this point, you already have your app up and running at &lt;code&gt;ipaddress&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;You will probably need to do the following to make it work nicely:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Use &lt;code&gt;figaro&lt;/code&gt; or add ENV variables to &lt;code&gt;.bash_profile&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Point DNS to the &lt;code&gt;ipaddress&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Explore other configurations for your Nginx (static 40&lt;em&gt; or 50&lt;/em&gt;)&lt;/li&gt;
+&lt;li&gt;Put in place backup strategies for your PostgreSQL (maybe use RDS instead?)&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;That&#39;s it!&lt;/p&gt;
+
+&lt;h3&gt;Troubleshooting&lt;/h3&gt;
+
+&lt;p&gt;Sometimes, the $5/mth Droplet might complain of inadequate swap space. &lt;a href=&quot;https://www.digitalocean.com/community/tutorials/how-to-add-swap-on-ubuntu-12-04&quot;&gt;Read this&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Also, Nginx error logs are pretty handy. Available at &lt;code&gt;/var/log/nginx/error.log&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2&gt;Resources&lt;/h2&gt;
+
+&lt;p&gt;Reading these really helped!&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-12-04&quot;&gt;Initial Server Setup with Ubuntu 12.04&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://gorails.com/deploy/ubuntu/14.04&quot;&gt;Deploy Ruby On Rails on Ubuntu 14.04 Trusty Tahr&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://gist.github.com/sathishmanohar/5491263&quot;&gt;https://gist.github.com/sathishmanohar/5491263&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://voiceofchunk.com/2014/06/09/deploying-rails-apps-using-passenger-rbenv-postgresql-and-mina/&quot;&gt;Deploying a Rails app on Ubuntu 14.04 - Passenger, RBenv, PostgreSQL, and Mina&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+      <pubDate>Fri, 24 Oct 2014 00:00:00 +0800</pubDate>
+      <link>http://winstonyw.com/2014/10/24/setting_up_ruby_on_rails_on_digital_ocean/</link>
+      <guid isPermaLink="true">http://winstonyw.com/2014/10/24/setting_up_ruby_on_rails_on_digital_ocean/</guid>
+    </item>
+    
+    <item>
       <title>RedDotRubyConf 2014 In Review</title>
       <description>&lt;p&gt;RedDotRubyConf is 4 years old now, and this is the 2nd year that I am running it.&lt;/p&gt;
 
@@ -175,12 +518,11 @@ and also to find ways to make discovery and interactions amongst attendees easie
 &lt;p&gt;Suppose I have a server in UTC time and all of my users are from Singapore (GMT +08:00),
 then your Rails app&#39;s &lt;code&gt;time_zone&lt;/code&gt; should be configured to SGT.&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# config/application.rb&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# config/application.rb&lt;/span&gt;
 
 &lt;span class=&quot;c1&quot;&gt;# Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;# Run &amp;quot;rake -D time&amp;quot; for a list of tasks for finding time zone names. Default is UTC.&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;time_zone&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Singapore&amp;#39;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;time_zone&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Singapore&amp;#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Besides that, instead of using &lt;code&gt;Time.now&lt;/code&gt;, use &lt;code&gt;Time.zone.now&lt;/code&gt; especially when
@@ -188,13 +530,12 @@ you are printing time attributes as display to your users.&lt;/p&gt;
 
 &lt;p&gt;Why? Let&#39;s explore the difference:&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;irb&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;zone&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Singapore&amp;quot;&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;irb&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;zone&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Singapore&amp;quot;&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Singapore&amp;quot;&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;irb&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;now&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2014&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mo&quot;&gt;03&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mo&quot;&gt;03&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;11&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mo&quot;&gt;07&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mo&quot;&gt;05&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mo&quot;&gt;0000&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;irb&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;zone&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;now&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Mon&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mo&quot;&gt;03&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Mar&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2014&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;19&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mo&quot;&gt;07&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;SGT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;08&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mo&quot;&gt;00&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Mon&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mo&quot;&gt;03&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Mar&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2014&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;19&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mo&quot;&gt;07&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;SGT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;08&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mo&quot;&gt;00&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;&lt;code&gt;Time.now&lt;/code&gt; uses the system time because it&#39;s is part of the Ruby standard library.&lt;/p&gt;
@@ -206,13 +547,12 @@ because it&#39;s been &lt;a href=&quot;https://github.com/rails/rails/blob/maste
 
 &lt;p&gt;What about &lt;code&gt;DateTime&lt;/code&gt;?&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;irb&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;zone&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Singapore&amp;quot;&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;irb&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;zone&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Singapore&amp;quot;&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Singapore&amp;quot;&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;irb&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;DateTime&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;now&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Mon&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mo&quot;&gt;03&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Mar&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2014&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;11&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;15&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;08&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mo&quot;&gt;0000&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;irb&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;DateTime&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;now&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;in_time_zone&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Mon&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mo&quot;&gt;03&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Mar&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2014&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;19&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;15&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;14&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;SGT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;08&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mo&quot;&gt;00&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Mon&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mo&quot;&gt;03&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Mar&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2014&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;19&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;15&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;14&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;SGT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;08&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mo&quot;&gt;00&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;&lt;code&gt;DateTime&lt;/code&gt; returns the system time too because it&#39;s also part of the Ruby standard library.&lt;/p&gt;
@@ -225,38 +565,34 @@ because it&#39;s been &lt;a href=&quot;https://github.com/rails/rails/blob/maste
 Both will work because ActiveRecord will convert the times to UTC before sending it to the database,
 as all time columns in the database are also stored in UTC. Let&#39;s verify..&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;irb&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Feedback&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;all&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;irb&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Feedback&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;all&lt;/span&gt;
   &lt;span class=&quot;no&quot;&gt;Feedback&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Load&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ms&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;  &lt;span class=&quot;no&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;feedbacks&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;feedbacks&amp;quot;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;#&amp;lt;Feedback id: 1, created_at: &amp;quot;2014-03-03 11:29:26&amp;quot;, updated_at: &amp;quot;2014-03-03 11:29:26&amp;quot;&amp;gt;]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;#&amp;lt;Feedback id: 1, created_at: &amp;quot;2014-03-03 11:29:26&amp;quot;, updated_at: &amp;quot;2014-03-03 11:29:26&amp;quot;&amp;gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Notice that &lt;code&gt;created_at&lt;/code&gt; and &lt;code&gt;updated_at&lt;/code&gt; columns are stored in UTC.&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;irb&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Feedback&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;first&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;created_at&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;irb&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Feedback&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;first&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;created_at&lt;/span&gt;
   &lt;span class=&quot;no&quot;&gt;Feedback&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Load&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ms&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;  &lt;span class=&quot;no&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;feedbacks&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;feedbacks&amp;quot;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ORDER&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;BY&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;feedbacks&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;id&amp;quot;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ASC&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;LIMIT&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Mon&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mo&quot;&gt;03&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Mar&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2014&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;19&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;29&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;26&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;SGT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;08&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mo&quot;&gt;00&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Mon&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mo&quot;&gt;03&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Mar&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2014&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;19&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;29&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;26&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;SGT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;08&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mo&quot;&gt;00&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;When you retrieve an object and print &lt;code&gt;created_at&lt;/code&gt;, it will be converted to your time zone.&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;irb&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;now&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;irb&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;now&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2014&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mo&quot;&gt;03&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mo&quot;&gt;03&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;11&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;41&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;31&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mo&quot;&gt;0000&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;irb&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Feedback&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;where&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;created_at &amp;lt; ?&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;now&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
   &lt;span class=&quot;no&quot;&gt;Feedback&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Load&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ms&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;  &lt;span class=&quot;no&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;feedbacks&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;feedbacks&amp;quot;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;WHERE&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;created_at&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;2014-03-03 11:41:32.687457&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;#&amp;lt;Feedback id: 1, created_at: &amp;quot;2014-03-03 11:29:26&amp;quot;, updated_at: &amp;quot;2014-03-03 11:29:26&amp;quot;&amp;gt;]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;#&amp;lt;Feedback id: 1, created_at: &amp;quot;2014-03-03 11:29:26&amp;quot;, updated_at: &amp;quot;2014-03-03 11:29:26&amp;quot;&amp;gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;When you use &lt;code&gt;Time.now&lt;/code&gt;, it generates a SQL query with time in UTC.&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;irb&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;current&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;irb&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;current&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Mon&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mo&quot;&gt;03&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Mar&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2014&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;19&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;42&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;22&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;SGT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;08&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mo&quot;&gt;00&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;irb&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Feedback&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;where&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;created_at &amp;lt; ?&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;current&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
   &lt;span class=&quot;no&quot;&gt;Feedback&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Load&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ms&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;  &lt;span class=&quot;no&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;feedbacks&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;feedbacks&amp;quot;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;WHERE&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;created_at&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;2014-03-03 11:42:23.549020&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;#&amp;lt;Feedback id: 1, created_at: &amp;quot;2014-03-03 11:29:26&amp;quot;, updated_at: &amp;quot;2014-03-03 11:29:26&amp;quot;&amp;gt;]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;#&amp;lt;Feedback id: 1, created_at: &amp;quot;2014-03-03 11:29:26&amp;quot;, updated_at: &amp;quot;2014-03-03 11:29:26&amp;quot;&amp;gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;When you use &lt;code&gt;Time.current&lt;/code&gt;, it also generates a SQL query with time in UTC.&lt;/p&gt;
@@ -318,10 +654,9 @@ Randomized with seed 2852
 
 &lt;p&gt;This was how the &lt;code&gt;enumerize&lt;/code&gt; matchers were loaded:&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;defined?&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;RSpec&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;defined?&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;RSpec&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
   &lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;enumerize/integrations/rspec&amp;#39;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;And it works fine for plain &lt;code&gt;rspec&lt;/code&gt; command because &lt;code&gt;rspec&lt;/code&gt; loads before &lt;code&gt;rails&lt;/code&gt;.
@@ -330,13 +665,12 @@ the matchers will not be required as well.&lt;/p&gt;
 
 &lt;p&gt;The fix is to load &lt;code&gt;rspec&lt;/code&gt; like this:&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;begin&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;begin&lt;/span&gt;
   &lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;rspec/matchers&amp;#39;&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;rescue&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;LoadError&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;
   &lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;enumerize/integrations/rspec&amp;#39;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;This makes sure that the &lt;code&gt;enumerize&lt;/code&gt; matchers will only required when &lt;code&gt;rspec/matchers&lt;/code&gt; can be required without errors,
@@ -503,10 +837,9 @@ and I am sure we&#39;ll continue to have more RoR training sessions in the futur
       <title>OpenURI's open, Tempfile and StringIO</title>
       <description>&lt;p&gt;&lt;code&gt;OpenURI#open&lt;/code&gt; has a dual personality. Consider the code below..&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;open-uri&amp;#39;&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;open-uri&amp;#39;&lt;/span&gt;
 
-&lt;span class=&quot;n&quot;&gt;zipfile&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;http://example.com/file.zip&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span class=&quot;n&quot;&gt;zipfile&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;http://example.com/file.zip&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;With this, &lt;code&gt;zipfile&lt;/code&gt; can either be a &lt;code&gt;Tempfile&lt;/code&gt; instance or a &lt;code&gt;StringIO&lt;/code&gt; instance.&lt;/p&gt;
@@ -515,12 +848,11 @@ and I am sure we&#39;ll continue to have more RoR training sessions in the futur
 And as mentioned in the same post, to get &lt;code&gt;OpenURI#open&lt;/code&gt; to always return a &lt;code&gt;Tempfile&lt;/code&gt;,
 apply the initializer &quot;hack&quot;.&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;open-uri&amp;#39;&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;open-uri&amp;#39;&lt;/span&gt;
 
 &lt;span class=&quot;c1&quot;&gt;# Don&amp;#39;t allow downloaded files to be created as StringIO. Force a tempfile to be created.&lt;/span&gt;
-&lt;span class=&quot;ss&quot;&gt;OpenURI&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:Buffer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;send&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:remove_const&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;StringMax&amp;#39;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;OpenURI&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:Buffer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;const_defined?&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;StringMax&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;ss&quot;&gt;OpenURI&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:Buffer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;const_set&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;StringMax&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span class=&quot;no&quot;&gt;OpenURI&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Buffer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;send&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:remove_const&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;StringMax&amp;#39;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;OpenURI&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Buffer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;const_defined?&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;StringMax&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;OpenURI&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Buffer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;const_set&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;StringMax&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Or, you can just be deterministic and &lt;a href=&quot;http://winstonyw.com/2013/10/01/ruby_reading_a_remote_zip_file/&quot;&gt;create the Tempfile yourself&lt;/a&gt;.&lt;/p&gt;
@@ -534,7 +866,7 @@ apply the initializer &quot;hack&quot;.&lt;/p&gt;
       <title>Ruby - Reading A Remote Zip File</title>
       <description>&lt;p&gt;I need to access a remote zip file and this is something that works:&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# In the console, gem install &amp;quot;httparty&amp;quot;&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# In the console, gem install &amp;quot;httparty&amp;quot;&lt;/span&gt;
 &lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;httparty&amp;quot;&lt;/span&gt;
 
 &lt;span class=&quot;c1&quot;&gt;# In the console, gem install &amp;quot;rubyzip&amp;quot;&lt;/span&gt;
@@ -551,14 +883,13 @@ apply the initializer &quot;hack&quot;.&lt;/p&gt;
 &lt;span class=&quot;c1&quot;&gt;# Unzip the temp zip file and process the contents&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;# Let garbage collection delete the temp zip file&lt;/span&gt;
 
-&lt;span class=&quot;ss&quot;&gt;Zip&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:File&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;zipfile&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;Zip&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;File&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;zipfile&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
   &lt;span class=&quot;n&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;read&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
     &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;
     &lt;span class=&quot;c1&quot;&gt;# Do whatever you want with the contents&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;The code is simple, but at the start, I kept getting an error when unzipping the temp zip file,
@@ -641,14 +972,13 @@ Then you&#39;ll still need to write JavaScript for that.&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;In your layout, load Google Ajax API in the head tag, at the very top.&lt;/em&gt;&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;https://www.google.com/jsapi&amp;#39;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;https://www.google.com/jsapi&amp;#39;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;&lt;em&gt;In a controller, e.g. &lt;code&gt;app/controllers/charts_controller.rb&lt;/code&gt;&lt;/em&gt;&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;area_chart&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;data_table&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;GoogleVisualr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:DataTable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;area_chart&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;data_table&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;GoogleVisualr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;DataTable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;
   &lt;span class=&quot;c1&quot;&gt;# Add Column Headers&lt;/span&gt;
   &lt;span class=&quot;n&quot;&gt;data_table&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new_column&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;string&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Year&amp;#39;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
   &lt;span class=&quot;n&quot;&gt;data_table&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new_column&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;number&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Sales&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
@@ -663,16 +993,14 @@ Then you&#39;ll still need to write JavaScript for that.&lt;/p&gt;
   &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
   &lt;span class=&quot;n&quot;&gt;option&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;400&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;240&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Company Performance&amp;#39;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;vi&quot;&gt;@chart&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;GoogleVisualr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:Interactive&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;AreaChart&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data_table&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;option&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+  &lt;span class=&quot;vi&quot;&gt;@chart&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;GoogleVisualr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Interactive&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;AreaChart&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data_table&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;option&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;&lt;em&gt;In the corresponding view, e.g. &lt;code&gt;app/views/charts/area_chart.html.erb&lt;/code&gt;&lt;/em&gt;&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;erb&quot;&gt;&lt;span class=&quot;x&quot;&gt;&amp;lt;div id=&amp;#39;chart&amp;#39;&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;cp&quot;&gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;render_chart&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@chart&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;chart&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-erb&quot; data-lang=&quot;erb&quot;&gt;&lt;span class=&quot;x&quot;&gt;&amp;lt;div id=&amp;#39;chart&amp;#39;&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;render_chart&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@chart&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;chart&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Go ahead! Check out &lt;a href=&quot;https://github.com/winston/google_visualr&quot;&gt;GoogleVisualr on GitHub&lt;/a&gt; or the &lt;a href=&quot;http://googlevisualr.herokuapp.com/&quot;&gt;Docs&lt;/a&gt; now.&lt;/p&gt;
@@ -708,208 +1036,6 @@ which made me conscious of doing that happened on the first few days of working 
       <pubDate>Tue, 27 Aug 2013 00:00:00 +0800</pubDate>
       <link>http://winstonyw.com/2013/08/27/pairing_and_email_sign_off/</link>
       <guid isPermaLink="true">http://winstonyw.com/2013/08/27/pairing_and_email_sign_off/</guid>
-    </item>
-    
-    <item>
-      <title>RedDotRubyConf 2013 - Wrap Up</title>
-      <description>&lt;p&gt;It&#39;s been a few weeks since RDRC 2013. Good time to do a wrap up!&lt;/p&gt;
-
-&lt;p&gt;For those who have missed it, I have also written a
-&lt;a href=&quot;http://winstonyw.com/2013/06/12/reddotrubyconf_2013_-_thank_you/&quot;&gt;Thank You&lt;/a&gt; post which contains links to speakers&#39; slides and related resources.&lt;/p&gt;
-
-&lt;h2&gt;RDRC 2013: The Beginning&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://twitter.com/andycroll&quot;&gt;Andy Croll&lt;/a&gt; broke the news to some of us last Oct
-that he&#39;s going back to the UK in Dec and would like to handover RedDotRubyConf to someone.&lt;/p&gt;
-
-&lt;p&gt;On a personal note, I really wanted to do RDRC because I would like to contribute back
-to the Ruby community in Singapore, as I wouldn&#39;t be who I am or where I am if not for Ruby.&lt;/p&gt;
-
-&lt;p&gt;After a few days of consideration, and support from &lt;a href=&quot;https://twitter.com/carlcoryell&quot;&gt;Carl&lt;/a&gt;,
-I decided to volunteer myself and my colleagues also gladly offered to help out wherever they can.&lt;/p&gt;
-
-&lt;p&gt;With that, I roped in Abhaya, Wei, Mohan, and Carl also offered various administrative help.
-But by and large, this was a community event, ran by individuals who really love Ruby.&lt;/p&gt;
-
-&lt;h2&gt;ToDo List&lt;/h2&gt;
-
-&lt;p&gt;In December 2012, I got started.&lt;/p&gt;
-
-&lt;p&gt;These were the stuff that had to be done, arranged according to importance.&lt;/p&gt;
-
-&lt;h3&gt;Dates&lt;/h3&gt;
-
-&lt;p&gt;June 7 and 8 were picked purposefully a weekend after &lt;a href=&quot;http://rubykaigi.org/2013/&quot;&gt;RubyKaigi&lt;/a&gt;,
-based on a thought that some of the speakers and audience of RubyKaigi wouldn&#39;t mind coming down to Singapore the week after.&lt;/p&gt;
-
-&lt;p&gt;The strategy worked.&lt;/p&gt;
-
-&lt;h3&gt;Great Speakers&lt;/h3&gt;
-
-&lt;p&gt;We have heard of them and seen them in vids. How cool would it be to see them in person!
-I was audacious and sent out emails to a number of them. 7 said yes and the rest is history.
-I was actually prepared to be rejected by all of them, so I am really grateful for their replies.
-Anyway, the big names really helped to drive the early ticket sales too.&lt;/p&gt;
-
-&lt;p&gt;I think I was really lucky. Next year, I hope I&#39;ll be as lucky.&lt;/p&gt;
-
-&lt;h3&gt;Venue&lt;/h3&gt;
-
-&lt;p&gt;RDRC required a venue that&#39;s accessible and inexpensive.
-There were several choices:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Lecture Theatres in National University of Singapore&lt;/li&gt;
-&lt;li&gt;NUS Alumni House / Shaw Foundation&lt;/li&gt;
-&lt;li&gt;RedDot Museum&lt;/li&gt;
-&lt;li&gt;NTUC Auditorium&lt;/li&gt;
-&lt;li&gt;NUS UCC&lt;/li&gt;
-&lt;li&gt;Biopolis&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;p&gt;Biopolis was the best option out of them all, because it&#39;s:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;available on June 7 and 8,&lt;/li&gt;
-&lt;li&gt;near to the train station,&lt;/li&gt;
-&lt;li&gt;a really nice auditorium with great facilities,&lt;/li&gt;
-&lt;li&gt;inexpensive as compared to most of the other choices.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;p&gt;Besides, Lecture Theatres in NUS are only available to students; not even an alumni.&lt;/p&gt;
-
-&lt;h3&gt;Sponsors&lt;/h3&gt;
-
-&lt;p&gt;Sponsors were also crucial to the plan.&lt;/p&gt;
-
-&lt;p&gt;We reached out to companies who are proponents of the Ruby language,
-and we are really grateful to the companies who were able to help make this event possible.&lt;/p&gt;
-
-&lt;p&gt;Besides the usual cash sponsorships, we also wanted to get sponsorships that we can give directly as swag to all participants,
-and we did it with freebies like Ruby course and ebook.&lt;/p&gt;
-
-&lt;h3&gt;Conference Format&lt;/h3&gt;
-
-&lt;p&gt;The format of RDRC 2013 was kept similar to the previous years, with the addition of Lightning Talks.&lt;/p&gt;
-
-&lt;p&gt;Although we only had enough Lightning Talks to fit Day 1, it was a good experiment, IMO.
-And feedback has been pretty positive so far, so hopefully next year more local speakers
-will sign up for the Lightning Talk slots.&lt;/p&gt;
-
-&lt;h3&gt;Other Logistics&lt;/h3&gt;
-
-&lt;p&gt;The 5 todos above were the major stuff that had to happen before the rest could.&lt;/p&gt;
-
-&lt;p&gt;The other conference logistics consisted of:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Logo Design&lt;/li&gt;
-&lt;li&gt;Website Design and Coding&lt;/li&gt;
-&lt;li&gt;Ticketing&lt;/li&gt;
-&lt;li&gt;Marketing (Regional Ruby Groups, Emails from previous RDRCs)&lt;/li&gt;
-&lt;li&gt;Call For Proposals&lt;/li&gt;
-&lt;li&gt;Program Scheduling&lt;/li&gt;
-&lt;li&gt;T-shirts and Swag (Stickers, FieldNotes, Lanyards)&lt;/li&gt;
-&lt;li&gt;Design + Printing of Posters, Banners, Programs&lt;/li&gt;
-&lt;li&gt;Food and Drinks&lt;/li&gt;
-&lt;li&gt;After Party&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;p&gt;To get all these done, a ton of emails were sent..&lt;/p&gt;
-
-&lt;p&gt;Not easy for someone who&#39;s much more used to writing in Ruby prose!&lt;/p&gt;
-
-&lt;h2&gt;Attendees&lt;/h2&gt;
-
-&lt;h3&gt;Registrants by Country&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/rdrc13-registrants_by_country.png&quot; alt=&quot;Registrants by Country&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;27 countries in total - with almost 50% of the audience coming from abroad.&lt;/p&gt;
-
-&lt;h3&gt;Registrations by Month&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/rdrc13-registrations_by_month.png&quot; alt=&quot;Registrations by Month&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;I believe in karma. The next time I attend a conference, I&#39;ll get the tickets early!&lt;/p&gt;
-
-&lt;p&gt;You should too! As that helps to reduce logistical challenges and let me sleep better.&lt;/p&gt;
-
-&lt;p&gt;Interestingly, one of the things I did to encourage sales was to email folks
-who dropped off after they filled in their details but didn&#39;t complete the payment step.&lt;/p&gt;
-
-&lt;p&gt;Some replied, telling me that their plans changed and so they were not able to make it,
-while a lot actually re-registered (and paid) after the gentle reminder.&lt;/p&gt;
-
-&lt;h2&gt;Vendors&lt;/h2&gt;
-
-&lt;p&gt;Listing the vendors who deserve a mention!&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.jtc.gov.sg/Pages/Facilities-Biopolis-Phase1.aspx&quot;&gt;Matrix&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.rasel.com.sg/&quot;&gt;Rasel Catering&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://www.facebook.com/pages/Porcupine-Design/101255343267281&quot;&gt;Porcupine Design&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://iceman.com.sg/&quot;&gt;Uni Tat Ice&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://fieldnotesbrand.com/&quot;&gt;Field Notes&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;After Party at &lt;a href=&quot;http://www.senortaco.sg/&quot;&gt;Señor Taco&lt;/a&gt; (Contact &lt;a href=&quot;rotceh@senortaco.sg&quot;&gt;Rox&lt;/a&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;h3&gt;Drinks&lt;/h3&gt;
-
-&lt;p&gt;I ordered a total of 800+ bottles of mineral water and 1200+ cans of soda.
-That was based on my assumption that 300 pax drinks an average of 3 bottles/cans per day (* 2 days).&lt;/p&gt;
-
-&lt;p&gt;However, at the end of Day 2, there were still about 12-16 cartons of water and soda left.
-You guys are not drinking enough water!&lt;/p&gt;
-
-&lt;h2&gt;Improvements&lt;/h2&gt;
-
-&lt;p&gt;Still &lt;a href=&quot;http://bit.ly/rdrc13-feedback&quot;&gt;collecting feedback&lt;/a&gt; but I already have some ideas on what can be improved next year.&lt;/p&gt;
-
-&lt;h3&gt;Breakfast&lt;/h3&gt;
-
-&lt;p&gt;I was hungry in the morning, and so were all of you. Sorry!&lt;/p&gt;
-
-&lt;h3&gt;Coffee&lt;/h3&gt;
-
-&lt;p&gt;I received feedback that the coffee is not fantastic and I would really like to solve that.
-Please give me suggestions on how to make it not suck (less getting a barista).&lt;/p&gt;
-
-&lt;h3&gt;T-shirts&lt;/h3&gt;
-
-&lt;p&gt;I&#39;ll make sure to get the correct sizes and measurements up on the registration site, so that you can pick one that fits.
-And, female sizes too.&lt;/p&gt;
-
-&lt;h3&gt;Swag&lt;/h3&gt;
-
-&lt;p&gt;Thinking of doing away with the lanyard (because you have probably already discarded it).&lt;/p&gt;
-
-&lt;h3&gt;WiFi&lt;/h3&gt;
-
-&lt;p&gt;Some say yes. Some say no. I&#39;ll see what I can do next year.&lt;/p&gt;
-
-&lt;h3&gt;Video&lt;/h3&gt;
-
-&lt;p&gt;I am still a little undecided on this because I am worried that with videos,
-people will have less incentive for attending RDRC, knowing that videos will be available later. True?&lt;/p&gt;
-
-&lt;h3&gt;Local Speakers&lt;/h3&gt;
-
-&lt;p&gt;I really would like to see more local speakers. Seriously, where are you guys!&lt;/p&gt;
-
-&lt;p&gt;--&lt;/p&gt;
-
-&lt;p&gt;That&#39;s it. See you all next year!&lt;/p&gt;
-
-&lt;p&gt;Drop me an email - suggestions, compliments or criticisms. Thank you!&lt;/p&gt;
-</description>
-      <pubDate>Mon, 17 Jun 2013 00:00:00 +0800</pubDate>
-      <link>http://winstonyw.com/2013/06/17/reddotrubyconf_2013_-_wrap_up/</link>
-      <guid isPermaLink="true">http://winstonyw.com/2013/06/17/reddotrubyconf_2013_-_wrap_up/</guid>
     </item>
     
   </channel>

@@ -82,7 +82,7 @@ There are work arounds to ensure that Haml <code>layouts</code> will get convert
 
 <p>Add a Haml converter at <code>_plugins/haml.rb</code>.</p>
 
-<div class="highlight"><pre><code class="ruby"><span class="k">module</span> <span class="nn">Jekyll</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">module</span> <span class="nn">Jekyll</span>
   <span class="nb">require</span> <span class="s1">&#39;haml&#39;</span>
   <span class="k">class</span> <span class="nc">HamlConverter</span> <span class="o">&lt;</span> <span class="no">Converter</span>
     <span class="n">safe</span> <span class="kp">true</span>
@@ -97,19 +97,18 @@ There are work arounds to ensure that Haml <code>layouts</code> will get convert
     <span class="k">end</span>
 
     <span class="k">def</span> <span class="nf">convert</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
-      <span class="n">engine</span> <span class="o">=</span> <span class="ss">Haml</span><span class="p">:</span><span class="ss">:Engine</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+      <span class="n">engine</span> <span class="o">=</span> <span class="no">Haml</span><span class="o">::</span><span class="no">Engine</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
       <span class="n">engine</span><span class="o">.</span><span class="n">render</span>
     <span class="k">rescue</span> <span class="no">StandardError</span> <span class="o">=&gt;</span> <span class="n">e</span>
       <span class="nb">puts</span> <span class="s2">&quot;!!! HAML Error: &quot;</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="n">message</span>
     <span class="k">end</span>
   <span class="k">end</span>
-<span class="k">end</span>
-</code></pre></div>
+<span class="k">end</span></code></pre></div>
 
 
 <p>Add a Sass converter <code>_plugins/sass.rb</code> and place <code>.scss</code> files in <code>./assets/css</code>.</p>
 
-<div class="highlight"><pre><code class="ruby"><span class="k">module</span> <span class="nn">Jekyll</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">module</span> <span class="nn">Jekyll</span>
   <span class="nb">require</span> <span class="s1">&#39;sass&#39;</span>
   <span class="k">class</span> <span class="nc">SassConverter</span> <span class="o">&lt;</span> <span class="no">Converter</span>
     <span class="n">safe</span> <span class="kp">true</span>
@@ -124,14 +123,13 @@ There are work arounds to ensure that Haml <code>layouts</code> will get convert
     <span class="k">end</span>
 
     <span class="k">def</span> <span class="nf">convert</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
-      <span class="n">engine</span> <span class="o">=</span> <span class="ss">Sass</span><span class="p">:</span><span class="ss">:Engine</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="ss">:syntax</span> <span class="o">=&gt;</span> <span class="ss">:scss</span><span class="p">,</span> <span class="ss">:load_paths</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="s2">&quot;./assets/css/&quot;</span><span class="o">]</span><span class="p">)</span>
+      <span class="n">engine</span> <span class="o">=</span> <span class="no">Sass</span><span class="o">::</span><span class="no">Engine</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="ss">:syntax</span> <span class="o">=&gt;</span> <span class="ss">:scss</span><span class="p">,</span> <span class="ss">:load_paths</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="s2">&quot;./assets/css/&quot;</span><span class="o">]</span><span class="p">)</span>
       <span class="n">engine</span><span class="o">.</span><span class="n">render</span>
     <span class="k">rescue</span> <span class="no">StandardError</span> <span class="o">=&gt;</span> <span class="n">e</span>
       <span class="nb">puts</span> <span class="s2">&quot;!!! SASS Error: &quot;</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="n">message</span>
     <span class="k">end</span>
   <span class="k">end</span>
-<span class="k">end</span>
-</code></pre></div>
+<span class="k">end</span></code></pre></div>
 
 
 <p>Everything should work up till this point, and <code>_site</code> would contain the generated blog.</p>
@@ -175,7 +173,7 @@ $&gt; git remote add origin ...
 <p>Add a Rake task that copies <code>_site</code> files in <code>source</code> branch to <code>deploy</code> (master branch).
 This Rake task will also commit and push the site to GitHub.</p>
 
-<div class="highlight"><pre><code class="ruby"><span class="n">desc</span> <span class="s2">&quot;Deploy&quot;</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">desc</span> <span class="s2">&quot;Deploy&quot;</span>
 <span class="n">task</span> <span class="ss">:deploy</span> <span class="k">do</span>
   <span class="nb">puts</span> <span class="s2">&quot;## Deploying to Github Pages..&quot;</span>
 
@@ -197,8 +195,7 @@ This Rake task will also commit and push the site to GitHub.</p>
 
     <span class="nb">puts</span> <span class="s2">&quot;## Deploy Complete!&quot;</span>
   <span class="k">end</span>
-<span class="k">end</span>
-</code></pre></div>
+<span class="k">end</span></code></pre></div>
 
 
 <p>Finally, the site can now be deployed to GitHub pages!</p>

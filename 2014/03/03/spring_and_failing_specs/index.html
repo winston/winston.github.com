@@ -104,10 +104,9 @@ Randomized with seed 2852
 
 <p>This was how the <code>enumerize</code> matchers were loaded:</p>
 
-<div class="highlight"><pre><code class="ruby"><span class="k">if</span> <span class="n">defined?</span><span class="p">(</span><span class="o">::</span><span class="no">RSpec</span><span class="p">)</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">if</span> <span class="n">defined?</span><span class="p">(</span><span class="o">::</span><span class="no">RSpec</span><span class="p">)</span>
   <span class="nb">require</span> <span class="s1">&#39;enumerize/integrations/rspec&#39;</span>
-<span class="k">end</span>
-</code></pre></div>
+<span class="k">end</span></code></pre></div>
 
 
 <p>And it works fine for plain <code>rspec</code> command because <code>rspec</code> loads before <code>rails</code>.
@@ -116,13 +115,12 @@ the matchers will not be required as well.</p>
 
 <p>The fix is to load <code>rspec</code> like this:</p>
 
-<div class="highlight"><pre><code class="ruby"><span class="k">begin</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">begin</span>
   <span class="nb">require</span> <span class="s1">&#39;rspec/matchers&#39;</span>
 <span class="k">rescue</span> <span class="no">LoadError</span>
 <span class="k">else</span>
   <span class="nb">require</span> <span class="s1">&#39;enumerize/integrations/rspec&#39;</span>
-<span class="k">end</span>
-</code></pre></div>
+<span class="k">end</span></code></pre></div>
 
 
 <p>This makes sure that the <code>enumerize</code> matchers will only required when <code>rspec/matchers</code> can be required without errors,

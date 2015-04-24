@@ -1,11 +1,11 @@
 header, #center, footer {
-  @include breakpoint($mobile) {
+  @include media($mobile) {
     @include span-columns(6);
   }
 }
 
 header {
-  @include breakpoint($mobile) {
+  @include media($mobile) {
     .title-color-bar {
       height: 0.4em;
     }
@@ -29,7 +29,7 @@ header {
 }
 
 #center {
-  @include breakpoint($mobile) {
+  @include media($mobile) {
     .color-bar {
       height: 0.4em;
     }
@@ -41,13 +41,13 @@ header {
 }
 
 footer {
-  @include breakpoint($mobile) {
+  @include media($mobile) {
     display: none;
   }
 }
 
 .index {
-  @include breakpoint($mobile) {
+  @include media($mobile) {
     h2 {
       display: none;
     }

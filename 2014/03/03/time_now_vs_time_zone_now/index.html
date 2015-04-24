@@ -69,12 +69,11 @@
 <p>Suppose I have a server in UTC time and all of my users are from Singapore (GMT +08:00),
 then your Rails app's <code>time_zone</code> should be configured to SGT.</p>
 
-<div class="highlight"><pre><code class="ruby"><span class="c1"># config/application.rb</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># config/application.rb</span>
 
 <span class="c1"># Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.</span>
 <span class="c1"># Run &quot;rake -D time&quot; for a list of tasks for finding time zone names. Default is UTC.</span>
-<span class="n">config</span><span class="o">.</span><span class="n">time_zone</span> <span class="o">=</span> <span class="s1">&#39;Singapore&#39;</span>
-</code></pre></div>
+<span class="n">config</span><span class="o">.</span><span class="n">time_zone</span> <span class="o">=</span> <span class="s1">&#39;Singapore&#39;</span></code></pre></div>
 
 
 <p>Besides that, instead of using <code>Time.now</code>, use <code>Time.zone.now</code> especially when
@@ -82,13 +81,12 @@ you are printing time attributes as display to your users.</p>
 
 <p>Why? Let's explore the difference:</p>
 
-<div class="highlight"><pre><code class="ruby"><span class="n">irb</span><span class="o">&gt;</span> <span class="no">Time</span><span class="o">.</span><span class="n">zone</span> <span class="o">=</span> <span class="s2">&quot;Singapore&quot;</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">irb</span><span class="o">&gt;</span> <span class="no">Time</span><span class="o">.</span><span class="n">zone</span> <span class="o">=</span> <span class="s2">&quot;Singapore&quot;</span>
 <span class="o">=&gt;</span> <span class="s2">&quot;Singapore&quot;</span>
 <span class="n">irb</span><span class="o">&gt;</span> <span class="no">Time</span><span class="o">.</span><span class="n">now</span>
 <span class="o">=&gt;</span> <span class="mi">2014</span><span class="o">-</span><span class="mo">03</span><span class="o">-</span><span class="mo">03</span> <span class="mi">11</span><span class="p">:</span><span class="mo">07</span><span class="p">:</span><span class="mo">05</span> <span class="o">+</span><span class="mo">0000</span>
 <span class="n">irb</span><span class="o">&gt;</span> <span class="no">Time</span><span class="o">.</span><span class="n">zone</span><span class="o">.</span><span class="n">now</span>
-<span class="o">=&gt;</span> <span class="no">Mon</span><span class="p">,</span> <span class="mo">03</span> <span class="no">Mar</span> <span class="mi">2014</span> <span class="mi">19</span><span class="p">:</span><span class="mo">07</span><span class="p">:</span><span class="mi">12</span> <span class="no">SGT</span> <span class="o">+</span><span class="mi">08</span><span class="p">:</span><span class="mo">00</span>
-</code></pre></div>
+<span class="o">=&gt;</span> <span class="no">Mon</span><span class="p">,</span> <span class="mo">03</span> <span class="no">Mar</span> <span class="mi">2014</span> <span class="mi">19</span><span class="p">:</span><span class="mo">07</span><span class="p">:</span><span class="mi">12</span> <span class="no">SGT</span> <span class="o">+</span><span class="mi">08</span><span class="p">:</span><span class="mo">00</span></code></pre></div>
 
 
 <p><code>Time.now</code> uses the system time because it's is part of the Ruby standard library.</p>
@@ -100,13 +98,12 @@ because it's been <a href="https://github.com/rails/rails/blob/master/activesupp
 
 <p>What about <code>DateTime</code>?</p>
 
-<div class="highlight"><pre><code class="ruby"><span class="n">irb</span><span class="o">&gt;</span> <span class="no">Time</span><span class="o">.</span><span class="n">zone</span> <span class="o">=</span> <span class="s2">&quot;Singapore&quot;</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">irb</span><span class="o">&gt;</span> <span class="no">Time</span><span class="o">.</span><span class="n">zone</span> <span class="o">=</span> <span class="s2">&quot;Singapore&quot;</span>
 <span class="o">=&gt;</span> <span class="s2">&quot;Singapore&quot;</span>
 <span class="n">irb</span><span class="o">&gt;</span> <span class="no">DateTime</span><span class="o">.</span><span class="n">now</span>
 <span class="o">=&gt;</span> <span class="no">Mon</span><span class="p">,</span> <span class="mo">03</span> <span class="no">Mar</span> <span class="mi">2014</span> <span class="mi">11</span><span class="p">:</span><span class="mi">15</span><span class="p">:</span><span class="mi">08</span> <span class="o">+</span><span class="mo">0000</span>
 <span class="n">irb</span><span class="o">&gt;</span> <span class="no">DateTime</span><span class="o">.</span><span class="n">now</span><span class="o">.</span><span class="n">in_time_zone</span>
-<span class="o">=&gt;</span> <span class="no">Mon</span><span class="p">,</span> <span class="mo">03</span> <span class="no">Mar</span> <span class="mi">2014</span> <span class="mi">19</span><span class="p">:</span><span class="mi">15</span><span class="p">:</span><span class="mi">14</span> <span class="no">SGT</span> <span class="o">+</span><span class="mi">08</span><span class="p">:</span><span class="mo">00</span>
-</code></pre></div>
+<span class="o">=&gt;</span> <span class="no">Mon</span><span class="p">,</span> <span class="mo">03</span> <span class="no">Mar</span> <span class="mi">2014</span> <span class="mi">19</span><span class="p">:</span><span class="mi">15</span><span class="p">:</span><span class="mi">14</span> <span class="no">SGT</span> <span class="o">+</span><span class="mi">08</span><span class="p">:</span><span class="mo">00</span></code></pre></div>
 
 
 <p><code>DateTime</code> returns the system time too because it's also part of the Ruby standard library.</p>
@@ -119,38 +116,34 @@ because it's been <a href="https://github.com/rails/rails/blob/master/activesupp
 Both will work because ActiveRecord will convert the times to UTC before sending it to the database,
 as all time columns in the database are also stored in UTC. Let's verify..</p>
 
-<div class="highlight"><pre><code class="ruby"><span class="n">irb</span><span class="o">&gt;</span> <span class="no">Feedback</span><span class="o">.</span><span class="n">all</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">irb</span><span class="o">&gt;</span> <span class="no">Feedback</span><span class="o">.</span><span class="n">all</span>
   <span class="no">Feedback</span> <span class="no">Load</span> <span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="mi">4</span><span class="n">ms</span><span class="p">)</span>  <span class="no">SELECT</span> <span class="s2">&quot;feedbacks&quot;</span><span class="o">.</span><span class="n">*</span> <span class="no">FROM</span> <span class="s2">&quot;feedbacks&quot;</span>
-<span class="o">=&gt;</span> <span class="o">[</span><span class="c1">#&lt;Feedback id: 1, created_at: &quot;2014-03-03 11:29:26&quot;, updated_at: &quot;2014-03-03 11:29:26&quot;&gt;]</span>
-</code></pre></div>
+<span class="o">=&gt;</span> <span class="o">[</span><span class="c1">#&lt;Feedback id: 1, created_at: &quot;2014-03-03 11:29:26&quot;, updated_at: &quot;2014-03-03 11:29:26&quot;&gt;]</span></code></pre></div>
 
 
 <p>Notice that <code>created_at</code> and <code>updated_at</code> columns are stored in UTC.</p>
 
-<div class="highlight"><pre><code class="ruby"><span class="n">irb</span><span class="o">&gt;</span> <span class="no">Feedback</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">created_at</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">irb</span><span class="o">&gt;</span> <span class="no">Feedback</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">created_at</span>
   <span class="no">Feedback</span> <span class="no">Load</span> <span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="mi">4</span><span class="n">ms</span><span class="p">)</span>  <span class="no">SELECT</span> <span class="s2">&quot;feedbacks&quot;</span><span class="o">.</span><span class="n">*</span> <span class="no">FROM</span> <span class="s2">&quot;feedbacks&quot;</span> <span class="no">ORDER</span> <span class="no">BY</span> <span class="s2">&quot;feedbacks&quot;</span><span class="o">.</span><span class="s2">&quot;id&quot;</span> <span class="no">ASC</span> <span class="no">LIMIT</span> <span class="mi">1</span>
-<span class="o">=&gt;</span> <span class="no">Mon</span><span class="p">,</span> <span class="mo">03</span> <span class="no">Mar</span> <span class="mi">2014</span> <span class="mi">19</span><span class="p">:</span><span class="mi">29</span><span class="p">:</span><span class="mi">26</span> <span class="no">SGT</span> <span class="o">+</span><span class="mi">08</span><span class="p">:</span><span class="mo">00</span>
-</code></pre></div>
+<span class="o">=&gt;</span> <span class="no">Mon</span><span class="p">,</span> <span class="mo">03</span> <span class="no">Mar</span> <span class="mi">2014</span> <span class="mi">19</span><span class="p">:</span><span class="mi">29</span><span class="p">:</span><span class="mi">26</span> <span class="no">SGT</span> <span class="o">+</span><span class="mi">08</span><span class="p">:</span><span class="mo">00</span></code></pre></div>
 
 
 <p>When you retrieve an object and print <code>created_at</code>, it will be converted to your time zone.</p>
 
-<div class="highlight"><pre><code class="ruby"><span class="n">irb</span><span class="o">&gt;</span> <span class="no">Time</span><span class="o">.</span><span class="n">now</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">irb</span><span class="o">&gt;</span> <span class="no">Time</span><span class="o">.</span><span class="n">now</span>
 <span class="o">=&gt;</span> <span class="mi">2014</span><span class="o">-</span><span class="mo">03</span><span class="o">-</span><span class="mo">03</span> <span class="mi">11</span><span class="p">:</span><span class="mi">41</span><span class="p">:</span><span class="mi">31</span> <span class="o">+</span><span class="mo">0000</span>
 <span class="n">irb</span><span class="o">&gt;</span> <span class="no">Feedback</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s2">&quot;created_at &lt; ?&quot;</span><span class="p">,</span> <span class="no">Time</span><span class="o">.</span><span class="n">now</span><span class="p">)</span>
   <span class="no">Feedback</span> <span class="no">Load</span> <span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="mi">5</span><span class="n">ms</span><span class="p">)</span>  <span class="no">SELECT</span> <span class="s2">&quot;feedbacks&quot;</span><span class="o">.</span><span class="n">*</span> <span class="no">FROM</span> <span class="s2">&quot;feedbacks&quot;</span> <span class="no">WHERE</span> <span class="p">(</span><span class="n">created_at</span> <span class="o">&lt;</span> <span class="s1">&#39;2014-03-03 11:41:32.687457&#39;</span><span class="p">)</span>
-<span class="o">=&gt;</span> <span class="o">[</span><span class="c1">#&lt;Feedback id: 1, created_at: &quot;2014-03-03 11:29:26&quot;, updated_at: &quot;2014-03-03 11:29:26&quot;&gt;]</span>
-</code></pre></div>
+<span class="o">=&gt;</span> <span class="o">[</span><span class="c1">#&lt;Feedback id: 1, created_at: &quot;2014-03-03 11:29:26&quot;, updated_at: &quot;2014-03-03 11:29:26&quot;&gt;]</span></code></pre></div>
 
 
 <p>When you use <code>Time.now</code>, it generates a SQL query with time in UTC.</p>
 
-<div class="highlight"><pre><code class="ruby"><span class="n">irb</span><span class="o">&gt;</span> <span class="no">Time</span><span class="o">.</span><span class="n">current</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">irb</span><span class="o">&gt;</span> <span class="no">Time</span><span class="o">.</span><span class="n">current</span>
 <span class="o">=&gt;</span> <span class="no">Mon</span><span class="p">,</span> <span class="mo">03</span> <span class="no">Mar</span> <span class="mi">2014</span> <span class="mi">19</span><span class="p">:</span><span class="mi">42</span><span class="p">:</span><span class="mi">22</span> <span class="no">SGT</span> <span class="o">+</span><span class="mi">08</span><span class="p">:</span><span class="mo">00</span>
 <span class="n">irb</span><span class="o">&gt;</span> <span class="no">Feedback</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s2">&quot;created_at &lt; ?&quot;</span><span class="p">,</span> <span class="no">Time</span><span class="o">.</span><span class="n">current</span><span class="p">)</span>
   <span class="no">Feedback</span> <span class="no">Load</span> <span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="mi">4</span><span class="n">ms</span><span class="p">)</span>  <span class="no">SELECT</span> <span class="s2">&quot;feedbacks&quot;</span><span class="o">.</span><span class="n">*</span> <span class="no">FROM</span> <span class="s2">&quot;feedbacks&quot;</span> <span class="no">WHERE</span> <span class="p">(</span><span class="n">created_at</span> <span class="o">&lt;</span> <span class="s1">&#39;2014-03-03 11:42:23.549020&#39;</span><span class="p">)</span>
-<span class="o">=&gt;</span> <span class="o">[</span><span class="c1">#&lt;Feedback id: 1, created_at: &quot;2014-03-03 11:29:26&quot;, updated_at: &quot;2014-03-03 11:29:26&quot;&gt;]</span>
-</code></pre></div>
+<span class="o">=&gt;</span> <span class="o">[</span><span class="c1">#&lt;Feedback id: 1, created_at: &quot;2014-03-03 11:29:26&quot;, updated_at: &quot;2014-03-03 11:29:26&quot;&gt;]</span></code></pre></div>
 
 
 <p>When you use <code>Time.current</code>, it also generates a SQL query with time in UTC.</p>

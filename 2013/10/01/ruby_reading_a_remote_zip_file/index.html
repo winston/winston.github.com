@@ -66,7 +66,7 @@
           <section>
             <p>I need to access a remote zip file and this is something that works:</p>
 
-<div class="highlight"><pre><code class="ruby"><span class="c1"># In the console, gem install &quot;httparty&quot;</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># In the console, gem install &quot;httparty&quot;</span>
 <span class="nb">require</span> <span class="s2">&quot;httparty&quot;</span>
 
 <span class="c1"># In the console, gem install &quot;rubyzip&quot;</span>
@@ -83,14 +83,13 @@
 <span class="c1"># Unzip the temp zip file and process the contents</span>
 <span class="c1"># Let garbage collection delete the temp zip file</span>
 
-<span class="ss">Zip</span><span class="p">:</span><span class="ss">:File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">zipfile</span><span class="o">.</span><span class="n">path</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">file</span><span class="o">|</span>
+<span class="no">Zip</span><span class="o">::</span><span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">zipfile</span><span class="o">.</span><span class="n">path</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">file</span><span class="o">|</span>
   <span class="n">file</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">content</span><span class="o">|</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
     <span class="nb">puts</span> <span class="n">data</span>
     <span class="c1"># Do whatever you want with the contents</span>
   <span class="k">end</span>
-<span class="k">end</span>
-</code></pre></div>
+<span class="k">end</span></code></pre></div>
 
 
 <p>The code is simple, but at the start, I kept getting an error when unzipping the temp zip file,

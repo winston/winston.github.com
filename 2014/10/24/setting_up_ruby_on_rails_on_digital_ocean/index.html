@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Setting Up Ruby on Rails On Digital Ocean - WinstonYW</title>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta content='Winston Teo Yong Wei' name='author' />
+    <link href='/assets/css/application.css' media='screen' rel='stylesheet' type='text/css' />
+    <!-- http://davidbcalhoun.com/2010/viewport-metatag -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+  </head>
+  <body>
+    <header>
+      <div class='title-color-bar'></div>
+      <section id='profile'>
+        <h1>
+          <a href="/">WinstonYW</a>
+        </h1>
+        <h2>
+          Just Another Tech Journal
+        </h2>
+      </section>
+      <div class='aside-color-bar'></div>
+      <section id="projects">
+        <h2>Projects</h2>
+        <ul>
+          <li>
+            <a href="https://github.com/winston/google_visualr">GoogleVisualr</a>
+          </li>
+          <li>
+            <a href="https://github.com/winston/cactus">Cactus</a>
+          </li>
+          <li>
+            <a href="http://gigest.herokuapp.com">Gigest App</a>
+          </li>
+        </ul>
+      </section>
+      <section id="elsewhere">
+        <h2>Elsewhere</h2>
+        <ul>
+          <li>
+            <a href="https://twitter.com/winstonyw">Twitter</a>
+          </li>
+          <li>
+            <a href="https://github.com/winston">GitHub</a>
+          </li>
+          <li>
+            <a href="http://www.linkedin.com/in/winstonyw">LinkedIn</a>
+          </li>
+          <li>
+            <a href="mailto:winstonyw+blog@gmail.com">Email</a>
+          </li>
+          <li>
+            <a href="#">RSS</a>
+          </li>
+        </ul>
+      </section>
+  </header>
+    <div id='center'>
+      <div class='color-bar'></div>
+      <div id='content'>
+        <article class="post">
+          <h2>Setting Up Ruby on Rails On Digital Ocean</h2>
+          <span class="date">24 OCTOBER 2014</span>
+          <section>
+            <p><strong>Edit</strong> This has been updated for Ubuntu 14.10, Ruby 2.2.2 and Postgres 9.4.</p>
+
+<p>Documentation of how I setup <a href="http://www.sgbusfeedback.com">SGBusFeedback.com</a>,
+a basic Ruby on Rails application backed by a PostgreSQL database on Digital Ocean.</p>
+
+<p>Noting it down for my future self.</p>
+
+<h2>Create Droplet on Digital Ocean</h2>
+
+<ul>
+<li>Login to Digital Ocean and start <code>Create</code>-ing a Droplet</li>
+<li>Size      : $5/mth</li>
+<li>Region    : Singapore</li>
+<li>Image     : Linux Distribtions > Ubuntu 14.04 x64</li>
+<li>Add SSH key for easy access to the Droplet</li>
+<li><code>Create Droplet</code>!</li>
+</ul>
+
+
+<h2>Set Up Droplet</h2>
+
+<p>Assuming that your SSH key has been set up properly, SSH into your Droplet.</p>
+
+<pre><code>machine$&gt; ssh root@&lt;ipaddress&gt;
+</code></pre>
+
+<h3>Add a Deploy User</h3>
+
+<p>Create a <code>deploy</code> user on the Droplet.</p>
+
+<pre><code>droplet$&gt; sudo adduser deploy
+droplet$&gt; sudo adduser deploy sudo #add to sudo group
+</code></pre>
+
+<p>Create a SSH key on your machine, and upload the key.</p>
+
+<pre><code>machine$&gt; ssh-keygen
+Generating public/private rsa key pair.
+Enter file in which to save the key (/Users/winston/.ssh/id_rsa): id_deploy_digital_ocean
+...
+</code></pre>
+
+<p>Copy the SSH key to the Droplet.</p>
+
+<p>On Mac? <code>brew install ssh-copy-id</code>. On Linux? You already have <code>ssh-copy-id</code>.</p>
+
+<pre><code>machine$&gt; ssh-copy-id -i ~/.ssh/id_deploy_digital_ocean deploy@&lt;ipaddress&gt;
+</code></pre>
+
+<p>Now you can login to your Droplet with:</p>
+
+<pre><code>machine$&gt; ssh-add ~/.ssh/id_deploy_digital_ocean
+machine$&gt; ssh deploy@&lt;ipaddress&gt;
+</code></pre>
+
+<h3>Harden Droplet</h3>
+
+<p>Modify SSH settings <code>/etc/ssh/sshd_config</code> in the Droplet.</p>
+
+<ul>
+<li>Add <code>PermitRootLogin without-password</code> (<a href="http://askubuntu.com/questions/449364/what-does-without-password-mean-in-sshd-config-file">What?</a>)</li>
+<li>Add <code>UseDNS no</code> (<a href="http://unix.stackexchange.com/questions/56941/what-is-the-point-of-sshd-usedns-option">What?</a>)</li>
+<li>Change <code>Port</code> to something unique and take note. E.g. <code>8888</code></li>
+</ul>
+
+
+<p>Reload SSH with <code>reload ssh</code>.</p>
+
+<p>Verify your SSH settings with your new user. In a new Terminal:</p>
+
+<pre><code>machine$&gt; ssh -p 8888 deploy@&lt;ipaddress&gt;
+</code></pre>
+
+<p>Bonus. Add this to <code>~/.ssh/config</code> on your machine so that login will be a breeze.</p>
+
+<pre><code># in ~/.ssh/config
+Host    &lt;appname&gt;
+    HostName        &lt;ipaddress&gt;
+    Port            8888
+    User            deploy
+    IdentityFile    ~/.ssh/id_deploy_digital_ocean
+</code></pre>
+
+<pre><code>machine$&gt; ssh &lt;appname&gt;
+</code></pre>
+
+<h3>Update and Upgrade Ubuntu</h3>
+
+<p>A Ruby on Rails server requires quite a few things. Installed these as the <code>deploy</code> user.</p>
+
+<pre><code>droplet$&gt; sudo apt-get update
+droplet$&gt; sudo apt-get upgrade
+droplet$&gt; sudo apt-get install git-core
+droplet$&gt; sudo apt-get install nodejs # for assets compilation.
+</code></pre>
+
+<h3>RVM</h3>
+
+<p>Install RVM.</p>
+
+<pre><code>droplet$&gt; curl -L https://get.rvm.io | bash -s stable
+# If an error about gpg occurs, follow the instructions..
+droplet$&gt; gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3
+# https://github.com/wayneeseguin/rvm/issues/3110
+</code></pre>
+
+<p>Relogin to shell, install RVM requirements, and Ruby.</p>
+
+<pre><code>droplet$&gt; source /etc/profile.d/rvm.sh
+droplet$&gt; echo "source /etc/profile.d/rvm.sh" &gt;&gt; ~/.bashrc
+droplet$&gt; rvm requirements
+droplet$&gt; rvm install 2.2.2
+droplet$&gt; rvm use 2.2.2 --default
+droplet$&gt; ruby -v
+</code></pre>
+
+<h3>RubyGems Setup</h3>
+
+<p>Prevent RubyGems from installing docs.</p>
+
+<pre><code>droplet$&gt; echo "gem: --no-ri --no-rdoc" &gt; ~/.gemrc
+</code></pre>
+
+<h3>Install Nginx and Passenger</h3>
+
+<p>Follow the instructions on the <a href="https://www.phusionpassenger.com/documentation/Users%20guide%20Nginx.html#installation">Official Documentation</a>.</p>
+
+<h4>Condensed Version:</h4>
+
+<p>Install Phusion's PGP key and add HTTPS support for ATP.</p>
+
+<pre><code>droplet$&gt; sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 561F9B9CAC40B2F7
+droplet$&gt; sudo apt-get install apt-transport-https ca-certificates
+</code></pre>
+
+<p>Add Passenger's repository. <em><strong>Just one.</strong></em></p>
+
+<pre><code>droplet$&gt; sudo sh -c 'echo "deb https://oss-binaries.phusionpassenger.com/apt/passenger trusty main" &gt;&gt; /etc/apt/sources.list.d/passenger.list'
+droplet$&gt; sudo chown root: /etc/apt/sources.list.d/passenger.list
+droplet$&gt; sudo chmod 600 /etc/apt/sources.list.d/passenger.list
+droplet$&gt; sudo apt-get update
+</code></pre>
+
+<p>Install Nginx and Passenger packages.</p>
+
+<pre><code># The Official Documentation uses `nginx-extras` but `nginx-full` is good enough.
+droplet$&gt; sudo apt-get install nginx-full passenger
+</code></pre>
+
+<p>Edit <code>/etc/nginx/nginx.conf</code> and uncomment <code>passenger_root</code> and <code>passenger_ruby</code>.</p>
+
+<p>Also find out where your <code>ruby</code> is, and use that for <code>passenger_ruby</code>.</p>
+
+<pre><code>droplet$&gt; passenger-config --ruby-command
+  Command: /usr/local/rvm/gems/ruby-2.2.2/wrappers/ruby
+  Version: ruby 2.2.2p95 (2015-04-13 revision 50295) [x86_64-linux]
+  To use in Apache: PassengerRuby /usr/local/rvm/gems/ruby-2.2.2/wrappers/ruby
+  To use in Nginx : passenger_ruby /usr/local/rvm/gems/ruby-2.2.2/wrappers/ruby
+  To use with Standalone: /usr/local/rvm/gems/ruby-2.2.2/wrappers/ruby /usr/bin/passenger start
+</code></pre>
+
+<pre><code>droplet$&gt; sudo vi /etc/nginx/nginx.conf
+... Edits ..
+droplet$&gt; sudo service nginx restart
+</code></pre>
+
+<h3>Install PostgreSQL</h3>
+
+<p>Install it.</p>
+
+<pre><code>droplet$&gt; sudo apt-get install postgresql-9.4 libpq-dev
+</code></pre>
+
+<p>Set up Postgres user.</p>
+
+<p>The <code>password</code> that you used here will be used in your app's <code>database.yml</code>.</p>
+
+<pre><code>droplet$&gt; sudo su - postgres
+droplet$&gt; psql -c"alter user postgres with password 'strong123password';"
+</code></pre>
+
+<p>Create the Production database.</p>
+
+<pre><code>droplet$&gt; psql
+psql&gt; create database &lt;production_dbname&gt;;
+psql&gt; exit
+</code></pre>
+
+<h3>Connect GitHub Repo to Droplet</h3>
+
+<p>Create a SSH key on the Droplet, and then add it to the GitHub repo.</p>
+
+<p>Follow the instructions here: <a href="https://help.github.com/articles/generating-ssh-keys/">https://help.github.com/articles/generating-ssh-keys/</a></p>
+
+<p>Make sure you run this <code>droplet$&gt; ssh -T git@github.com</code>.</p>
+
+<p>This will ensure that Mina can deploy with GitHub.</p>
+
+<h3>Setup Mina</h3>
+
+<p>Follow the instructions on <a href="https://github.com/mina-deploy/mina">Mina's README</a>.</p>
+
+<h4>Condensed Version:</h4>
+
+<p>Init Mina on your application.</p>
+
+<pre><code>machine$&gt; mina init
+Created config/deploy.rb.
+</code></pre>
+
+<p>Use <code>rvm</code> or <code>rbenv</code>.</p>
+
+<pre><code>require 'mina/rvm'
+# require 'mina/rbenv'
+</code></pre>
+
+<p>Update <code>config/deploy.rb</code> with Droplet's Details.</p>
+
+<pre><code>set :domain,       &lt;ipaddress&gt;
+set :deploy_to,   '/home/deploy/&lt;app_domain'
+set :repository,  'git@github.com:&lt;user&gt;/&lt;repo&gt;.git'
+set :branch,      'master'
+set :user,        'deploy'
+set :port,        '8888'
+....
+task :environment do
+  queue 'source ~/.bash_profile'
+
+  # For those using RVM, use this to load an RVM version@gemset.
+  invoke :'rvm:use[ruby-2.1.4]'
+end
+</code></pre>
+
+<p>SetUp Mina on Droplet.</p>
+
+<pre><code>machine$&gt; mina setup
+-----&gt; Using RVM environment 'ruby-2.1.4'
+       Using /home/demo/.rvm/gems/ruby-2.1.4
+-----&gt; Setting up /home/deploy/&lt;app_domain&gt;
+
+       total 16
+       drwxrwxr-x 4 deploy deploy 4096 Nov  5 02:00 .
+       drwxr-xr-x 8 deploy deploy 4096 Nov  5 02:00 ..
+       drwxrwxr-x 2 deploy deploy 4096 Nov  5 02:00 releases
+       drwxrwxr-x 4 deploy deploy 4096 Nov  5 02:00 shared
+
+-----&gt; Done.
+-----&gt; Be sure to edit 'shared/config/database.yml'.
+-----&gt; Be sure to edit 'shared/config/secrets.yml'.
+       Elapsed time: 1.00 seconds
+</code></pre>
+
+<p><em><strong>Important!</strong></em> Update <code>shared/config/database.yml</code> and <code>shared/config/secrets.yml</code> on the Droplet.</p>
+
+<pre><code>#database.yml
+production:
+    adapter: postgresql
+    encoding: unicode
+    database: &lt;production_dbname&gt;
+    username: postgres
+    password: strong123password
+    host: localhost
+</code></pre>
+
+<pre><code>#secrets.yml
+production:
+    secret_key_base: &lt;Generated from `rake secret`&gt;
+</code></pre>
+
+<p>You might also need these settings in <code>.bash_profile</code>.</p>
+
+<pre><code># vi .bash_profile
+export LANGUAGE=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+</code></pre>
+
+<p>Now, you can deploy your application to the Droplet.</p>
+
+<pre><code>machine$&gt; mina deploy
+</code></pre>
+
+<h3>Update Nginx Configuration</h3>
+
+<p>Update the file <code>/etc/nginx/sites-enabled/default</code> with these settings:</p>
+
+<pre><code>server {
+    listen 80 default_server;
+    listen [::]:80 default_server ipv6only=on;
+
+    server_name         &lt;app_domain&gt;;
+    passenger_enabled   on;
+    rails_env           production;
+    root                /home/deploy/&lt;app_domain&gt;/current/public;
+}
+</code></pre>
+
+<p>Restart the Nginx server, you should be able to see your app at the <code>ipaddress</code>.</p>
+
+<pre><code>droplet$&gt; sudo service nginx restart
+</code></pre>
+
+<h3>Next Steps</h3>
+
+<p>At this point, you already have your app up and running at <code>ipaddress</code>.</p>
+
+<p>You will probably need to do the following to make it work nicely:</p>
+
+<ul>
+<li>Use <code>figaro</code> or add ENV variables to <code>.bash_profile</code>.</li>
+<li>Point DNS to the <code>ipaddress</code>.</li>
+<li>Explore other configurations for your Nginx (static 40<em> or 50</em>)</li>
+<li>Put in place backup strategies for your PostgreSQL (maybe use RDS instead?)</li>
+</ul>
+
+
+<p>That's it!</p>
+
+<h3>Troubleshooting</h3>
+
+<p>Sometimes, the $5/mth Droplet might complain of inadequate swap space. <a href="https://www.digitalocean.com/community/tutorials/how-to-add-swap-on-ubuntu-12-04">Read this</a>.</p>
+
+<p>Also, Nginx error logs are pretty handy. Available at <code>/var/log/nginx/error.log</code>.</p>
+
+<h2>Resources</h2>
+
+<p>Reading these really helped!</p>
+
+<ul>
+<li><a href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-12-04">Initial Server Setup with Ubuntu 12.04</a></li>
+<li><a href="https://gorails.com/deploy/ubuntu/14.04">Deploy Ruby On Rails on Ubuntu 14.04 Trusty Tahr</a></li>
+<li><a href="https://gist.github.com/sathishmanohar/5491263">https://gist.github.com/sathishmanohar/5491263</a></li>
+<li><a href="http://voiceofchunk.com/2014/06/09/deploying-rails-apps-using-passenger-rbenv-postgresql-and-mina/">Deploying a Rails app on Ubuntu 14.04 - Passenger, RBenv, PostgreSQL, and Mina</a></li>
+</ul>
+
+
+          </section>
+        </article>
+        <article class="comments">
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+            var disqus_shortname = 'winstonyw';
+            // var disqus_developer = 1;
+            (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </article>
+      </div>
+    </div>
+    <footer>
+      Just a boring footer. Nothing to see here lah. ~
+    </footer>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-297001-2']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>

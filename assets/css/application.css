@@ -1,9 +1,10 @@
 @import url(pygments.css);
 @import url(http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz|Advent+Pro|Nova+Mono);
-* {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
+html {
   box-sizing: border-box; }
+
+*, *::after, *::before {
+  box-sizing: inherit; }
 
 h1 {
   font-size: 4.0em;
@@ -22,18 +23,18 @@ h4 {
   font-family: 'Advent Pro', sans-serif; }
 
 a, a:visited {
-  color: #21aabd;
+  color: #21AABD;
   text-decoration: none; }
 
 a:hover {
-  color: #f94b62; }
+  color: #F94B62; }
 
 blockquote {
   margin: 0 0 1.5em 0;
   padding: 0.1em 1.5em;
-  border-left: 2px solid #ffd1de;
+  border-left: 2px solid #FFD1DE;
   font-style: italic;
-  color: #ff85a7; }
+  color: #FF85A7; }
 
 code {
   font-size: 0.8em;
@@ -49,19 +50,20 @@ p code {
 
 pre code {
   display: block;
-  display: block;
   float: left;
+  display: block;
   margin-right: 3.57866%;
   width: 100%;
   margin: 0 0 2em 0;
   padding: 1em;
   overflow: hidden;
   overflow-x: scroll; }
-  pre code:last-child {
-    margin-right: 0; }
+
+pre code:last-child {
+  margin-right: 0; }
 
 img {
-  border: 1px dashed #ff85a7; }
+  border: 1px dashed #FF85A7; }
 
 p {
   margin: 0 0 1.5em 0;
@@ -78,148 +80,165 @@ ul li > ul {
   margin: 0.5em 0 1em 0; }
 
 body {
-  zoom: 1;
   max-width: 68em;
-  text-align: left;
   margin-left: auto;
   margin-right: auto;
   margin: 0 auto;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
   font-size: 16px;
   color: #444444;
   text-rendering: optimizeLegibility; }
-  body:before, body:after {
-    content: "";
-    display: table; }
-  body:after {
-    clear: both; }
+
+body::after {
+  clear: both;
+  content: "";
+  display: table; }
 
 header {
-  display: block;
   float: left;
+  display: block;
   margin-right: 2.35765%;
   width: 31.76157%;
   margin-right: 0; }
-  header:last-child {
-    margin-right: 0; }
+
+header:last-child {
+  margin-right: 0; }
 
 #center {
-  display: block;
   float: left;
+  display: block;
   margin-right: 2.35765%;
   width: 65.88078%;
   margin-right: 0; }
-  #center:last-child {
-    margin-right: 0; }
+
+#center:last-child {
+  margin-right: 0; }
 
 header .title-color-bar {
   height: 1em;
-  background-color: #f94b62; }
+  background-color: #F94B62; }
+
 header .aside-color-bar {
   height: 1em;
-  background-color: #ffd446; }
+  background-color: #FFD446; }
+
 header #profile {
   padding: 2.35765%;
   text-align: center; }
-  header #profile h1 {
-    margin: 0.5em 0 0 0; }
-    header #profile h1 a, header #profile h1 a:visited, header #profile h1 a:hover {
-      color: #444444;
-      text-decoration: none;
-      word-break: break-all; }
-  header #profile h2 {
-    font-family: 'Yanone Kaffeesatz', sans-serif;
-    margin: -0.2em 0 1em 0;
-    color: #c2c2c2; }
+
+header #profile h1 {
+  margin: 0.5em 0 0 0; }
+
+header #profile h1 a, header #profile h1 a:visited, header #profile h1 a:hover {
+  color: #444444;
+  text-decoration: none;
+  word-break: break-all; }
+
+header #profile h2 {
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+  margin: -0.2em 0 1em 0;
+  color: #C2C2C2; }
+
 header #projects, header #elsewhere {
-  display: block;
   float: left;
+  display: block;
   margin-right: 7.42297%;
   width: 46.28851%;
   padding: 2.35765%; }
-  header #projects:last-child, header #elsewhere:last-child {
-    margin-right: 0; }
-  header #projects h2, header #elsewhere h2 {
-    margin-bottom: 0.5em; }
-  header #projects ul li, header #elsewhere ul li {
-    padding: 0.2em 0; }
+
+header #projects:last-child, header #elsewhere:last-child {
+  margin-right: 0; }
+
+header #projects h2, header #elsewhere h2 {
+  margin-bottom: 0.5em; }
+
+header #projects ul li, header #elsewhere ul li {
+  padding: 0.2em 0; }
 
 #center .color-bar {
   height: 1em;
-  background-color: #8df0e6; }
+  background-color: #8DF0E6; }
+
 #center #content {
   padding: 1em 2em; }
 
 footer {
-  display: block;
   float: left;
+  display: block;
   margin-right: 2.35765%;
   width: 100%;
   padding: 2.35765%;
   text-align: right;
   font-size: 0.8em;
-  color: #c2c2c2; }
-  footer:last-child {
-    margin-right: 0; }
+  color: #C2C2C2; }
+
+footer:last-child {
+  margin-right: 0; }
 
 #projects ul li, #elsewhere ul li {
   line-height: 1em; }
 
 .index h2, .post h2 {
   margin-top: 1em; }
+
 .index .date, .post .date {
   font-family: 'Nova Mono', cursive;
-  color: #c2c2c2; }
+  color: #C2C2C2; }
 
 .index h2 {
   margin-bottom: 1.5em; }
+
 .index .post-link {
   padding: 0.2em;
-  border-bottom: 1px dotted #c2c2c2;
+  border-bottom: 1px dotted #C2C2C2;
   line-height: 1.5em; }
-  .index .post-link:last-child {
-    border: none; }
+
+.index .post-link:last-child {
+  border: none; }
 
 .post h2 {
   margin-bottom: 0.2em; }
+
 .post section {
   margin: 2em 0 4em;
   padding-bottom: 2em;
-  border-bottom: 1px dotted #c2c2c2; }
+  border-bottom: 1px dotted #C2C2C2; }
 
 @media screen and (max-width: 500px) {
   header, #center, footer {
-    display: block;
     float: left;
+    display: block;
     margin-right: 4.82916%;
     width: 100%; }
-    header:last-child, #center:last-child, footer:last-child {
-      margin-right: 0; } }
 
+  header:last-child, #center:last-child, footer:last-child {
+    margin-right: 0; } }
 @media screen and (max-width: 500px) {
   header .title-color-bar {
     height: 0.4em; }
+
   header #profile h1 {
     margin: 0;
     font-size: 2em; }
+
   header #profile h2 {
     margin: 0;
     font-size: 1.2em; }
+
   header .aside-color-bar, header #projects, header #elsewhere {
     display: none; } }
-
 @media screen and (max-width: 500px) {
   #center .color-bar {
     height: 0.4em; }
+
   #center #content {
     padding: 2.35765%; } }
-
 @media screen and (max-width: 500px) {
   footer {
     display: none; } }
-
 @media screen and (max-width: 500px) {
   .index h2 {
     display: none; }
+
   .index .date {
     font-size: 0.8em; } }
