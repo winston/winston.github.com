@@ -46,7 +46,7 @@ Firstly, sponsorships are boosts of confidence for what we were doing,
 such that organisations find it advantageous for them to be a sponsor.
 
 Secondly, because ticket sales alone are never enough to cover the full cost of the conference,
-and so sponsorships are really important to make sure we didn't go into red.
+and so sponsorships are really important to make sure we don't go into red.
 
 Thank you:
 
