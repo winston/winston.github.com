@@ -7,6 +7,175 @@
     <atom:link href="http://winstonyw.com/feed.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Responsible Engineering</title>
+      <description>&lt;p&gt;I wrote a post originally to talk about &quot;Responsible Engineering&quot; and showed it to folks at Jolly Good Code for feedback. Then Choon Keat showed me this particular set of slides..&lt;/p&gt;
+
+&lt;p&gt;After going through the slides, I decided that my post wasn&#39;t worth reading and you &lt;a href=&quot;https://speakerdeck.com/mcfunley/choose-boring-technology&quot;&gt;should read that set of slides&lt;/a&gt; instead.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://twitter.com/mcfunley&quot;&gt;Dan McKinley&lt;/a&gt; covered everything I wanted to say about being responsible and more in his &lt;a href=&quot;https://www.youtube.com/watch?v=wUmx-dlYS34&quot;&gt;talk titled &quot;Choose Boring Technology&quot;&lt;/a&gt;. The deck is golden and every engineer should read and memorize it.&lt;/p&gt;
+
+&lt;p&gt;Also, there are some &lt;a href=&quot;https://twitter.com/mcfunley/status/582557375845941248&quot;&gt;interesting conversations on Twitter too&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;del&gt;The only thing I would add is that IF anyone still decides to try out that new shiny thing on production, please, please insist for it to be tested. Any kind of tests!&lt;/del&gt;&lt;/p&gt;
+
+&lt;p&gt;Scrap that.&lt;/p&gt;
+
+&lt;p&gt;Even writing tests is not justification enough to introduce a new shiny thing to the mix.
+Does the app really need that to work, or was it added to satisfy your own personal desire?
+Think of the big picture and the impact that the new shiny thing would bring to the team.
+Would that be a positive or negative impact? Brings to mind &lt;a href=&quot;http://dmathieu.com/articles/development/ember-rails/&quot;&gt;this little story&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Maybe a responsible engineer is more likely to stick with &quot;boring&quot; technology?&lt;/p&gt;
+</description>
+      <pubDate>Sat, 17 Oct 2015 00:00:00 +0800</pubDate>
+      <link>http://winstonyw.com/2015/10/17/responsible_engineering/</link>
+      <guid isPermaLink="true">http://winstonyw.com/2015/10/17/responsible_engineering/</guid>
+    </item>
+    
+    <item>
+      <title>Half A Decade Of RedDotRubyConf</title>
+      <description>&lt;p&gt;This year, 2015, is the fifth run of RDRC and my third time organising it.
+Even though it&#39;s my third time doing this, it&#39;s not in anyway easier
+because expectations have definitely gone up over the years,
+and I have to do something about the feedback collected last year. :)&lt;/p&gt;
+
+&lt;p&gt;The preparation started 6 months before the conference, and it always begin with the venue and dates.
+I picked Biopolis again because it&#39;s really affordable, and that means ticket prices can stay similar.&lt;/p&gt;
+
+&lt;p&gt;Then I started to invite several key speakers, one of whom is Matz.
+I really wanted to have Matz at RedDotRubyConf 2015,
+as he was here in 2011 and so I thought it would be special to have him back again 4 years later.
+But alas! Matz wasn&#39;t able  make it for the dates (May 28, 29) which I planned for.. What? OMG!&lt;/p&gt;
+
+&lt;p&gt;Like I said, I really, really wanted to have Matz at RedDotRubyConf 2015!
+So I went back to the venue and asked for a few other open dates
+and luckily one of it suited Matz&#39;s schedule. Phew!
+And the rest was history as Aaron, Sam, Linda, Laurent and Jesse all agreed to come too!&lt;/p&gt;
+
+&lt;p&gt;From January onwards, the months went by quickly as we took care of the logistical challenges of the conference.
+Too much to say here, but did I mention I am trying to write an open source Conference Planning Guide?&lt;/p&gt;
+
+&lt;p&gt;Finally June 4, 5 came and went by quickly and I really couldn&#39;t have done it without the help of
+&lt;a href=&quot;https://twitter.com/tgx_world&quot;&gt;Guo Xiang&lt;/a&gt;,
+&lt;a href=&quot;https://twitter.com/jin_&quot;&gt;Jingwen&lt;/a&gt;,
+&lt;a href=&quot;https://twitter.com/elishatan&quot;&gt;Elisha&lt;/a&gt;,
+&lt;a href=&quot;https://twitter.com/anna_fil&quot;&gt;Anna&lt;/a&gt;,
+&lt;a href=&quot;https://twitter.com/laurenceputra&quot;&gt;Laurence&lt;/a&gt; and
+&lt;a href=&quot;https://twitter.com/cheeaun&quot;&gt;Cheeaun&lt;/a&gt;.
+They covered the grounds that I wasn&#39;t able to attend to and were instrumental in making the conference a success.
+Thank you!&lt;/p&gt;
+
+&lt;h2&gt;Thank You Sponsors!&lt;/h2&gt;
+
+&lt;p&gt;Our sponsors were awesome and I can&#39;t thank them enough!
+They just wanted to do their bit to help build the Ruby community
+and I hope RDRC helped them snag a few more deals or new hires!&lt;/p&gt;
+
+&lt;p&gt;Why are sponsorships important?&lt;/p&gt;
+
+&lt;p&gt;Firstly, sponsorships are boosts of confidence for what we were doing,
+such that organisations find it advantageous for them to be a sponsor.&lt;/p&gt;
+
+&lt;p&gt;Secondly, because ticket sales alone are never enough to cover the full cost of the conference,
+and so sponsorships are really important to make sure we don&#39;t go into red.&lt;/p&gt;
+
+&lt;p&gt;Thank you:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.pocketmath.com/&quot;&gt;PocketMath&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://piktochart.com/&quot;&gt;Piktochart&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.paypal.com&quot;&gt;Braintree Paypal&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://flowhero.io/&quot;&gt;Flowhero.io&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.opsmanager.com/&quot;&gt;OpsManager&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.tinkerbox.com.sg/&quot;&gt;Tinkerbox&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/&quot;&gt;GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.thoughtworks.com/&quot;&gt;ThoughtWorks&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.digitalocean.com/&quot;&gt;DigitalOcean&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.stickermule.com/&quot;&gt;Stickermule&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://pragprog.com/&quot;&gt;The Pragmatic Bookshelf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.ida.gov.sg/&quot;&gt;IDA Labs&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h2&gt;Thank You Speakers&lt;/h2&gt;
+
+&lt;p&gt;Speakers - They are the soul of the conference. Thank you all so much!&lt;/p&gt;
+
+&lt;p&gt;25 Speakers - 6 Key Notes, 9 CFPs and 9 Lightning Talks.&lt;/p&gt;
+
+&lt;p&gt;We had topics about Ruby (and mRuby), Rails, RubyMotion, Robotics,
+Security, Refactoring, Optimization, Open Source, etc,
+and this year, we also did a Panel discussion on Ruby
+which was very well-received!&lt;/p&gt;
+
+&lt;p&gt;I learned a lot from all the talks and I hope you do too.
+You can enjoy the talks again as
+&lt;a href=&quot;https://www.youtube.com/playlist?list=PLE7tQUdRKcyZdMYKatu_nics8Pkjxl3-F&quot;&gt;they are now available on Confreaks&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Thank you Matz, Aaron, Sam, Linda, Laurent, Jesse, Aman,
+André, Sau Sheong, Shipeng, Prathamesh, Laura, Juanito, Hiroaki, Christopher, Joy, Vaidehi,
+Paolo, Hiroshi, Tania, Guo Xiang, Radamanthus, Elisha, Grzegorz, Tomoya and Yuki!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/rdrc15-speakers.jpg&quot; alt=&quot;Speakers&quot; /&gt;&lt;/p&gt;
+
+&lt;h2&gt;Thank YOU!!!&lt;/h2&gt;
+
+&lt;p&gt;As I have always said, RDRC is for you, and you, and you!&lt;/p&gt;
+
+&lt;p&gt;Almost 350 Rubyists from all over the World gathered together for 2-days
+to celebrate Ruby on the tiny island called Singapore.&lt;/p&gt;
+
+&lt;p&gt;Thank you for making this possible. Thank you all for your support!&lt;/p&gt;
+
+&lt;p&gt;Let&#39;s continue to make the Ruby community even better!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/rdrc15-attendees.jpg&quot; alt=&quot;Attendees&quot; /&gt;&lt;/p&gt;
+
+&lt;h2&gt;Infographics&lt;/h2&gt;
+
+&lt;p&gt;Powered by &lt;a href=&quot;http://piktochart.com/&quot;&gt;Piktochart&lt;/a&gt;, one of our sponsors.&lt;/p&gt;
+
+&lt;p&gt;Piktochart made generating this infographic enjoyable and truly A BREEZE!!!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/rdrc15-infographics.jpg&quot; alt=&quot;Infographics&quot; /&gt;&lt;/p&gt;
+
+&lt;h2&gt;Resources&lt;/h2&gt;
+
+&lt;p&gt;Just refer to &lt;a href=&quot;https://gist.github.com/cheeaun/2b6a985d65093b4b1a3d&quot;&gt;Cheeaun&#39;s awesome curated list&lt;/a&gt;!&lt;/p&gt;
+
+&lt;h2&gt;Closing&lt;/h2&gt;
+
+&lt;p&gt;Honestly, imo, I felt that this was the best RDRC amongst that last 3 that I organised.
+First year was about making sure I don&#39;t mess up and that the brand continued to grow.
+Second year was about repeating the same feat (while juggling with &lt;a href=&quot;http://www.jollygoodcode.com/&quot;&gt;starting my own consultancy&lt;/a&gt;).
+This year, it was about taking care of the finer details, so that everyone felt welcomed.&lt;/p&gt;
+
+&lt;p&gt;Things that I felt we did well:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;We have private buses that brought speakers (who were staying at the conference hotel) to Biopolis&lt;/li&gt;
+&lt;li&gt;We have better breakfasts and tea breaks&lt;/li&gt;
+&lt;li&gt;We have barista-style coffee/tea because developers care for their daily fix&lt;/li&gt;
+&lt;li&gt;We have vegetarian lunch boxes for attendees who indicated on registration that they were vegetarian&lt;/li&gt;
+&lt;li&gt;We have cleaners to make sure the venue is kept spick and span&lt;/li&gt;
+&lt;li&gt;We did a RubyMotion workshop before the conference, and RailsGirls and Git Workshop after the conference&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;If I were to give RDRC 2015 a score, I would say we scored 90 marks. Haha.&lt;/p&gt;
+
+&lt;p&gt;Organising a conference is challenging and tiring, but at the same time, fun and rewarding.&lt;/p&gt;
+
+&lt;p&gt;That&#39;s all folks! :)&lt;/p&gt;
+
+&lt;p&gt;Drop me an email - suggestions, compliments or criticisms. Thank you!&lt;/p&gt;
+</description>
+      <pubDate>Thu, 30 Jul 2015 00:00:00 +0800</pubDate>
+      <link>http://winstonyw.com/2015/07/30/half_a_decade_of_reddotrubyconf/</link>
+      <guid isPermaLink="true">http://winstonyw.com/2015/07/30/half_a_decade_of_reddotrubyconf/</guid>
+    </item>
+    
+    <item>
       <title>Setting Up Ruby on Rails On Digital Ocean</title>
       <description>&lt;p&gt;&lt;strong&gt;Edit&lt;/strong&gt; This has been updated for Ubuntu 14.10, Ruby 2.2.2 and Postgres 9.4.&lt;/p&gt;
 
@@ -911,131 +1080,6 @@ that also triggered the building of the remote zip file.&lt;/p&gt;
       <pubDate>Tue, 01 Oct 2013 00:00:00 +0800</pubDate>
       <link>http://winstonyw.com/2013/10/01/ruby_reading_a_remote_zip_file/</link>
       <guid isPermaLink="true">http://winstonyw.com/2013/10/01/ruby_reading_a_remote_zip_file/</guid>
-    </item>
-    
-    <item>
-      <title>GoogleVisualr</title>
-      <description>&lt;p&gt;In 2008, I worked at &lt;a href=&quot;http://wego.com&quot;&gt;Wego.com&lt;/a&gt; and I had to build a Google Analytics clone from scratch.
-The main reason for that was because Google Analytics didn&#39;t have an open API back then.
-The collected data was important to the P&amp;amp;L as it was used to bill our partners (CPM/CPC)
-and so it&#39;s crucial that we maintain absolute control over it.&lt;/p&gt;
-
-&lt;p&gt;The tool, aptly named Wegonomics, eventually also had the billing functionalities built in.&lt;/p&gt;
-
-&lt;p&gt;Anyway, it had a few interesting components:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;A JavaScript tracking script that tracked all of your searching and clicking activities (partly reverse-engineered from the famous ga.js) to log files.&lt;/li&gt;
-&lt;li&gt;A Ruby parser that parsed the log files and dumped meaningful data into a database.
-I also built some fuzzy algorithms to de-dup and de-fraud the searches and clicks because the accuracy of the data affects the P&amp;amp;L of the business.&lt;/li&gt;
-&lt;li&gt;A Rails application that sliced and diced the data for analysis by the management.
-The app started with only tables but I gradually added charts to the app so as to create a good analytics dashabord that provided insights to the numbers.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;p&gt;Each component was interesting on its own, and I was pretty proud of my work back then.
-Looking back.. Not so, because I left my successor without any tests. &lt;em&gt;Terribly guilty!&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Anyway, as part of the Rails app,
-I wrote a RubyGem to help with the generation of charts,
-and this post is really about that - &lt;a href=&quot;https://github.com/winston/google_visualr&quot;&gt;GoogleVisualr&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;To draw the charts, I picked &lt;a href=&quot;https://developers.google.com/chart/&quot;&gt;Google Charts&lt;/a&gt;
-because it&#39;s free and easy to get started with.
-It&#39;s basically a JavaScript library and you&#39;ll write JavaScript to draw the charts.&lt;/p&gt;
-
-&lt;p&gt;The generation of the charts is pretty easy and straight forward:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Pick the chart type, e.g. Bar chart, Line chart etc.&lt;/li&gt;
-&lt;li&gt;Pass data into the chart&lt;/li&gt;
-&lt;li&gt;Draw the chart&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;p&gt;That&#39;s assuming you already have the data. But where do you usually get the data from?&lt;/p&gt;
-
-&lt;p&gt;In any SQL-backed apps, you&#39;ll have to retrieve the data from the DB with Ruby/Python etc,
-convert the data into JavaScript objects somehow (simplest is to embed it in the views),
-and write JavaScript to use the data and generate the chart with it.&lt;/p&gt;
-
-&lt;p&gt;Context switching between Ruby and JavaScript is troublesome..&lt;/p&gt;
-
-&lt;p&gt;And so, that&#39;s how GoogleVisualr came about - a Ruby wrapper around the Google Charts.
-Now I can manipulate the numbers and construct the charts in Ruby,
-and the RubyGem provides a method to auto-generate the JavaScript required for the charts in the view!&lt;/p&gt;
-
-&lt;p&gt;This simplicity works for most use cases, unless you require interactivity with the charts.
-Then you&#39;ll still need to write JavaScript for that.&lt;/p&gt;
-
-&lt;p&gt;A really basic example:&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;In your layout, load Google Ajax API in the head tag, at the very top.&lt;/em&gt;&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;https://www.google.com/jsapi&amp;#39;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;&lt;em&gt;In a controller, e.g. &lt;code&gt;app/controllers/charts_controller.rb&lt;/code&gt;&lt;/em&gt;&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;area_chart&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;data_table&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;GoogleVisualr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;DataTable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;# Add Column Headers&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;data_table&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new_column&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;string&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Year&amp;#39;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;data_table&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new_column&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;number&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Sales&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;data_table&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new_column&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;number&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Expenses&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-  &lt;span class=&quot;c1&quot;&gt;# Add Rows and Values&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;data_table&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add_rows&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;
-      &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;2004&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;400&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-      &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;2005&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1170&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;460&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-      &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;2006&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;660&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1120&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-      &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;2007&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1030&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;540&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-  &lt;span class=&quot;n&quot;&gt;option&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;400&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;240&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Company Performance&amp;#39;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;vi&quot;&gt;@chart&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;GoogleVisualr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Interactive&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;AreaChart&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data_table&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;option&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;&lt;em&gt;In the corresponding view, e.g. &lt;code&gt;app/views/charts/area_chart.html.erb&lt;/code&gt;&lt;/em&gt;&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-erb&quot; data-lang=&quot;erb&quot;&gt;&lt;span class=&quot;x&quot;&gt;&amp;lt;div id=&amp;#39;chart&amp;#39;&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;cp&quot;&gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;render_chart&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@chart&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;chart&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Go ahead! Check out &lt;a href=&quot;https://github.com/winston/google_visualr&quot;&gt;GoogleVisualr on GitHub&lt;/a&gt; or the &lt;a href=&quot;http://googlevisualr.herokuapp.com/&quot;&gt;Docs&lt;/a&gt; now.&lt;/p&gt;
-
-&lt;p&gt;These are the slides which I presented at the Singapore Ruby Meetup on 14 Apr 2010.
-Definitely outdated, but it still explains the intention and basics of the RubyGem well.&lt;/p&gt;
-
-&lt;iframe src=&quot;http://www.slideshare.net/slideshow/embed_code/3737737&quot; width=&quot;427&quot; height=&quot;356&quot; frameborder=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; scrolling=&quot;no&quot; style=&quot;border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px&quot; allowfullscreen&gt; &lt;/iframe&gt;
-
-</description>
-      <pubDate>Thu, 19 Sep 2013 00:00:00 +0800</pubDate>
-      <link>http://winstonyw.com/2013/09/19/googlevisualr/</link>
-      <guid isPermaLink="true">http://winstonyw.com/2013/09/19/googlevisualr/</guid>
-    </item>
-    
-    <item>
-      <title>Pairing And Email Sign Off</title>
-      <description>&lt;p&gt;There&#39;s something that stuck with me since I started doing pair programming -
-signing off emails as a pair &lt;em&gt;&quot;Winston and [My Pair]&quot;&lt;/em&gt;
-whenever we have to reply to emails while pairing.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;&quot;Why?&quot;&lt;/em&gt; - I was asked once. I can&#39;t relate the exact story anymore, but the incident
-which made me conscious of doing that happened on the first few days of working at Pivotal Labs.&lt;/p&gt;
-
-&lt;p&gt;I was pairing with Nate Clark then, and he had to shoot an email out to our clients perhaps. After he finished writing the email, he signed off as &quot;Nate &amp;amp; Winston&quot;.&lt;/p&gt;
-
-&lt;p&gt;Somehow, that simple gesture made me feel &lt;strong&gt;welcomed, trusted, and respected as a pair&lt;/strong&gt; - that I was not just a pair of eyes looking over his shoulder.&lt;/p&gt;
-
-&lt;p&gt;Soon, I also realized that it&#39;s not just Nate who was doing that but all of the other Pivots whom I had a chance to work with.&lt;/p&gt;
-
-&lt;p&gt;Being &lt;strong&gt;mindful&lt;/strong&gt; of your pair makes your pair happy, and you&#39;ll be happy too!&lt;/p&gt;
-</description>
-      <pubDate>Tue, 27 Aug 2013 00:00:00 +0800</pubDate>
-      <link>http://winstonyw.com/2013/08/27/pairing_and_email_sign_off/</link>
-      <guid isPermaLink="true">http://winstonyw.com/2013/08/27/pairing_and_email_sign_off/</guid>
     </item>
     
   </channel>
