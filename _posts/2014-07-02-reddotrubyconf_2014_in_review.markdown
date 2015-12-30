@@ -141,11 +141,11 @@ I'll be updating these, but otherwise, [Cheeaun's list](https://gist.github.com/
 
 ### Videos
 
-_Confreaks are in the process of editing the videos. Stay tuned._
+Videos available on [Confreaks](http://confreaks.tv/events/rdrc2014).
 
 ### Jobs Board
 
-_Photo of Jobs Board to come soon. Stay tuned._
+The full glory of our [Jobs Board](https://www.flickr.com/photos/reddotrubyconf/14814698284/in/album-72157645731579799/).
 
 
 --
